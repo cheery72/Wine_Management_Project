@@ -1,0 +1,370 @@
+type,name_korean,name_english,alcohol,acidity,body,sweetness,tannin,serving_temperature,score,price,style,grade,importer,winery_name_korean,winery_name_english,region_name_korean,region_name_english
+RED,"1881 나파, 카베르네 소비뇽","1881 Napa, Cabernet Sauvignon",14.5,3,4,1,4,17,90,200000,Californian Cabernet Sauvignon,,와인투유코리아,1881 나파,1881 Napa,나파 밸리,Napa Valley
+RED,아하리,Ahari,14.5,3,3,1,3,17,94,190000,Spanish Red,,비노스와인,옥서 와인즈,Oxer Wines,리오하,Rioja
+SPARKLING,"알프레드 그라티엔, 클래식 브뤼","Alfred Gratien, Classic Brut",12.5,4,1,1,1,7,92,190000,French Champagne,AOC(AOP),레드와인앤제이와이,알프레드 그라티엔,Alfred Gratien,샹빠뉴,Champagne
+SPARKLING,"알프레드 그라티엔, 퀴베 파라다이스 브뤼","Alfred Gratien, Cuvee Paradis Brut",12.5,4,1,1,1,9,94,480000,French Champagne,AOC(AOP),레드와인앤제이와이,알프레드 그라티엔,Alfred Gratien,샹빠뉴,Champagne
+SPARKLING,"알프레드 그라티엔, 밀레짐 브뤼","Alfred Gratien, Millesime Brut",12.5,4,1,1,1,9,92,340000,French Champagne,AOC(AOP),레드와인앤제이와이,알프레드 그라티엔,Alfred Gratien,샹빠뉴,Champagne
+RED,"알레그리니, 팔라쪼 델라 토레","Allegrini, Palazzo Della Torre",13.5,3,4,1,3,17,89.8,100000,Northern Italy Red,,에노테카코리아,알레그리니,Allegrini,베네토,Veneto
+RED,"알타 비스타, 아템포랄 블렌드","Alta Vista, Atemporal Blend",14.5,3,4,1,3,17,91.3,65000,,,레뱅,알타 비스타,Alta Vista,우코 밸리,Uco Valley
+RED,"알타 비스타, 싱글 빈야드 테미스","Alta Vista, Single Vineyard Temis",14,4,4,1,4,17,95.5,176000,,,레뱅,알타 비스타,Alta Vista,우코 밸리,Uco Valley
+WHITE,알루아도 샤도네이,Aluado Chardonnay,13.5,3,1,1,1,9,88.5,46000,,,레드와인앤제이와이,DFJ 비노스,DFJ Vinhos,포르투갈,Portugal
+RED,"알바로 팔라시오스, 페탈로스","Alvaro Palacios, Petalos",13.5,3,3,1,3,16.5,92,66000,Spanish Mencia,DO(DOP),나라셀라,알바로 팔라시오스,Alvaro Palacios,비에르소,Bierzo
+SPARKLING,"앙드레 끌루에, 브뤼 나뛰르 실버","Andre Clouet, Brut Nature Silver",12,5,3,1,1,7,90,89000,French Champagne,AOC(AOP),신세계엘앤비,앙드르 끌루에,Andre Clouet,샹빠뉴,Champagne
+RED,"앤드류 윌, 샴푸 빈야드","Andrew Will, Champoux Vineyard",14.5,4,5,1,5,17,93,250000,Washington State Red Blend,AVA,와인투유코리아,앤드류 윌 와이너리,Andrew Will Winery,콜롬비아 밸리,Columbia Valley
+RED,"앤드류 윌, 소렐라 레드 와인","Andrew will, Sorella Red Wine",14.5,4,5,1,4,17,96,450000,Washington State Red Blend,AVA,와인투유코리아,앤드류 윌 와이너리,Andrew Will Winery,콜롬비아 밸리,Columbia Valley
+RED,"앤드류 윌, 투 블론즈 빈야드 레드 와인","Andrew Will, Two Blondes Vineyard Red Wine",14.5,3,4,1,5,17,91.8,200000,Washington State Red Blend,,와인투유코리아,앤드류 윌 와이너리,Andrew Will Winery,야키마 밸리,Yakima Valley
+RED,앙또냉 귀용 볼네 프리미에 크뤼 끌로 데 셴느,Antonin Guyon Volnay Premier Cru Clos des Chenes,13,3,2,1,2,15,94,250000,,,레뱅,앙또넹 기용,Antonin Guyon [Domaine Antonin Guyon],꼬뜨 드 본,Côte de Beaune
+RED,"아지엔다 아그리콜라 베라, 바르바레스코","Azienda Argicola Bera, Barbaresco",14.5,3,3,1,2,15,91.7,150000,Italian Nebbiolo,,유니베브,아지엔다 아그리콜라 베라,Azienda Agricola Bera,피에몬테,Piemonte
+WHITE,"아소르스, 뷸카니코 블랑코","Azores, Vulcanico Branco",12.5,4,2,1,1,11,91,76000,,,나라셀라,아소르스 와인 컴퍼니,Azores Wine Company,아소르스,Azores
+RED,"바넷 빈야즈, 카버네 소비뇽","Barnett Vineyards, Cabernet Sauvignon",14.5,3,5,1,5,17,92.3,310000,,AVA,나라셀라,바넷 빈야즈,Barnett Vineyards,나파 밸리,Napa Valley
+RED,"바넷, 멀롯","Barnett Vineyards, Merlot",14.5,3,4,1,4,17,91,270000,,AVA,나라셀라,바넷 빈야즈,Barnett Vineyards,나파 밸리,Napa Valley
+RED,"바스 필립, 크라운 프린스 피노누아","Bass Phillip, Crown Prince Pinot Noir",13.5,4,3,1,2,17,90,115000,Australian Pinot Noir,,신세계엘앤비,바스 필립,Bass Phillip,깁스랜드,Gippsland
+WHITE,"바스 필립, 에스테이트 샤르도네","Bass Phillip, Estate Chardonnay",13.5,3,3,1,1,9,92,120000,Australian Chardonnay,,신세계엘앤비,바스 필립,Bass Phillip,깁스랜드,Gippsland
+RED,"바스 필립, 에스테이트 피노누아","Bass Phillip, Estate Pinot Noir",13.5,4,3,1,2,17,91,150000,Australian Pinot Noir,,신세계엘앤비,바스 필립,Bass Phillip,깁스랜드,Gippsland
+RED,"바스 필립, 프리미엄 피노 누아","Bass Phillip, Premium Pinot Noir",14.5,4,3,1,3,17,93,390000,Australian Pinot Noir,,신세계엘앤비,바스 필립,Bass Phillip,깁스랜드,Gippsland
+RED,"바스 필립, 리저브 피노 누아","Bass Phillip, Reserve Pinot Noir",14.5,4,3,1,3,17,95,1300000,Australian Pinot Noir,,신세계엘앤비,바스 필립,Bass Phillip,깁스랜드,Gippsland
+RED,"베드락, 헤리티지 레드와인","Bedrock, Heritage Red Wine",14.5,4,4,1,4,17,93,220000,Californian Zinfandel,,와인투유코리아,베드락 와인,Bedrock Wine,소노마 카운티,Sonoma County
+RED,"베드락, 올드 바인 진판델","Bedrock, Old Vine Zinfandel",14.5,3,4,1,4,17,92,160000,Californian Zinfandel,,와인투유코리아,베드락 와인,Bedrock Wine,캘리포니아,California
+RED,"벤 마르코, 익스프레시보","Ben Marco, Expresivo",14.5,3,4,1,4,17,94,160000,Argentinian Malbec,,하이트진로,벤 마르코,Ben Marco,우코 밸리,Uco Valley
+RED,"벤 마르코, 신 리미테스 괄탈라리 말벡","Ben Marco, Sin Limites Gualtallary Marbec",14.5,3,4,1,4,17,97,125000,Argentinian Malbec,,하이트진로,벤 마르코,Ben Marco,우코 밸리,Uco Valley
+SPARKLING,"비비 그라츠, 볼라마타","Bibi Graetz, Bollamatta",12,3,3,1,1,7,90.3,116000,,IGT(IGP),(주)와이넬,비비 그라츠,Bibi Graetz,토스카나,Toscana
+RED,블랙 스탈리온 까베르네 소비뇽,Black Stallion Cabernet Sauvignon,14.5,3,5,1,5,17,92.4,140000,Californian Cabernet Sauvignon,AVA,레뱅,델리카토 패밀리 빈야드,Delicato Family Vineyards - DFV,나파 밸리,Napa Valley
+WHITE,"블랙 스탈리온, 리미티드 릴리즈 포세이돈 샤르도네","Black Stallion, Limited Release Poseidon Chardonnay",14.5,4,3,1,1,9,92,150000,,,레뱅,델리카토 패밀리 빈야드,Delicato Family Vineyards - DFV,나파 밸리,Napa Valley
+FORTIFIED,"브리스데일, 더 와이즈 원 타우니 NV","Bleasdale, The Wise One Tawny NV",18.5,3,4,4,2,11,90,52000,Portuguese Port,,엘비,브리스데일,Bleasdale,랭혼 크릭,Langhorne Creek
+WHITE,"보데가 차크라, 마인케 샤르도네","Bodega Chacra, Mainque Chardonnay",13.5,3,3,1,1,11,94,242000,,,에노테카코리아,보데가 차크라,Bodega Chacra,파타고니아,Patagonia
+RED,"보데가 이 비네도스 산 폴로, 아우카 클래식 말벡","Bodega y Vinedos San Polo, Auka Classic Malbec",13.5,3,4,1,4,17,90,30000,Argentinian Malbec,,가자주류,보데가 이 비네도스 산 폴로,Bodega y Vinedos San Polo,우코 밸리,Uco Valley
+WHITE,"보데가스 까레, 블랑코 소브레 리아스","Bodegas Care, Blanco Sobre Lias",13,4,3,1,1,9,90,25000,,,레뱅,보데가스 카레,Bodegas Care,까리네냐,Carinena
+RED,"보데가스 까로, 아만카야","Bodegas Caro, Amancaya",14.5,2,4,1,4,17,92.5,50000,,,인터리커,카로 [보데가스 카로],Caro [Bodegas Caro],멘도사,Mendoza
+RED,"보데가스 까로, 아루마","Bodegas Caro, Aruma",14.5,2,3,1,4,17,91,29000,Argentinian Malbec,,인터리커,카로 [보데가스 카로],Caro [Bodegas Caro],멘도사,Mendoza
+RED,"보데가스 무가, 아로","Bodegas Muga, Aro",14.5,4,5,1,5,17,96.6,500000,Spanish Red,AOC(AOP),레뱅,무가,Muga [Bodegas Muga],리오하,Rioja
+WHITE,"보데가스 무가, 블랑코","Bodegas Muga, Blanco",13.5,4,3,1,1,11,91,65000,Spanish Rioja White,AOC(AOP),레뱅,무가,Muga [Bodegas Muga],리오하,Rioja
+RED,"보데가스 무가, 프라도 에네아 그랑 레세르바","Bodegas Muga, Prado Enea Grand Reserva",14.5,3,4,1,4,17,95.4,250000,Spanish Red,AOC(AOP),레뱅,무가,Muga [Bodegas Muga],리오하,Rioja
+RED,"보데가스 무가, 리제르바 셀렉시옹 에스페시알","Bodegas Muga, Reserva Selection Especial",14.5,4,5,1,4,16,94.2,140000,Spanish Red,,레뱅,무가,Muga [Bodegas Muga],리오하,Rioja
+RED,"보데가스 무가, 또레 무가","Bodegas Muga, Torre Muga",14.5,3,4,1,4,17,94.2,330000,Spanish Red,,레뱅,무가,Muga [Bodegas Muga],리오하,Rioja
+WHITE,"보데가스 넬레만, 저스트 화이트","Bodegas Neleman, Just Good Wine White",13.5,3,1,1,1,9,87,42000,,,리바인,보데가스 넬레만,Bodegas Neleman,발렌시아,Valencia
+RED,"보글, 쁘띠 시라","Bogle, Petite Sirah",13.5,3,4,1,3,16,90,100000,Californian Petite Sirah,AVA,동원와인플러스,보글 빈야드,Bogle Vineyards,캘리포니아,California
+SPARKLING,"볼랭저, 스페셜 뀌베 브뤼","Bollinger, Special Cuvee Brut",12,4,4,1,1,7,93,196000,French Champagne,AOC(AOP),신동와인,볼랭저,Bollinger,샹빠뉴,Champagne
+RED,"본드, 세인트 이든","Bond, Saint Eden",14.5,4,5,1,4,17,97.4,2017000,Californian Cabernet Sauvignon,AVA,크리스탈와인,본드 에스테이트,Bond Estates,나파 밸리,Napa Valley
+RED,"브란콧 에스테이트, 말보로 레터 'T' 피노누아","Brancott Estate, Marlborough Letter 'T' Pinot Noir",13.5,4,2,1,1,15,90,60000,New Zealand Pinot Noir,,가자주류,브란콧 이스테이트,Brancott Estate,말보로,Marlborough
+RED,"브루어 클리프턴, 산타 리타 힐스 피노 누아","Brewer-Clifton, Sta. Rita Hills Pinot Noir",14.5,3,3,1,3,15,91.3,285000,,AVA,와인투유코리아,브루어 클리프턴,Brewer-Clifton,산타 리타 힐스,Santa Rita Hills
+RED,"브레짜, 바롤로 깐누비","Brezza, Barolo Cannubi",14.5,3,3,1,2,17,96.3,185000,,,레뱅,브레짜,Brezza,칸누비,Cannubi
+RED,"브루노 지아코사, 바르바레스코 아실리 리제르바","Bruno Giacosa, Barbaresco Asili Riserva",14.5,4,5,1,5,17,98,966000,,,에노테카코리아,부르노 지아코사,Bruno Giacosa,피에몬테,Piemonte
+RED,"브루노 지아코사, 바롤로","Bruno Giacosa, Barolo",14.5,4,4,1,4,17,94.2,750000,,DOCG(DOP),에노테카코리아,부르노 지아코사,Bruno Giacosa,바롤로,Barolo
+RED,"칸티나 길랑, 패트리샤 피노 누아","Cantina Girlan, Patricia Pinot Noir",13.5,3,3,1,2,15,92,80000,,,유니베브,칸티나 길랑,Cantina Girlan,트렌티노-알토 아디제,Trentino-Alto Adige
+RED,"칸티나 길랑, 트라트만 피노누아 리세르바","Cantina Girlan, Trattmann Pinot Noir Riserva",14.5,3,3,1,2,15,92.3,200000,,,유니베브,칸티나 길랑,Cantina Girlan,트렌티노-알토 아디제,Trentino-Alto Adige
+RED,"칸티네 델 보르고 레알레, 시데레우스 토스카나 로쏘","Cantine del Borgo Reale, Sidereus Toscana Rosso",14.5,3,3,1,3,17,96,64000,,,비노스와인,칸티네 델 보르고 레알레,Cantine del Borgo Reale,토스카나,Toscana
+RED,"칼린 드 파올로, 바르베라 다스티","Carlin de Paolo, Barbera d'Asti 'Ad Libitvm'",13.5,3,4,1,3,17,91.8,40000,Italian Barbera,,동원와인플러스,칼린 드 파올로,Carlin de Paolo,아스티,Asti
+RED,"깔린드 파올로, 바롤로","Carlin de Paolo, Barolo",14.5,3,4,1,3,15,92,106000,Italian Barolo,,동원와인플러스,칼린 드 파올로,Carlin de Paolo,바롤로,Barolo
+RED,까로,Caro,14.5,2,5,1,5,17,94.5,160000,,,인터리커,카로 [보데가스 카로],Caro [Bodegas Caro],멘도사,Mendoza
+WHITE,"카르페 디엠, 샤르도네","Carpe Diem, Chardonnay",13.5,3,3,1,1,9,91.5,130000,Californian Chardonnay,,에노테카코리아,카르페 디엠,Carpe Diem,앤더슨 밸리,Anderson Valley
+RED,"카르페 디엠, 피노 누아","Carpe Diem, Pinot Noir",13.5,3,3,1,2,15,91,150000,Californian Pinot Noir,,에노테카코리아,카르페 디엠,Carpe Diem,앤더슨 밸리,Anderson Valley
+WHITE,"까르피네토, 파니토 빈산토 델 키안티","Carpineto, Farnito Vinsanto del Chianti",15,3,5,5,1,13,92,280000,Central Italy White,DOC(DOP),국순당,까르피네토,Carpineto,키안티,Chianti
+RED,"까르피네토, 비노 노빌레 디 몬테풀치아노 리제르바","Carpineto, Vino Nobile di Montepulciano Reserva",13.5,4,4,1,4,17,92.5,140000,Central Italy Red,DOCG(DOP),국순당,까르피네토,Carpineto,몬테풀치아노,Montepulciano
+RED,까르뜨 블랑슈 까베르네 소비뇽,"Carte Blanche, Cabernet Sauvignon",14.5,3,5,1,5,17,96.3,800000,Californian Cabernet Sauvignon,AVA,와인투유코리아,니콜라스 알렌 와이너리,Nicolas Allen Winery,나파 밸리,Napa Valley
+WHITE,"카잘 파르네토, 치마이오","Casal Farneto, Cimaio",14.5,4,3,5,1,11,90,89000,,IGT(IGP),엘비,카잘 파르네토,Casal Farneto,마르케,Marche
+RED,"카시나 치쿠, 랑게 네비올로","Cascina Chicco, Langhe Nebbiolo",14.5,3,3,1,3,17,90.2,50000,,,동원와인플러스,카시나 치쿠,Cascina Chicco,랑게,Langhe
+RED,"카스텔로 디 폰테루톨리, 키안티 클라시코","Castello di Fonterutoli, Chianti Classico",14,3,4,1,3,17,92,110000,Italian Chianti,DOCG(DOP),하이트진로,카스텔로 디 폰테루톨리,Castello di Fonterutoli,키안티 클라시코,Chianti Classico
+RED,"카스텔로 디 몬테포, 스키디오네","Castello di Montepo, Schidione",13.5,3,4,1,4,17,90,750000,Tuscan Red,,동원와인플러스,카스텔로 디 몬테포,Castello di Montepo,토스카나,Toscana
+RED,"카스텔로 디 퀘르체토, 키안티 클라시코","Castello di Querceto, Chianti Classico",13,4,3,1,3,17,89.3,55000,Italian Chianti,DOCG(DOP),나라셀라,카스텔로 디 퀘르체토,Castello di Querceto,키안티 클라시코,Chianti Classico
+RED,"카네타 자파타, 안젤리카 자파타 말벡","Catena Zapata, Angelica Zapata Malbec",14.5,4,4,1,5,17,91,88700,Argentinian Malbec,,신세계엘앤비,까테나 자파타,Catena Zapata,아르헨티나,Argentina
+RED,"카테나 자파타, 디.브이 카테나 카베르네 히스토리코","Catena Zapata, D.V Catena Cabernet Historico",13.5,3,4,1,4,17,94,41500,Argentinian Cabernet Sauvignon,,신세계엘앤비,까테나 자파타,Catena Zapata,아르헨티나,Argentina
+RED,"카테나 자파타, 디.브이 카테나 말벡 히스토리코","Catena Zapata, D.V Catena Malbec Historico",13.5,4,4,1,4,17,94,41500,Argentinian Malbec,,신세계엘앤비,까테나 자파타,Catena Zapata,아르헨티나,Argentina
+RED,"셀라 드 캅파네스, 포텐테","Cellar de Capcanes, Potente",14.5,3,4,1,3,17,92,60000,Spanish Red,,콜리코,셀러 드 카프샤네스,Celler de Capcanes,까탈루냐,Cataluna
+RED,셀리에 오 무안 지브리 프리미에 크뤼 클로 뒤 셀리에 오 무안,Cellier aux Moines Givry 1er Cru Clos du Cellier aux Moines,14.5,2,4,1,3,15,83.7,210000,Burgundy Côte Chalonnaise Red,1er Cru AOC(AOP),루벵코리아,끌로 뒤 셀리에,Clos du Cellier aux Moines,지브리,Givry
+WHITE,셀리에 오 무안 몽타니 프리미에 크뤼 레 콤브,Cellier aux Moines Montagny 1er Cru Les Combes,13.5,3,3,1,1,9,93,165000,,,에노테카코리아,끌로 뒤 셀리에,Clos du Cellier aux Moines,몽따니,Montagny
+WHITE,셀리에 오 무안 상트네 프리미에 크뤼 보르가르,Cellier aux Moines Santenay 1er Cru Beauregard,13.5,3,4,1,1,9,91.5,210000,,,에노테카코리아,끌로 뒤 셀리에,Clos du Cellier aux Moines,상트네,Santenay
+SPARKLING,"샴페인 부와젤, 블랑 드 블랑","Champagne Boizel, Blanc de Blanc",12.5,3,1,1,1,7,91,250000,French Champagne,,비노테크,샴페인 부와젤,Champagne Boizel,샹빠뉴,Champagne
+SPARKLING,"샴페인 부와젤, 블랑 드 누아","Champagne Boizel, Blanc de Noir",12.5,4,2,1,1,7,91,250000,French Champagne,,비노테크,샴페인 부와젤,Champagne Boizel,샹빠뉴,Champagne
+SPARKLING,"샴페인 부와젤, 브뤼 리저브","Champagne Boizel, Brut Reserve",12.5,4,2,1,1,7,93.5,172000,French Champagne,,비노테크,샴페인 부와젤,Champagne Boizel,샹빠뉴,Champagne
+SPARKLING,"샴페인 드 브노쥬, 꼬르동 블루 브뤼","Champagne de Venoge, Cordon Bleu Brut",12.5,3,3,1,1,7,90,245000,French Champagne,AOC(AOP),(주)와이넬,샴페인 드 브노쥬,Champagne de Venoge,샹빠뉴,Champagne
+SPARKLING,"샴페인 드 브노쥬, 루이 도르 브뤼","Champagne de Venoge, Louis d'Or Brut",12,4,4,1,1,7,96,990000,French Champagne,AOC(AOP),(주)와이넬,샴페인 드 브노쥬,Champagne de Venoge,샹빠뉴,Champagne
+SPARKLING,"샴페인 드 브노쥬, 루이 15세 브뤼","Champagne de Venoge, Louis XV",12.5,4,3,1,1,7,96,1210000,French Champagne,AOC(AOP),(주)와이넬,샴페인 드 브노쥬,Champagne de Venoge,샹빠뉴,Champagne
+SPARKLING,"샴페인 드 브노쥬, 루이 15세 300주년 기념 에디션","Champagne de Venoge, Louis XV 300th Anniversary of the Coronation Edition",12.5,4,3,1,1,9,97,1804000,French Champagne,,(주)와이넬,샴페인 드 브노쥬,Champagne de Venoge,샹빠뉴,Champagne
+SPARKLING,"샴페인 드라피에, 콰투아","Champagne Drappier, Quattuor",12.5,5,3,1,1,7,92,340000,French Champagne,AOC(AOP),씨에스알와인,샴페인 드라피에,Champagne Drappier,샹빠뉴,Champagne
+SPARKLING,"샴페인 유진 쓰리, 트레디션 브뤼","Champagne Eugene III, Tradition Brut",12.5,4,4,1,1,9,89.5,140000,French Champagne,AOC(AOP),콜리코,샴페인 유진 쓰리,Champagne Eugene III,샹빠뉴,Champagne
+SPARKLING,"샴페인 누빌, 꼬뜨 블랑쉐","Champagne Le Brun de Neuville, Cote Blanche",12.5,3,2,1,1,9,90,160000,French Champagne,,씨에스알와인,샴페인 르 브룬 드 누빌,Champagne Le Brun de Neuville,샹빠뉴,Champagne
+SPARKLING,"샤를 엘너, 까르뜨 블랑슈 브뤼","Charles Ellner, Carte Blanche Brut",12.5,4,3,1,1,9,91,165000,French Champagne,AOC(AOP),와인투유코리아,샤를 엘너,Charles Ellner,샹빠뉴,Champagne
+SPARKLING,"샤를 엘너, 프레스티지 밀레짐 브뤼","Charles Ellner, Prestige Millesime Brut",12.5,4,2,1,1,9,93,250000,French Champagne,,와인투유코리아,샤를 엘너,Charles Ellner,샹빠뉴,Champagne
+SPARKLING,"샤를 오르방, 블랑 드 누아","Charles Orban, Blanc de Noirs",12.5,4,3,1,1,7,90,143000,French Champagne,,유와인(주),샤를 오르방,Charles Orban,샹빠뉴,Champagne
+RED,샤또 바따이,Chateau Batailley,13.5,4,5,1,4,17,92.5,250000,Bordeaux Pauillac,Grand Cru AOC(AOP),하이트진로,샤또 바따이,"Chateau Batailley, Grand Cru Classe,5th Cru",뽀이약,Pauillac
+RED,샤또 브라네르 뒤크뤼,Chateau Branaire Ducru,13.5,4,5,1,4,17,93.6,105000,Bordeaux Saint-Julien,Grand Cru AOC(AOP),비노테크,샤또 브라네르 뒤크뤼,"Chateau Branaire-Ducru, Grand Cru Classe,4th Cru",생-쥴리앙,Saint-Julien
+RED,샤또 시트랑,Chateau Citran,13.5,4,3,1,4,17,81.5,40000,Bordeaux Médoc,AOC(AOP),금양인터내셔날,샤또 시트랑,Chateau Citran,오-메독,Haut-Medoc
+RED,샤또 끌리네,Chateau Clinet,14.5,3,4,1,4,17,91,230000,Bordeaux Pomerol,AOC(AOP),신세계엘앤비,샤또 끌리네,Chateau Clinet,뽀므롤,Pomerol
+RED,"샤또 드 보카스텔, 샤또네프 뒤 빠쁘 루즈","Chateau de Beaucastel, Chateauneuf du Pape Rouge",14.5,3,5,1,4,17,95.6,280000,Southern Rhône Red,AOC(AOP),신동와인,샤또 드 보카스텔,Chateau de Beaucastel,샤또네프 뒤 빠쁘,Chateauneuf du Pape
+RED,샤또 드 페즈,Chateau de Pez,12.5,3,4,1,4,43,90.8,125000,Bordeaux Red,AOC(AOP),에노테카코리아,샤또 드 페즈,Chateau de Pez,보르도,Bordeaux
+RED,샤또 피작,Chateau Figeac,12.5,3,4,1,4,17,95.2,290000,Bordeaux Saint-Émilion,Premier Grand Cru A AOC(AOP),타펙스,샤또 피작,"Chateau Figeac, 1st Grand Cru Classe B",생-떼밀리옹 그랑 크뤼,Saint-Emilion Grand Cru
+RED,샤토 장 파우레,Chateau Jean Faure,13.5,3,4,1,4,17,92,355000,Bordeaux Saint-Émilion,Grand Cru AOC(AOP),피케이인터내셔날,샤또 장 파우레,Chateau Jean Faure,생-떼밀리옹,Saint-Emilion
+RED,샤또 마고,Chateau Margaux,13.5,4,4,1,4,17,96.4,900000,Bordeaux Margaux,Grand Cru AOC(AOP),비노테크,샤또 마고,"Chateau Margaux, 1st Grand Cru Classe",마고,Margaux
+WHITE,"샤또 몬텔레나, 나파 밸리 샤도네이","Chateau Montelena, Napa Valley Chardonnay",13.5,3,4,1,1,11,92.3,200000,Californian Chardonnay,AVA,나라셀라,샤또 몬텔레나,Chateau Montelena,나파 밸리,Napa Valley
+RED,샤토 폴 마스 클로 사비냑,Chateau Paul Mas Clos Savignac,14.5,3,4,1,4,17,90.5,110000,Languedoc-Roussillon Red,,에노테카코리아,도멘 폴 마스,Domaines Paul Mas,랑그독 루씨용,Languedoc Roussillon
+RED,샤또 퐁테 카네,Chateau Pontet Canet,13.5,4,5,1,5,17,95,180000,Bordeaux Pauillac,Grand Cru AOC(AOP),타펙스,샤또 퐁테 카네,"Chateau Pontet Canet, Grand Cru Classe,5th Cru",뽀이약,Pauillac
+RED,"샤또 뽀띠롱, 뀌베 엑셀런스","Chateau Potiron, Cuvee Excellence",13.5,3,3,1,3,17,90,80000,,AOC(AOP),엘비,샤또 드 뽀띠롱,Chateau de Potiron,보르도,Bordeaux
+WHITE,샤또 라울 그라브 블랑,Chateau Rahoul Graves Blanc,13.5,4,2,1,1,11,90.5,100000,,AOC(AOP),하이트진로,두르뜨,Dourthe [Vins & Vignobles Dourthe],그라브,Graves
+RED,"샤또 생진, 생 세파쥬","Chateau St. Jean, Cinq Cepages",14.5,3,4,1,4,17,94.2,450000,Californian Bordeaux Blend,,레뱅,샤또 생진,Chateau St. Jean,소노마 카운티,Sonoma County
+WHITE,"샤토 생 미셸, 컬럼비아 밸리 리슬링","Chateau Ste. Michelle, Columbia Valley Riesling",11.5,3,3,2,1,11,88.8,45000,Washington State Riesling,AVA,금양인터내셔날,샤토 생미셸,Chateau Ste.Michelle,콜롬비아 밸리,Columbia Valley
+RED,샤또 딸보,Chateau Talbot,13.5,3,4,1,4,17,91,130000,Bordeaux Saint-Julien,Grand Cru AOC(AOP),타펙스,샤또 딸보,"Chateau Talbot, 4th Grand Cru Classe",생-쥴리앙,Saint-Julien
+RED,샤또 발란드로,Chateau Valandraud,13.5,3,5,1,4,17,94.8,560000,Bordeaux Saint-Émilion,Grand Cru AOC(AOP),금양인터내셔날,뛰느방,Thunevin,생-떼밀리옹 그랑 크뤼,Saint-Emilion Grand Cru
+RED,"치아봇 베르통, 바롤로 1961","Ciabot Berton, Barolo 1961",14.5,3,3,1,3,15,92,170000,Italian Barolo,,비노스와인,치아봇 베르통,Ciabot Berton,피에몬테,Piemonte
+RED,"치아봇 베르통, 바롤로 라 모라","Ciabot Berton, Barolo La Morra",14.5,3,3,1,3,15,92.5,140000,Italian Barolo,,비노스와인,치아봇 베르통,Ciabot Berton,피에몬테,Piemonte
+RED,"치아봇 베르통, 바롤로 로케테비노","Ciabot Berton, Barolo Rocchettevino",14.5,3,4,1,3,15,94.3,200000,Italian Barolo,DOCG(DOP),비노스와인,치아봇 베르통,Ciabot Berton,피에몬테,Piemonte
+WHITE,"클리프 레이디, 펠 샤도네이","Cliff Lede, Fel Chardonnay",13.5,3,4,1,1,11,90,125000,Californian Chardonnay,AVA,비케이트레이딩,클리프 레이디,Cliff Lede,앤더슨 밸리,Anderson Valley
+RED,"폴 케브라다 드 마쿨, 페냐롤렌 테즈","Clos Quebrada de Macul, Penalolen Tez",15.5,3,4,1,4,17,94,510000,Chilean Bordeaux Blend,,동원와인플러스,끌로 케브라다 드 마쿨,Clos Quebrada de Macul,마이포 밸리,Maipo Valley
+RED,"콜도르치아, 올마이아 산탄티모 까베르네","Col d'Orcia, Olmaia Sant'antimo Cabernet",14.5,4,5,1,4,17,91.7,160000,Central Italy Red,DOC(DOP),지에프비노,콜도르치아,Col d'Orcia,몬탈치노,Montalcino
+RED,"콜레프리지오, 아파시멘토","Collefrisio, Appassimento",14.5,3,4,1,3,17,96,53000,Italian Montepulciano d'Abruzzo,,리바인,콜레프리지오,Collefrisio,아브루쪼,Abruzzo
+RED,"콜레프리지오, 칸프란토","Collefrisio, Confronto",14.5,3,4,1,3,17,94,82000,Italian Montepulciano d'Abruzzo,,리바인,콜레프리지오,Collefrisio,아브루쪼,Abruzzo
+RED,"콜레프리지오, 인 앤 아웃","Collefrisio, In & Out",14.5,4,3,1,4,17,90,113000,Italian Montepulciano d'Abruzzo,,루벵코리아,콜레프리지오,Collefrisio,아브루쪼,Abruzzo
+RED,"콜레프리지오, 세미스","Collefrisio, Semis",14.5,3,3,1,3,17,94,104000,Italian Montepulciano d'Abruzzo,,리바인,콜레프리지오,Collefrisio,아브루쪼,Abruzzo
+SPARKLING,"콘트라또, 밀레시마토 엑스트라 브뤼","Contratto, Millesimato Extra Brut",12.5,3,4,1,1,7,92,110000,,,루벵코리아,콘트라또,Contratto,피에몬테,Piemonte
+WHITE,코넌드럼 화이트,Conundrum White,13.5,3,3,1,1,7,90,67000,Californian White Blend,AVA,나라셀라,케이머스 빈야드,Caymus Vineyards,나파 밸리,Napa Valley
+RED,컬트 카베르네 소비뇽,Cult Cabernet Sauvignon,13.5,3,4,1,4,17,90,85000,Californian Cabernet Sauvignon,,와인투유코리아,살베스트린,Salvestrin,로디,Lodi
+RED,"달 포르노 로마노, 아마로네 델라 발포리첼라","Dal Forno Romano, Amarone della Valpolicella",17,3,5,2,5,18,95.7,1360000,Italian Amarone,DOCG(DOP),하이트진로,로마노 달 포르노,Romano dal Forno,발폴리첼라,Valpolicella
+RED,"달 포르노 로마노, 발폴리첼라 수페리오레","Dal Forno Romano, Valpolicella Superiore",15.5,4,5,1,3,17,93.3,520000,Northern Italy Red,DOC(DOP),하이트진로,로마노 달 포르노,Romano dal Forno,발폴리첼라,Valpolicella
+RED,"다나 에스테이트, 바소 카베르네 소비뇽","Dana Estates, Vaso Cabernet Sauvignon",14.5,3,5,1,4,17,93.3,350000,Californian Bordeaux Blend,AVA,에노테카코리아,다나 에스테이트,Dana Estates,나파 밸리,Napa Valley
+RED,"다리우스 II, 카베르네 소비뇽","Darius II, Cabernet Sauvignon",14.8,3,5,1,4,16,95,1200000,Californian Cabernet Sauvignon,AVA,와인투유코리아,다리우쉬,Darioush,나파 밸리,Napa Valley
+SPARKLING,"드 샹세니, 크레망 드 루아르 브뤼","De Chanceny, Cremant de Loire Brut",12.5,3,3,1,1,7,95,36000,French Crémant,AOC(AOP),나라셀라,드 샹세니,De Chanceny,루아르,Loire
+RED,"디코이, 피노누아","Decoy, Pinot Noir",13.5,4,3,1,3,15,90,97000,,,나라셀라,덕혼 와인 컴퍼니,Duckhorn Wine Company,캘리포니아,California
+RED,들라스 에르미타주 도멘 데 뚜레뜨,Delas Hermitage Domaine des Tourettes,14,3,5,1,5,17,92.7,320000,,AOC(AOP),레뱅,들라스,Delas,에르미타주,Hermitage
+RED,"디오블릿, 조토비치 패밀리 빈야드 피노 누아","Deovlet, Zotovich Family Vineyard Pinot Noir",13.5,3,2,1,2,15,93,200000,Californian Pinot Noir,,와인투유코리아,라이언 디오블릿,Ryan Deovlet,산타 리타 힐스,Santa Rita Hills
+WHITE,"도츠, 윌리엄 도츠","Deutz, William Deutz",12,4,3,2,1,9,92,620000,,,레뱅,도츠,Deutz [Champagne Deutz],샹빠뉴,Champagne
+SPARKLING,드보 뀌베 디,Devaux Cuvee D,12.5,5,3,1,1,7,91,100000,French Champagne,AOC(AOP),무학주류상사,샹파뉴 드보,Champagne Devaux,샹빠뉴,Champagne
+WHITE,"디왈드 와인, 리드 아이젠훝 리슬링","Diwald Wine, Ried Eisenhut 1OTW Riesling",13.5,3,3,1,1,9,93,92000,,,베리타스비노,디왈드 와인,Diwald Wine,바인피어텔,Weinviertel
+SPARKLING,"돔 꾸드론, 슈블리미티","Dom Caudron, Sublimite",12.5,4,2,1,1,7,94,310000,French Champagne,,비노스와인,돔 꾸드론,Dom Caudron,샹빠뉴,Champagne
+WHITE,"도멘 앤더슨 에스테이트, 샤르도네 앤더슨 밸리","Domaine Anderson Estate, Chardonnay Anderson Valley",13.5,3,3,1,1,11,91.3,170000,Californian Chardonnay,,에노테카코리아,도멘 앤더슨 에스테이트,Domaine Anderson Estate,앤더슨 밸리,Anderson Valley
+RED,"도멘 앤더슨 에스테이트, 피노 누아 앤더슨 밸리","Domaine Anderson, Estate Pinot Noir Anderson Valley",13.5,3,3,1,2,15,90,230000,Californian Pinot Noir,,에노테카코리아,도멘 앤더슨 에스테이트,Domaine Anderson Estate,앤더슨 밸리,Anderson Valley
+WHITE,"도멘 앙또넹 기용, 뫼르소 샤르므 프르미에 크뤼 '레 샤름 드쉬'","Domaine Antonin Guyon, Meursault Charmes 1er Cru 'Les Charmes Dessus'",13.5,5,4,1,1,13,91.5,350000,,1er Cru AOC(AOP),레뱅,앙또넹 기용,Antonin Guyon [Domaine Antonin Guyon],꼬뜨 드 본,Côte de Beaune
+SPARKLING,"도멘 생 미셸, 브뤼","Domaine Ste. Michelle, Brut",11.5,3,3,2,1,7,88.5,40000,,AVA,금양인터내셔날,도멘 생미셸,Domaine Ste.Michelle,콜롬비아 밸리,Columbia Valley
+WHITE,"된호프, 니더하우저 헤르만숄레 리슬링 슈페트레제","Dönnhoff, Niederhauser Hermannshole Riesling Spatlese",8.5,3,3,3,1,11,94,165000,German Riesling,QmP,에노테카코리아,돈호프,Donnhoff,나헤,Nahe
+WHITE,"된호프, 리슬링 파인헤릅","Dönnhoff, Riesling Feinherb",10.5,4,2,3,1,11,90,70000,German Riesling,,에노테카코리아,돈호프,Donnhoff,나헤,Nahe
+WHITE,"두르뜨, 뉘메로 엥 소비뇽 블랑","Dourthe, No.1 Sauvignon Blanc",12.5,3,3,1,1,11,89.3,51000,Bordeaux White,AOC(AOP),하이트진로,두르뜨,Dourthe [Vins & Vignobles Dourthe],보르도,Bordeaux
+WHITE,"듀몰, 하이디 빈야드 샤도네이","DuMOL, Hyde Vineyard Chardonnay",14.5,3,4,1,1,11,95.7,320000,Californian Chardonnay,AVA,와인투유코리아,듀몰,DuMOL,로스 카네로스,Los Carneros
+WHITE,"듀몰, 웨스터 리치 샤도네이","DuMOL, Wester Reach Chardonnay Russian River Valley",14.5,3,2,1,1,9,95.2,300000,Californian Chardonnay,,와인투유코리아,듀몰,DuMOL,러시안 리버 밸리,Russian River Valley
+RED,"듀몰, 웨스터 리치 피노 누아","DuMOL, Wester Reach Pinot Noir",13.5,3,2,1,2,15,94.2,360000,Californian Pinot Noir,,와인투유코리아,듀몰,DuMOL,러시안 리버 밸리,Russian River Valley
+RED,"에라스, 오리건 피노 누아","Erath, Oregon Pinot Noir",13.5,3,3,1,2,16,89.3,100000,Oregon Pinot Noir,,금양인터내셔날,에라스,Erath,오리건,Oregon
+RED,에토스 리저브 까베르네 소비뇽,Ethos Reserve Cabernet Sauvignon,13.5,4,4,1,4,17,92,140000,Washington State Cabernet Sauvignon,AVA,금양인터내셔날,샤토 생미셸,Chateau Ste.Michelle,콜롬비아 밸리,Columbia Valley
+RED,"파 니엔테, 나파 밸리 카버네 소비뇽","Far Niente, Napa Valley Cabernet Sauvignon",14.5,3,5,1,5,17,93.7,370000,Napa Valley Cabernet Sauvignon,AVA,나라셀라,파니엔테 와이너리,Far Niente Winery,나파 밸리,Napa Valley
+RED,"파머스 립, 더 브레이브","Farmer's Leap, The Brave",15.5,3,5,1,4,17,94,65000,,,국순당,파머스 립,Farmer's Leap [Farmers Leap],패더웨이,Padthaway
+RED,"파토리아 데이 바르비, 브루넬로 디 몬탈치노 '비냐 델 피오르'","Fattoria dei Barbi, Brunello di Montalcino 'Vigna del Fiore'",14.5,3,4,1,3,17,93.8,360000,Italian Brunello,,동원와인플러스,파토리아 데이 바르비,Fattoria dei Barbi,몬탈치노,Montalcino
+RED,페더 카베르네 소비뇽,Feather Cabernet Sauvignon,14.5,4,5,1,4,17,94,320000,Washington State Cabernet Sauvignon,AVA,와인투유코리아,롱 쉐도우 빈트너즈,Long Shadows Vintners,콜롬비아 밸리,Columbia Valley
+RED,"핀까 엘 오리엔, 말벡","Finca el Origen, Malbec",14.5,3,3,1,3,17,89,11000,Argentinian Malbec,,신세계엘앤비,핀까 엘 오리엔,Finca el Origen,멘도사,Mendoza
+RED,"핀까 엘 오리엔, 레세르바 까베르네 소비뇽","Finca el Origen, Reserva Cabernet Sauvignon",14.5,3,3,1,4,17,92,19900,Argentinian Cabernet Sauvignon,,신세계엘앤비,핀까 엘 오리엔,Finca el Origen,멘도사,Mendoza
+RED,"핀까 엘 오리엔, 리세르바 말벡","Finca el Origen, Reserva Malbec",14.5,3,3,1,3,17,91.7,19900,Argentinian Malbec,,신세계엘앤비,핀까 엘 오리엔,Finca el Origen,멘도사,Mendoza
+WHITE,"프랑소와 크로쉐, 상세르 블랑 에그질","Francois Crochet, Sancerre Blanc Exils",13.5,4,2,1,1,9,93,185000,Upper Loire White,,레드와인앤제이와이,프랑소와 크로쉐,Francois Crochet,상세르,Sancerre
+WHITE,"프랑소와 크로쉐, 상세르 블랑 레 자무레즈","Francois Crochet, Sancerre Blanc Les Amoureuses",14.5,4,2,1,1,9,91,175000,Upper Loire White,,레드와인앤제이와이,프랑소와 크로쉐,Francois Crochet,상세르,Sancerre
+RED,"프랑크 패밀리, 나파 밸리 카베르네 소비뇽","Frank Family, Napa Valley Cabernet Sauvignon",14.5,4,5,1,4,17,90.2,220000,Californian Cabernet Sauvignon,AVA,와인투유코리아,프랑크 패밀리,Frank Family Vineyards,나파 밸리,Napa Valley
+RED,"프랑크 패밀리, 진판델 나파 밸리","Frank Family, Zinfandel Napa Valley",14.5,3,4,1,3,17,90,200000,Californian Zinfandel,,와인투유코리아,프랑크 패밀리,Frank Family Vineyards,나파 밸리,Napa Valley
+RED,"프리먼, 아키코 퀴베 피노누아","Freeman, Akiko's Cuvee Pinot Noir",14.5,3,3,1,2,15,92.5,318000,Californian Pinot Noir,,호메오와인갤러리,프리먼,Freeman,러시안 리버 밸리,Russian River Valley
+WHITE,"프리먼, 호크힐 샤도네이","Freeman, Hawk Hill Chardonnay",12.5,3,3,1,1,9,92,255000,Californian Chardonnay,,호메오와인갤러리,프리먼,Freeman,소노마 코스트,Sonoma Coast
+ROSE,"프레스코발디, 알리에 로제","Frescobaldi, Alie Rose",12.5,3,2,1,2,9,89,40000,,,신세계엘앤비,프레스코발디,Frescobaldi,토스카나,Toscana
+RED,"프레스코발디, 카스텔지오콘도 브루넬로 디 몬탈치노","Frescobaldi, Castelgiocondo Brunello di Montalcino",14.5,3,4,1,4,17,92.7,157000,Italian Brunello,DOCG(DOP),신세계엘앤비,프레스코발디,Frescobaldi,몬탈치노,Montalcino
+RED,"프레스코발디, 카스텔지오콘도 라마이오네","Frescobaldi, Castelgiocondo Lamaione",14.5,3,4,1,4,17,90,202000,Central Italy Red,,신세계엘앤비,프레스코발디,Frescobaldi,토스카나,Toscana
+RED,"프레스코발디, 니포짜노 키안티 루피나 몬테소디","Frescobaldi, Nipozzano Chianti Rufina Riserva Montesodi",13.5,3,3,1,4,17,92,131000,Central Italy Red,DOCG(DOP),신세계엘앤비,프레스코발디,Frescobaldi,키안티,Chianti
+RED,"프레스코발디, 니포짜노 모모레토","Frescobaldi, Nipozzano Mormoreto",14.5,2,4,1,4,17,93,202000,,,신세계엘앤비,프레스코발디,Frescobaldi,토스카나,Toscana
+RED,"프레스코발디, 테누타 카스틸리오니 지라몬테","Frescobaldi, Tenuta Castiglioni Giramonte",14.5,2,4,1,4,17,95,404000,Central Italy Red,IGT(IGP),신세계엘앤비,프레스코발디,Frescobaldi,토스카나,Toscana
+RED,"프레스코발디, 테누타 카스틸리오니 토스카나","Frescobaldi, Tenuta Castiglioni Toscana",13.5,2,4,1,4,17,90.5,63000,Central Italy Red,IGT(IGP),신동와인,프레스코발디,Frescobaldi,키안티,Chianti
+RED,"가야, 바르바레스코","Gaja, Barbaresco",14.5,4,5,1,4,17,96,650000,,,에노테카코리아,가야,Gaja,바르바레스코,Barbaresco
+RED,"가야, 콘테이사","Gaja, Conteisa",14.5,3,5,1,4,17,94.8,548000,Northern Italy Red,DOC(DOP),신동와인,가야,Gaja,랑게,Langhe
+RED,"가야, 코스타 루씨","Gaja, Costa Russi",14.5,4,4,1,5,17,94.8,1350000,Italian Barbaresco,DOCG(DOP),신동와인,가야,Gaja,바르바레스코,Barbaresco
+WHITE,"가야, 로씨 바쓰","Gaja, Rossj Bass",13.5,3,3,1,1,11,90,234000,,,에노테카코리아,가야,Gaja,피에몬테,Piemonte
+RED,"가야, 소리 틸딘","Gaja, Sori Tildin",14.5,4,5,1,5,17,95.3,1350000,Italian Barbaresco,DOCG(DOP),신동와인,가야,Gaja,바르바레스코,Barbaresco
+WHITE,"자이언트 스텝스, 애플잭빈야드 샤도네이","Giant Steps, Applejack Vineyard Chardonnay",13.5,3,3,1,1,9,94.5,170000,Australian Chardonnay,,콜리코,자이언트 스텝스,Giant Steps,야라 밸리,Yarra Valley
+RED,"자이언트 스텝스, 섹스톤 빈야드 피노 누아","Giant Steps, Sexton Vineyard Pinot Noir",13.5,3,3,1,2,17,96,170000,Australian Pinot Noir,,콜리코,자이언트 스텝스,Giant Steps,야라 밸리,Yarra Valley
+RED,"지라드, 까베르네 소비뇽","Girard, Cabernet Sauvignon",14.5,3,5,1,4,17,90,138000,Californian Cabernet Sauvignon,AVA,동원와인플러스,지라드 와이너리,Girard Winery,나파 밸리,Napa Valley
+SPARKLING,"지울리오 페라리, 리세르바","Giulio Ferrari, Riserva del Fondatore",12.5,4,4,1,1,7,94.8,600000,,DOC(DOP),에프엘코리아,페라리,Ferrari,트렌티노-알토 아디제,Trentino-Alto Adige
+RED,"쥬세페 코르테제, 바르바레스코","Giuseppe Cortese, Barbaresco",14.5,4,4,1,4,17,92.6,170000,,,에노테카코리아,쥬세페 코르테제,Giuseppe Cortese,바르바레스코,Barbaresco
+RED,"쥬세페 코르테제, 바르바레스코 라바야","Giuseppe Cortese, Barbaresco Rabaja",14.5,4,4,1,4,17,91,170000,,DOCG(DOP),에노테카코리아,쥬세페 코르테제,Giuseppe Cortese,바르바레스코,Barbaresco
+WHITE,고 투 어 '일라운',Go To a 'Iraun',14.5,3,2,1,1,9,93,123000,,,비노스와인,옥서 와인즈,Oxer Wines,리오하,Rioja
+RED,"그랜드 나파, 마스터 레드","Grand Napa, Master Red",14.5,3,4,1,4,17,92,170000,Napa Valley Bordeaux Blend,AVA,베스트바이엔베버리지,그랜드 나파 빈야드,Grand Napa Vineyard,나파 밸리,Napa Valley
+RED,"그랜드 나파, 오크빌 카베르네 소비뇽","Grand Napa, Oakville Cabernet Sauvignon",14.5,3,4,1,4,17,91,230000,Napa Valley Cabernet Sauvignon,AVA,베스트바이엔베버리지,그랜드 나파 빈야드,Grand Napa Vineyard,나파 밸리,Napa Valley
+SPARKLING,"그라티엔 & 메이어, 끌레망 드 루아르 브뤼","Gratien & Meyer, Cremant de Loire Brut",12.5,3,2,1,1,9,87.5,80000,Loire Chenin Blanc,,레드와인앤제이와이,그라티엔 & 메이어,Gratien & Meyer,소뮈르,Saumur
+WHITE,"그로브 밀, 소비뇽 블랑","Grove Mill, Sauvignon Blanc",12.5,4,2,1,1,9,91.8,54000,New Zealand Sauvignon Blanc,,동원와인플러스,그로브 밀,Grove Mill,말보로,Marlborough
+RED,"하멜 패밀리 와인스, 이스무스","Hamel Family Wines, Isthmus",15.5,3,4,1,4,17,93,450000,Californian Red Blend,,와인투유코리아,하멜 패밀리 와인스,Hamel Family Wines,소노마 밸리,Sonoma Valley
+RED,"하이츠 셀라, Lot C-91 카베르네 소비뇽","Heitz Cellar, Lot C-91 Cabernet Sauvignon",14.5,4,4,1,4,17,94.5,270000,Napa Valley Cabernet Sauvignon,,나라셀라,하이츠 셀라,Heitz Cellar,나파 밸리,Napa Valley
+WHITE,"후버, 리슬링 엔젤스베르크","Huber, Riesling Engelsberg",12.5,4,3,2,1,7,91,70000,Austrian Riesling,DAC,엘비,바인굿 마르쿠스 후버,Weingut Markus Huber,트라이젠탈,Traisental
+WHITE,"허드슨 빈야드, 카네로스 샤도네이","Hudson Vineyards, Carneros Chardonnay",14.5,3,4,1,1,11,94.4,300000,Californian Chardonnay,AVA,와인투유코리아,허드슨 랜치,Hudson Ranch Vineyard,나파 밸리,Napa Valley
+RED,"휴 해밀턴, 에이전트 프로바케터","Hugh Hamilton, Agent Provocateur",14.5,3,4,1,3,17,88,90000,,,한산더블유앤비,휴 해밀턴,Hugh Hamilton,맥라렌 베일,McLaren Vale
+SPARKLING,"위레 프레르, 떼르 나딸 엑스트라 브뤼","Hure Freres, Terre Natal Extra Brut",12.5,4,2,1,1,7,93.5,239000,French Champagne,,크리스탈와인,위레 프레르,Hure Freres,샹빠뉴,Champagne
+ROSE,"일 보로, 로제 델 보로","Il Borro, Rose del Borro",13.5,3,3,1,1,11,92,36000,,IGT(IGP),에노테카코리아,일 보로,Il Borro,토스카나,Toscana
+RED,"이노바투스, 카베르네 소비뇽 나파밸리","Innovatus, Cabernet Sauvignon Napa Valley",14.5,3,4,1,3,17,92,228000,Napa Valley Cabernet Sauvignon,,신동와인,이노바투스,Innovatus,나파 밸리,Napa Valley
+RED,"이스티네, 키안티 클라시코","Istine, Chianti Classico",14,3,3,1,3,17,91,110000,Italian Chianti,DOCG(DOP),비노테크,이스티네,Istine,키안티 클라시코,Chianti Classico
+RED,"이스티네, 키안티 클라시코 리제르바 '레비녜'","Istine, Chianti Classico Riserva 'Levigne'",13.5,4,3,1,3,17,94,218000,Italian Chianti,DOCG(DOP),비노테크,이스티네,Istine,키안티 클라시코,Chianti Classico
+RED,제이 윌크스 까베르네 소비뇽,J.Wilkes Cabernet Sauvignon,13.5,3,4,1,4,17,91.5,135000,Californian Cabernet Sauvignon,AVA,(주)와이넬,턴 키 와인 브랜즈,Turn Key Wine Brands,파소 로블스,Paso Robles
+WHITE,"잼 셀러즈, 버터 샤도네이 캘리포니아","JaM Cellars, Butter Chardonnay California",14.5,3,3,1,1,11,91,110000,Californian Chardonnay,,와인투유코리아,존 앤서니 패밀리 오브 와인스,John Anthony Family of Wines,나파 밸리,Napa Valley
+WHITE,"쟝 마크 브와이요, 풀리니 몽라쉐","Jean Marc Boilllot, Puligny Montrachet",13.5,4,4,1,1,9,90,350000,Burgundy Côte de Beaune White,,루벵코리아,도멘 쟝 마크 브와이요,Domaine Jean Marc Boillot,쀨리니-몽라셰,Puligny-Montrachet
+RED,"조셉 칼, 카베르네 소비뇽","Joseph Carr, Cabernet Sauvignon",14.5,3,4,1,5,16,87,140000,Californian Cabernet Sauvignon,AVA,레뱅,조셉 칼,Joseph Carr,나파 밸리,Napa Valley
+WHITE,"조셉 칼, 샤도네이","Joseph Carr, Chardonnay",14.5,3,2,1,1,11,88,110000,Californian Chardonnay,AVA,레뱅,조셉 칼,Joseph Carr,로스 카네로스,Los Carneros
+SPARKLING,"조셉 페리에, 뀌베 로얄 브뤼","Joseph Perrier, Cuvee Royal Brut",12.5,4,3,1,1,8,92,135000,French Champagne,AOC(AOP),엘비,조셉 페리에,Joseph Perrier,샹빠뉴,Champagne
+SPARKLING,"조셉 페리에, 뀌베 로얄 뀌베 조세핀","Joseph Perrier, Cuvee Royal Cuvee Josephin",12.5,5,4,1,1,11,95,495000,French Champagne,AOC(AOP),엘비,조셉 페리에,Joseph Perrier,샹빠뉴,Champagne
+RED,"조쉬, 카베르네 소비뇽","Josh, Cabernet Sauvignon",14.5,3,4,1,4,16,90,65000,Californian Cabernet Sauvignon,AVA,레뱅,조쉬 셀러,Josh Cellars,캘리포니아,California
+WHITE,"조쉬, 샤르도네","Josh, Chardonnay",13.5,3,2,1,1,9,85.5,65000,Californian Chardonnay,,레뱅,조쉬 셀러,Josh Cellars,멘도치노 카운티,Mendocino County
+WHITE,"조쉬, 노스 코스트 리저브 샤르도네","Josh, North Coast Reserve Chardonnay",13.5,3,3,1,1,11,90,85000,Californian Chardonnay,AVA,레뱅,조쉬 셀러,Josh Cellars,노스 코스트,North Coast
+RED,"켄 라이트 셀러즈, 오릭 피노 누아","Ken Wright Cellars, Auric Pinot Noir",13.5,4,3,1,2,15,92,750000,Oregon Pinot Noir,AVA,와인투유코리아,켄 라이트 셀라즈,Ken Wright Cellars,윌라메트 밸리,Willamette Valley
+RED,"켄 라이트 셀러즈, 피노 누아","Ken Wright Cellars, Pinot Noir",13.5,3,3,1,2,15,91,170000,Oregon Pinot Noir,,와인투유코리아,켄 라이트 셀라즈,Ken Wright Cellars,윌라메트 밸리,Willamette Valley
+RED,"캔우드, 더 반 피노누아","Kenwood, The Barn Pinot Noir",15.5,4,3,1,3,15,92,260000,,,가자주류,캔우드,Kenwood,소노마 코스트,Sonoma Coast
+RED,"코코모, 진판델 드라이 크릭 밸리","Kokomo, Zinfandel Dry Creek Valley",14.5,4,4,1,4,17,90.7,210000,Californian Zinfandel,,레드와인앤제이와이,코코모,Kokomo,드라이 크릭 밸리,Dry Creek Valley
+WHITE,"레꼴 No 41, 슈냉 블랑 올드 바인","L'Ecole No 41, Chenin Blanc Old Vines",13.5,3,3,1,1,11,90.2,75000,,AVA,나라셀라,레꼴 No.41,L'Ecole No.41,야키마 밸리,Yakima Valley
+WHITE,"레꼴 No 41, 콜럼비아 밸리 샤도네이","L'Ecole No 41, Columbia Valley Chardonnay",14.5,3,4,1,1,11,88.6,95000,Washington State Chardonnay,AVA,나라셀라,레꼴 No.41,L'Ecole No.41,워싱턴,Washington State
+RED,"라 크레마, 러시안 리버 밸리 피노 누아","La Crema, Russian River Valley Pinot Noir",13.5,4,3,1,3,15,91,142000,Californian Pinot Noir,AVA,나라셀라,잭슨 패밀리 와인,Jackson Family Wines,러시안 리버 밸리,Russian River Valley
+RED,"라 크레마, 소노마 코스트 피노 누아","La Crema, Sonoma Coast Pinot Noir",13.5,3,3,1,2,15,90.2,112000,Californian Pinot Noir,AVA,나라셀라,잭슨 패밀리 와인,Jackson Family Wines,소노마 코스트,Sonoma Coast
+RED,"라 포데리나, 로쏘 디 몬탈치노","La Poderina, Rosso di Montalcino",14.5,4,5,1,4,17,90.7,78000,Central Italy Red,DOC(DOP),레뱅,테누테 라 포데리나 -사이아그리콜라 소속,Tenuta La Poderina -Saiagricola,몬탈치노,Montalcino
+RED,"라 스피네따, 키안티 리제르바","La Spinetta, Chianti Riserva",14,4,4,1,4,17,89,88000,Central Italy Red,,루벵코리아,라 스피네따,La Spinetta,키안티,Chianti
+WHITE,"레일 빈야드, 블루 프린트 나파 밸리 소비뇽 블랑","Lail Vineyards, Blue Print Napa Valley Sauvignon Blanc",14.5,4,2,1,1,11,93,200000,Californian Sauvignon Blanc,AVA,하이트진로,레일 빈야드,Lail Vineyards,나파 밸리,Napa Valley
+RED,"라포스톨, 뀌베 알렉상드르 까베르네 소비뇽","Lapostolle, Cuvee Alexandre Cabernet Sauvignon",14.5,4,4,1,4,17,92,72000,Chilean Cabernet Sauvignon,,레뱅,라포스톨 [까사 라포스톨],Lapostolle [Casa Lapostolle],콜차구아 밸리,Cholchagua Valley
+RED,"라포스톨, 라 팔셀 8","Lapostolle, La Parcelle 8",15.5,3,4,1,4,17,98,380000,Chilean Cabernet Sauvignon,,레뱅,라포스톨 [까사 라포스톨],Lapostolle [Casa Lapostolle],아팔타 밸리,Apalta Valley
+SPARKLING,"로랑 페리에, 뀌베 로제 브뤼","Laurent Perrier, Cuvee Rose Brut",12,5,3,1,1,9,92,420000,French Champagne,AOC(AOP),동원와인플러스,로랑 페리에,Laurent Perrier,샹빠뉴,Champagne
+SPARKLING,"로랑 페리에, 그랑 시에클","Laurent Perrier, Grand Siecle",12.5,5,3,1,1,7,95,700000,French Champagne,AOC(AOP),동원와인플러스,로랑 페리에,Laurent Perrier,샹빠뉴,Champagne
+SPARKLING,"로랑 페리에, 하모니 드미 섹","Laurent Perrier, Harmony Demi Sec",12.5,4,2,3,1,7,87.5,190000,French Champagne,,동원와인플러스,로랑 페리에,Laurent Perrier,샹빠뉴,Champagne
+SPARKLING,"로랑 페리에, 라 뀌베 브뤼","Laurent Perrier, La Cuvee Brut",12.5,5,2,1,1,7,90,190000,French Champagne,,동원와인플러스,로랑 페리에,Laurent Perrier,샹빠뉴,Champagne
+SPARKLING,"로랑 페리에, 빈티지 브뤼","Laurent Perrier, Vintage Brut",12.5,5,3,1,1,7,95,280000,French Champagne,AOC(AOP),동원와인플러스,로랑 페리에,Laurent Perrier,샹빠뉴,Champagne
+WHITE,"리비오 펠루가, 테레 알테","Livio Felluga, Terre Alte",13.5,3,4,1,1,11,93.3,200000,Northern Italy White,,지에프비노,리비오 펠루가,Livio Felluga,프리울리 베네찌아 줄리아,Friuli Venezia Giulia
+RED,"로렌조 데 아그렐로, 로벤디토 말벡","Lorenzo de Agrelo, LoBendito Malbec",14.5,4,4,1,5,17,93,115000,Argentinian Malbec,,레드와인앤제이와이,로렌조 데 아그렐로,Lorenzo de Agrelo,멘도사,Mendoza
+RED,"로르나노, 키안티 클라시코 그란 셀레지오네","Lornano, Chianti Classico Gran Selezione",14.5,4,4,1,4,17,92.7,120000,Central Italy Red,DOCG(DOP),레뱅,파토리아 로르나노,Fattoria Lornano,키안티 클라시코,Chianti Classico
+RED,"로르나노, 키안티 클라시코 레제르바 '레 반디트'","Lornano, Chianti Classico Reserva 'Le Bandite'",14.5,4,4,1,3,17,93.5,60000,Central Italy Red,DOCG(DOP),레뱅,파토리아 로르나노,Fattoria Lornano,키안티 클라시코,Chianti Classico
+RED,"로스 바스코스, 카베르네 쇼비뇽","Los Vascos, Cabernet Sauvignon",14.5,2,3,1,4,17,89.8,25000,Chilean Cabernet Sauvignon,,신세계엘앤비,로스 바스코스,Los Vascos [Vina Los Vascos],콜차구아 밸리,Cholchagua Valley
+WHITE,"로스 바스코스, 샤도네이","Los Vascos, Chardonnay",14.5,2,3,1,1,9,89.8,25000,Chilean Chardonnay,,인터리커,로스 바스코스,Los Vascos [Vina Los Vascos],카차포알 밸리,Cachapoal Valley
+RED,"로스 바스코스, 크로마스 까베르네 소비뇽","Los Vascos, Cromas Cabernet Sauvignon",14.5,3,5,1,5,17,88,46000,Chilean Bordeaux Blend,,인터리커,로스 바스코스,Los Vascos [Vina Los Vascos],콜차구아 밸리,Cholchagua Valley
+RED,"로스 바스코스, 크로마스 까르미네르","Los Vascos, Cromas Carmenere",14.5,2,5,1,5,17,91.5,46000,Chilean Carménère,,인터리커,로스 바스코스,Los Vascos [Vina Los Vascos],콜차구아 밸리,Cholchagua Valley
+RED,"로스 바스코스, 르 디스","Los Vascos, Le Dix",14.5,2,5,1,5,17,94,140000,Chilean Bordeaux Blend,,인터리커,로스 바스코스,Los Vascos [Vina Los Vascos],콜차구아 밸리,Cholchagua Valley
+ROSE,"로스 바스코스, 로제","Los Vascos, Rose",14.5,2,3,1,1,9,91,25000,,,인터리커,로스 바스코스,Los Vascos [Vina Los Vascos],콜차구아 밸리,Cholchagua Valley
+WHITE,"로스 바스코스, 소비뇽 블랑","Los Vascos, Sauvignon Blanc",13.5,3,3,1,1,9,90.7,25000,Chilean Sauvignon Blanc,,인터리커,로스 바스코스,Los Vascos [Vina Los Vascos],카사블랑카 밸리,Casablanca Valley
+RED,"루이 마티니, 로트 넘버 원 까베르네 소비뇽","Louis M. Martini, Napa Valley Lot No.1 Cabernet Sauvignon",13,4,5,1,4,17.5,100,300000,,AVA,롯데칠성음료,루이 마티니,Louis M. Martini,나파 밸리,Napa Valley
+SPARKLING,"루이 로드레, 크리스탈","Louis Roederer, Cristal",11.5,4,4,1,1,9,96.4,750000,French Champagne,AOC(AOP),에노테카코리아,루이 로드레,Louis Roederer,샹빠뉴,Champagne
+RED,"엠 샤푸티에, 데샹트 생 조셉 '아티스트 레이블'","M. Chapoutier, Deschants Saint Joseph",13.5,3,4,1,4,17,90,120000,Northern Rhône Saint-Joseph,AOC(AOP),금양인터내셔날,엠 샤푸티에,M. Chapoutier,생-죠셉,Saint-Joseph
+RED,"엠 샤푸티에, 지공다스","M. Chapoutier, Gigondas",14.5,3,4,1,3,17,91,130000,Southern Rhône Red,AOC(AOP),금양인터내셔날,엠 샤푸티에,M. Chapoutier,지공다스,Gigondas
+WHITE,"메종 까밀 지로, 부르고뉴 샤도네이","Maison Camille Giroud, Bourgogne Chardonnay",12.5,3,1,1,1,9,88,110000,Burgundy White,,레드와인앤제이와이,메종 까밀 지로,Maison Camille Giroud,부르고뉴,Bourgogne
+WHITE,"메종 까밀 지로, 샤샤뉴 몽라쉐 프리미에 크뤼 레 베르제","Maison Camille Giroud, Chassagne Montrachet 1er Cru Les Vergers",12.5,4,2,1,1,9,91,440000,Burgundy Côte de Beaune White,,레드와인앤제이와이,메종 까밀 지로,Maison Camille Giroud,샤샤뉴-몽라셰,Chassagne-Montrachet
+WHITE,"말도나도, 로스 올리보스 샤도네이","Maldonado, Los Olivos VIneyard Chardonnay",14.5,3,3,1,1,11,92,220000,,AVA,와인투유코리아,말도나도 빈야즈,Maldonado Vineyards,나파 밸리,Napa Valley
+WHITE,"말도나도, 파 빈야드 샤도네이","Maldonado, Parr Vineyard, Chardonnay",14.5,3,4,1,1,11,92,170000,,AVA,와인투유코리아,말도나도 빈야즈,Maldonado Vineyards,나이츠 밸리,Knights Valley
+RED,"마퀴스, 그랑 리제르바 까베르네 소비뇽","Maquis, Gran Reserva Cabernet Sauvignon",14,4,5,1,4,16,90.2,78000,,,레드와인앤제이와이,비냐 마퀴스,Viña Maquis,콜차구아 밸리,Cholchagua Valley
+ROSE,"마퀴스, 그랑 리제르바 로제","Maquis, Gran Reserva Rose",12.5,3,2,1,2,11,89.5,58000,,,레드와인앤제이와이,비냐 마퀴스,Viña Maquis,콜차구아 밸리,Cholchagua Valley
+RED,"마퀴스, 리엔","Maquis, Lien",14,4,5,1,4,15,92,120000,,,레드와인앤제이와이,비냐 마퀴스,Viña Maquis,콜차구아 밸리,Cholchagua Valley
+WHITE,"마르 데 프라데스, 알바리뇨 아틀란티코","Mar de Frades, Albarino Atlantico",12.5,4,2,1,1,9,93.5,79000,,,베리타스비노,마르 데 프라데스,Mar de Frades,리아스 바이사스,Rias Baixas
+WHITE,마르셀 다이스 알텐베르그 드 베르그하임 그랑 크뤼,Marcel Deiss Altenberg de Bergheim Grand Cru,12,3,5,5,1,11,96,184000,,Grand Cru AOC(AOP),신세계엘앤비,도멘 마르셀 다이스,Domaine Marcel Deiss,알자스,Alsace
+WHITE,"마리마, 라 마시아 샤도네이","Marimar, La Masia Chardonnay",14.5,3,4,1,1,11,90.5,116000,Californian Chardonnay,AVA,신동와인,마리마 에스테이트 [마리마 토레스],Marimar Estate [Marimar Torres],러시안 리버 밸리,Russian River Valley
+FORTIFIED,마르따스 파인 루비 포트,Martha's Fine Ruby Port,19.5,3,3,3,3,9,92,41000,Portuguese Port,,호메오와인갤러리,마르따스 와인 앤 스피리츠,Martha's Wines & Spirits,도우루,Douro
+FORTIFIED,마르따스 파인 토니 포트,Martha's Fine Tawny Port,19.5,3,3,3,3,9,87,41000,Portuguese Port,,호메오와인갤러리,마르따스 와인 앤 스피리츠,Martha's Wines & Spirits,도우루,Douro
+RED,"마시, 브롤로 캄포피오린 오로","Masi, Brolo Campofiorin Oro",14,4,5,1,4,18,90.2,90000,Northern Italy Red,IGT(IGP),레뱅,마시,Masi,베로나,Verona
+RED,"마스트로베라르디노, 라디치 타우라시","Mastroberardino, Radici Taurasi",13.5,3,4,1,4,17,93.5,220000,,DOCG(DOP),한산더블유앤비,마스트로베라르디노,Mastroberardino,깜빠니아,Campania
+RED,"메이오미, 피노 누아","Meiomi, Pinot Noir",13.5,3,3,1,3,16,89.6,90000,Californian Pinot Noir,AVA,나라셀라,메이오미,Meiomi,캘리포니아,California
+RED,"멜카, 메케라 나이츠 밸리 레드","Melka, Mekerra Knights Valley Red",15.5,3,4,1,4,17,95.5,800000,,AVA,하이트진로,멜카,Melka,나이츠 밸리,Knights Valley
+RED,"멜카, 메티스 점핑고트 빈야드 나파 밸리","Melka, Metisse Jumping Goat Vineyard Napa Valley",14.5,3,4,1,4,17,95,900000,,,하이트진로,멜카,Melka,세인트 헬레나,St. Helena
+RED,"멜카, 메티스 마티네즈 빈야드 나파 밸리","Melka, Metisse Marinez Vineyard Napa Valley",15.5,3,4,1,4,17,94,1000000,Napa Valley Bordeaux Blend,,하이트진로,멜카,Melka,세인트 헬레나,St. Helena
+RED,"메리 에드워즈, 피노 누아 러시안 리버 밸리","Merry Edwards, Pinot Noir Russian River Valley",14.5,4,3,1,2,15,93.5,370000,Californian Pinot Noir,,에노테카코리아,메리 에드워즈 와이너리,Merry Edwards Winery,러시안 리버 밸리,Russian River Valley
+WHITE,"메리 에드워즈, 소비뇽 블랑 러시안 리버 밸리","Merry Edwards, Sauvignon Blanc Russian River Valley",14.5,4,2,1,1,7,94,250000,Californian Sauvignon Blanc,,에노테카코리아,메리 에드워즈 와이너리,Merry Edwards Winery,러시안 리버 밸리,Russian River Valley
+RED,"미 떼루노, 아이코노","Mi Terruno, Icono",14.5,3,4,1,3,17,93,165000,,,젠니혼주류,미 떼루노,Mi Terruno,멘도사,Mendoza
+RED,"미 떼루노, 마야카바 말벡","Mi Terruno, Mayacaba Malbec",14.5,3,5,1,5,17,92.7,83000,Argentinian Malbec,,젠니혼주류,미 떼루노,Mi Terruno,멘도사,Mendoza
+WHITE,"미쉘 린치, 보르도 화이트 오가닉","Michel Lynch, Bordeaux White Organic",12.5,4,2,1,1,11,87,48000,,AOC(AOP),동원와인플러스,미쉘 린취 - 장 미쉘 까즈,Michel Lynch - Jean Michel Cazes,보르도,Bordeaux
+RED,"미켈레 끼아를로, 치프레시 니짜","Michele Chiarlo, Cipressi Nizza",14.5,3,4,1,4,16,91,60000,Italian Asti,DOCG(DOP),금양인터내셔날,미켈레 끼아를로,Michele Chiarlo,아스티,Asti
+RED,"마일즈 프롬 노웨어, 쉬라즈","Miles from Nowhere, Shiraz",14.5,3,5,1,4,17,91,80000,Australian Shiraz,,와인투유코리아,마일즈 프롬 노웨어,Miles from Nowhere,마가렛 리버,Margaret River
+WHITE,"밀러 패밀리, 옵틱 비엔 나시도 빈야드 샤르도네 블록 넘버 11D3","Miller family, Optik Bien Nacido Vineyard Chardonnay Block No. 11D3",15.5,4,3,1,1,11,93,204000,Californian Chardonnay,AVA,(주)와이넬,밀러 패밀리 와인 컴패니,Miller Family Wine Company,산타 마리아 밸리,Santa Maria Valley
+WHITE,"밀러 패밀리, 옵틱 비엔 나시도 빈야드 샤르도네 블록 넘버 I1","Miller family, Optik Bien Nacido Vineyard Chardonnay Block No. I1",13.5,4,3,1,1,11,92,204000,Californian Chardonnay,AVA,(주)와이넬,밀러 패밀리 와인 컴패니,Miller Family Wine Company,산타 마리아 밸리,Santa Maria Valley
+RED,"밀러 패밀리, 옵틱 비엔 나시도 빈야드 피노누아 블록 넘버 42A","Miller family, Optik Bien Nacido Vineyard Pinot Noir Block No. 42A",14.5,4,4,1,3,15,91,270000,Californian Pinot Noir,AVA,(주)와이넬,밀러 패밀리 와인 컴패니,Miller Family Wine Company,산타 마리아 밸리,Santa Maria Valley
+WHITE,"마이너, 나파밸리 샤도네이","Miner, Napa Valley Chardonnay",14.5,3,2,1,1,9,91,210000,Californian Chardonnay,,와인투유코리아,마이너 패밀리 빈야즈,Miner Famaily Vineyards,나파 밸리,Napa Valley
+WHITE,"몬테 델 프라, 까델마그로 쿠스토자 수페리오레","Monte del Fra, Ca del Magro Custoza Superiore",13.5,3,2,1,1,9,91.7,44000,,,가자주류,몬테 델 프라,Monte del Fra,베네토,Veneto
+RED,"몬테스 알파, 카베르네 소비뇽","Montes Alpha, Cabernet Sauvignon",14.5,3,4,1,4,17.5,92,57000,Chilean Cabernet Sauvignon,,나라셀라,몬테스,Montes [Viña Montes],콜차구아 밸리,Cholchagua Valley
+RED,"몬테스 알파, 피노 누아","Montes Alpha, Pinot Noir",14.5,3,3,1,3,15,91.7,66000,Chilean Pinot Noir,,나라셀라,몬테스,Montes [Viña Montes],아콩카구아 밸리,Aconcagua Valley
+RED,"몬테베르티네, 몬테베르티네","Montevertine, Montevertine",12.5,4,3,1,3,17,94,240000,Central Italy Red,IGT(IGP),비노테크,몬테베르니테,Montevertine,토스카나,Toscana
+RED,"몬테베르티네, 페르골레 토르테","Montevertine, Pergole Torte",13,4,4,1,4,17,96,550000,,IGT(IGP),비노테크,몬테베르니테,Montevertine,토스카나,Toscana
+RED,"몽그라스, 안투 카베르네 소비뇽 호랑이띠 라벨 한정판","Montgras, Antu Cabernet Sauvignon Limited Edition the Year of Tiger",14.5,3,4,1,4,17,90.8,72000,Chilean Cabernet Sauvignon,,동원와인플러스,몽그라스,MontGras,마이포 밸리,Maipo Valley
+RED,"몽그라스, 안투 시라 호랑이띠 라벨 한정판","Montgras, Antu Syrah Limited Edition the Year of Tiger",14.5,3,4,1,4,17,91,72000,Chilean Syrah,,동원와인플러스,몽그라스,MontGras,콜차구아 밸리,Cholchagua Valley
+WHITE,"모란데, 그랑 리제르바 샤르도네","Morande, Gran Reserva Chardonnay",13,3,3,1,1,11,90,62000,Chilean Chardonnay,,더블유에스통상,비냐 모란데,Viña Morande,카사블랑카 밸리,Casablanca Valley
+RED,"무똥 까데, 리저브 뽀이약","Mouton Cadet, Reserve Pauillac",12.5,2,5,1,5,17,90,110000,Bordeaux Pauillac,AOC(AOP),에노테카코리아,무똥 까데,Mouton Cadet,뽀이약,Pauillac
+WHITE,"노이도르프, 홈 블럭 모우테레 샤르도네","Neudorf, Home Block Moutere Chardonnay",13.5,3,3,1,1,11,97,308000,New Zealand Chardonnay,,에노테카코리아,노이도르프,Neudorf,넬슨,Nelson
+RED,"노이도르프, 홈 블럭 모우테레 피노 누아","Neudorf, Home Block Moutere Pinot Noir",13.5,3,3,1,2,15,95,183000,New Zealand Pinot Noir,,에노테카코리아,노이도르프,Neudorf,넬슨,Nelson
+WHITE,"노이도르프, 로지스 블럭 모우테레 샤르도네","Neudorf, Rosie's Block Moutere Chardonnay",13.5,3,2,1,1,11,94.5,143000,New Zealand Chardonnay,,에노테카코리아,노이도르프,Neudorf,넬슨,Nelson
+WHITE,"노이도르프, 티리티리 샤르도네","Neudorf, Tiritiri Chardonnay",13.5,3,3,1,1,11,93,95000,New Zealand Chardonnay,,에노테카코리아,노이도르프,Neudorf,넬슨,Nelson
+RED,"노이도르프, 톰스 블록 모우테레 피노 누아","Neudorf, Tom's Block Moutere Pinot Noir",13.5,3,3,1,3,15,93,106000,New Zealand Pinot Noir,,에노테카코리아,노이도르프,Neudorf,넬슨,Nelson
+RED,"니콜라 로시뇰, 사비니 레 본","Nicolas Rossignol, Savigny les Beaune",13.5,3,3,1,3,17,91,180000,,,에노테카코리아,니콜라 로시뇰,Nicolas Rossignol,사비니-레-본,Savigny-les-Beaune
+RED,"니꼴라 로씨뇰, 볼네이","Nicolas Rossignol, Volnay",13.5,2,3,1,2,15,90.3,230000,,,에노테카코리아,니콜라 로시뇰,Nicolas Rossignol,볼네,Volnay
+RED,"나인 햇츠, 콜롬비아 밸리 메를로",Nine Hats Columbia Valley Merlot,15.5,3,3,1,4,17,90,140000,Washington State Merlot,,와인투유코리아,나인 햇츠 와인즈,Nine Hats Wines,콜롬비아 밸리,Columbia Valley
+RED,나인 햇츠 콜롬비아 밸리 시라,Nine Hats Columbia Valley Syrah,15.5,3,3,1,4,17,91.5,140000,Washington State Syrah,,와인투유코리아,나인 햇츠 와인즈,Nine Hats Wines,콜롬비아 밸리,Columbia Valley
+RED,"노스스타, 콜럼비아 밸리 카베르네 소비뇽","Northstar, Columbia Valley Cabernet Sauvignon",14.5,3,5,1,4,17,90.7,150000,Washington State Cabernet Sauvignon,AVA,금양인터내셔날,생미셸 와인 에스테이트,Ste.Michelle Wine Estates,콜롬비아 밸리,Columbia Valley
+RED,"아웃포스트, 나파 밸리 까베르네 소비뇽","Outpost, Napa Valley Cabernet Sauvignon",14.5,3,4,1,4,17,95,550000,,,하이트진로,아웃포스트,Outpost,하월 마운틴,Howell Mountain
+RED,"패러다임, 카베르네 소비뇽 나파 밸리","Paradigm, Cabernet Sauvignon Napa Valley",14.5,3,5,1,4,15,95,418000,Napa Valley Cabernet Sauvignon,AVA,에노테카코리아,패러다임,Paradigm,오크빌,Oakville
+RED,"펠프스 크릭, 콜럼비아 고지 피노 누아","Phelps Creek, Columbia Gorge Pinot Noir",13.5,5,4,1,3,15,92,160000,Oregon Pinot Noir,AVA,와인투유코리아,펠프스 크릭 빈야즈,Phelps Creek Vineyards,콜롬비아 고지 (오리건),Columbia Gorge (OR)
+WHITE,"파이크, 트레디셔날 리슬링","Pikes, Traditionale Riesling",12.5,3,1,1,1,9,96,47000,Australian Riesling,,가자주류,파이크,Pikes,클레어 밸리,Clare Valley
+RED,"피오 체사레, 바롤로","Pio Cesare, Barolo",14.5,4,3,1,4,17,93,240000,Italian Barolo,DOCG(DOP),씨에스알와인,피오 체사레,Pio Cesare,바롤로,Barolo
+RED,"피오 체사레, 바롤로 '모스코니'","Pio Cesare, Barolo 'Mosconi'",14.5,3,3,1,3,17,96.3,480000,Italian Barolo,,씨에스알와인,피오 체사레,Pio Cesare,피에몬테,Piemonte
+RED,"플라네타, 플럼바고","Planeta, Plumbago",13.5,3,4,1,3,17,87.5,30000,Southern Italy Red,,신세계엘앤비,플라네타,Planeta Wines,시칠리아,Sicilia
+ROSE,"포지오 알 테소로, 카시오페아 로사토 파구스 체르바이아","Poggio al Tesoro, Cassiopea Rosato Pagus Cerbaia",13.5,3,3,1,1,11,90.5,100000,,,에노테카코리아,포지오 알 테소로,Poggio al Tesoro,볼게리,Bolgheri
+WHITE,"포지오 알 테소로, 솔로솔레 파구스 카밀라","Poggio al Tesoro, Solosole Pagus Camilla",13.5,3,3,1,1,11,92.5,178000,,,에노테카코리아,포지오 알 테소로,Poggio al Tesoro,볼게리,Bolgheri
+SPARKLING,"폴 로저, 브뤼 리저브","Pol Roger, Brut Reserve",12.5,5,3,1,1,7,91.6,150000,French Champagne,AOC(AOP),금양인터내셔날,폴 로저,Pol Roger,샹빠뉴,Champagne
+RED,프리스트 랜치 까베르네 쇼비뇽,Priest Ranch Cabernet Sauvignon,14.5,3,4,1,4,17,91.5,180000,Californian Cabernet Sauvignon,AVA,와인투유코리아,프리스트 랜치 와이너리,Priest Ranch Winery,나파 밸리,Napa Valley
+RED,"퀼세다 크릭, 콜럼비아 밸리 카베르네 쇼비뇽","Quilceda Creek, Columbia Valley Cabernet Sauvignon",14.5,4,5,1,4,17,96.5,900000,Washington State Cabernet Sauvignon,AVA,와인투유코리아,퀄세다 크릭 와이너리,Quilceda Creek Vintners,콜롬비아 밸리,Columbia Valley
+RED,"레드헤즈 스튜디오, 문라이터스","Redheads Studio, Moonlighters",14.5,3,4,1,4,17,91,68000,Australian Cabernet Sauvignon,,레드와인앤제이와이,레드헤즈 스튜디오,Redheads Studio,맥라렌 베일,McLaren Vale
+WHITE,"레드헤즈 스튜디오, 야드독 화이트","Redheads Studio, Yard Dog White",11.5,4,1,1,1,9,87,39000,Australian Sauvignon Blanc,,레드와인앤제이와이,레드헤즈 스튜디오,Redheads Studio,애들레이드 힐즈,Adelaide Hills
+RED,"리파 디 소토, 진판델","Ripa di Sotto, Zinfandel",15.5,3,5,1,5,17,96,43000,,,비노스와인,리파 디 소토,Ripa di Sotto,뿔리아,Puglia
+RED,"로버트 몬다비, 까베르네 소비뇽 리저브","Robert Mondavi, Cabernet Sauvignon Reserve",14.5,4,5,1,5,18,93.2,449000,Californian Cabernet Sauvignon,AVA,신동와인,로버트 몬다비,Robert Mondavi,오크빌,Oakville
+WHITE,"로버트 몬다비, 샤도네이","Robert Mondavi, Chardonnay",14.5,3,4,1,1,11,88,75000,Californian Chardonnay,AVA,신동와인,로버트 몬다비,Robert Mondavi,나파 밸리,Napa Valley
+WHITE,"로버트 몬다비, 샤도네이 리저브","Robert Mondavi, Chardonnay Reserve",13.5,3,3,1,1,11,90.3,164000,Californian Chardonnay,AVA,신동와인,로버트 몬다비,Robert Mondavi,나파 밸리,Napa Valley
+WHITE,"로버트 몬다비, 푸메 블랑","Robert Mondavi, Fume Blanc",14.5,3,2,1,1,11,90,77000,Californian Sauvignon Blanc,AVA,신동와인,로버트 몬다비,Robert Mondavi,나파 밸리,Napa Valley
+RED,"로버트 몬다비, 마에스트로","Robert Mondavi, Maestro",15.5,3,5,1,4,16,88,200000,Californian Bordeaux Blend,AVA,신동와인,로버트 몬다비,Robert Mondavi,나파 밸리,Napa Valley
+RED,"로버트 몬다비, 오크빌 까베르네 소비뇽","Robert Mondavi, Oakville Cabernet Sauvignon",14.5,4,5,1,4,17,91.8,199000,Californian Cabernet Sauvignon,AVA,신동와인,로버트 몬다비,Robert Mondavi,오크빌,Oakville
+RED,"로버트 몬다비, 피노 누아","Robert Mondavi, Pinot Noir",13.5,3,3,1,3,17,88.5,96000,Californian Pinot Noir,AVA,신동와인,로버트 몬다비,Robert Mondavi,나파 밸리,Napa Valley
+RED,"로드니 스트롱, 알렉산더 크라운 까베르네 소비뇽","Rodney Strong, Alexander's Crown Cabernet Sauvignon",15.5,3,4,1,4,17,93.2,280000,Californian Cabernet Sauvignon,AVA,리바인,로드니 스트롱,Rodney Strong,알렉산더 밸리,Alexander Valley
+RED,"로드니 스트롱, 리제르바 카베르네 소비뇽","Rodney Strong, Reserve Cabernet Sauvignon",14.5,4,4,1,4,,91,190000,Californian Cabernet Sauvignon,,리바인,로드니 스트롱,Rodney Strong,캘리포니아,California
+RED,"로드니스트롱, 시메트리 메리티지","Rodney Strong, Symmetry Meritage",14.5,3,4,1,4,17,90.5,230000,Californian Bordeaux Blend,AVA,국순당,로드니 스트롱,Rodney Strong,알렉산더 밸리,Alexander Valley
+SPARKLING,"로드레 에스테이트, 콰르테 브륏","Roederer Estate, Quartet Brut",13.5,3,3,1,1,7,93.2,140000,Californian Sparkling,,에노테카코리아,로드레 에스테이트,Roederer Estate,앤더슨 밸리,Anderson Valley
+SPARKLING,"로저 구라트, 엑스트라 브륏 그랑 리제르바 조셉 발스","Roger Goulart, Extra Brut Gran Reserva Josep Valls",12,3,4,1,1,7,91.5,102000,Spanish Cava,DO(DOP),(주)와이넬,로저 구라트,Roger Goulart,페네데스,Penedes
+RED,"론코 디 싸시, 비노 로쏘 디 이탈리아","Ronco di Sassi, Vino Rosso D'Italia",15.5,3,3,1,3,,98,80000,,,유니베브,론코 디 싸시,Ronco di Sassi,뿔리아,Puglia
+RED,"로젠베일, 에스테이트 그로운 그르나슈","Rosenvale, Estate Grown Grenache",15.5,3,3,1,3,17,90,129000,,,유와인(주),로젠베일,Rosenvale,바로사 밸리,Barossa Valley
+RED,"살트램, 1859 바로사 쉬라즈","Saltram, 1859 Barossa Shiraz",14.5,3,4,1,4,17,91,64000,,,에노테카코리아,살트렘 에스테이트,Saltram Estate,바로사 밸리,Barossa Valley
+RED,"살트램, 맴레 브룩 쉬라즈","Saltram, Mamre Brook Shiraz",14.5,3,5,1,4,17,92,130000,Australian Shiraz,,롯데칠성음료,살트렘 에스테이트,Saltram Estate,바로사 밸리,Barossa Valley
+RED,"살베스트린, 디알 크레인 빈야드 카베르네 소비뇽","Salvestrin, Dr Crane Vineyard Cabernet Sauvignon",14.5,3,4,1,3,17,99,370000,Californian Cabernet Sauvignon,,와인투유코리아,살베스트린,Salvestrin,세인트 헬레나,St. Helena
+RED,사씨카이아,Sassicaia,13.5,3,5,1,4,17,96.3,700000,Central Italy Red,DOC(DOP),에노테카코리아,테누타 산 귀도,Tenuta San Guido,볼게리,Bolgheri
+RED,"씨 스모크, 사우싱 피노 누아","Sea Smoke, Southing Pinot Noir",14.5,4,3,1,3,15,94,450000,Californian Pinot Noir,AVA,와인투유코리아,씨 스모크 에스테이트,Sea Smoke Estate,산타 리타 힐스,Santa Rita Hills
+RED,"씨 스모크, 텐 피노누아","Sea Smoke, Ten Pinot Noir",14.5,3,2,1,2,15,95,500000,Californian Pinot Noir,AVA,와인투유코리아,씨 스모크 에스테이트,Sea Smoke Estate,산타 리타 힐스,Santa Rita Hills
+WHITE,"세귀노 보르데, 샤블리 프리미에 크뤼 바이용","Seguinot Bordet, Chablis Premier Cru 'Vaillons'",12.5,4,3,1,1,11,95,180000,Burgundy Chablis,1er Cru AOC(AOP),에프엘코리아,도멘 세귀노 보르데,Domaine Seguinot Bordet,샤블리 프리미에 크뤼,Chablis Premier Cru
+WHITE,"센시즈, 티에리엇 샤도네이","Senses, B.A. Thieriot Chardonnay",14.5,3,4,1,1,11,96,530000,,,나라셀라,센시스 와인즈,Senses Wines,러시안 리버 밸리,Russian River Valley
+WHITE,"센시즈, 러시안 리버 밸리 샤도네이","Senses, Russian River Valley Chardonnay",14.5,3,4,1,1,11,93,24000,Californian Chardonnay,,나라셀라,센시스 와인즈,Senses Wines,러시안 리버 밸리,Russian River Valley
+WHITE,"센시즈, 소노마 코스트 샤도네이","Senses, Sonoma Coast Chardonnay",14.5,3,4,1,1,11,91,240000,Californian Chardonnay,,나라셀라,센시스 와인즈,Senses Wines,소노마 코스트,Sonoma Coast
+WHITE,"센시즈, 엘 디아블로 샤도네이","Senses, UV EL Diablo Chardonnay",14.5,3,4,1,1,11,95,320000,,,나라셀라,센시스 와인즈,Senses Wines,러시안 리버 밸리,Russian River Valley
+RED,"세븐 힐스, 왈라 왈라 밸리 레드 와인","Seven Hills, Walla Walla Valley Red Wine",14.5,4,4,1,4,16,92,118000,,AVA,더블유에스통상,세븐 힐스 와이너리,Seven Hills Winery,워싱턴,Washington State
+SPARKLING,"쇼테스브룩, 1337 헤리티지 시리즈 블랑 드 블랑","Shottesbrooke, 1337 Heritage series Blanc de Blancs",12.5,3,2,1,1,7,88,79000,,,피케이인터내셔날,쇼테스브룩,Shottesbrooke,아들레이드,Adelaide
+RED,"살베스트린, 카베르네 소비뇽","Silvestrin, Cabernet Sauvignon",14.5,3,4,1,4,17,91,230000,Californian Cabernet Sauvignon,,와인투유코리아,살베스트린,Salvestrin,나파 밸리,Napa Valley
+RED,"스프링 마운틴 빈야드, 카베르네 소비뇽 나파 밸리","Spring Mountain Vineyard, Cabernet Sauvignon Napa Valley",14.5,3,4,1,4,17,95,450000,Californian Cabernet Sauvignon,,와인투유코리아,스프링 마운틴 빈야드,Spring Mountain Vineyard,나파 밸리,Napa Valley
+RED,생 수페리 엘루,St-Supery ELU,14.5,3,4,1,4,18,91.5,310000,,AVA,에노테카코리아,생 수페리,St Supery,나파 밸리,Napa Valley
+RED,스톤스트릿 에스테이트 빈야드 락폴 빈야드 카베르네 소비뇽,Stonestreet Estate Vineyards Rockfall Vineyard Cabernet Sauvignon,14.5,3,4,1,4,17,93.5,900000,Californian Cabernet Sauvignon,,와인투유코리아,잭슨 패밀리 와인,Jackson Family Wines,소노마 카운티,Sonoma County
+RED,"설리반, 쾨르 드 비뉴 루더포드 카베르네 소비뇽","Sullivan, Coeur de Vigne Rutherford Cabernet Sauvignon",14.5,3,3,1,4,17,92.5,300000,Californian Cabernet Sauvignon,,와인투유코리아,설리반 루더포드 에스테이트,Sullivan Rutherford Estate,나파 밸리,Napa Valley
+RED,"수사나 발보 와인스, 크리오스 말벡","Susana Balbo Wines, Crios Malbec",14.5,3,4,1,4,17,91,49000,Argentinian Malbec,,하이트진로,수사나 발보 와인스,Susana Balbo Wines,우코 밸리,Uco Valley
+SPARKLING,"떼땅져, 꽁뜨 드 상파뉴 블랑 드 블랑 브뤼","Taittinger, Comtes de Champagne Blanc de Blancs Brut",12.5,4,4,1,1,9,94.8,836000,French Champagne,AOC(AOP),하이트진로,떼땅져,Taittinger,샹빠뉴,Champagne
+SPARKLING,"떼땅져, 레 폴리 드 라 마케트리","Taittinger, Les Folies de la Marquetterie",12.5,5,3,1,1,7,93.3,268000,French Champagne,AOC(AOP),하이트진로,떼땅져,Taittinger,샹빠뉴,Champagne
+SPARKLING,"떼땅져, 녹턴 시티 라이트","Taittinger, Nocturne City Light",12.5,4,3,2,1,7,89,257000,French Champagne,AOC(AOP),하이트진로,떼땅져,Taittinger,샹빠뉴,Champagne
+SPARKLING,"떼땅져, 프렐뤼드 그랑 크뤼","Taittinger, Prelude Grands Crus",12,5,4,1,1,7,91.5,317000,French Champagne,AOC(AOP),하이트진로,떼땅져,Taittinger,샹빠뉴,Champagne
+SPARKLING,"떼땅져, 리저브 브뤼","Taittinger, Reserve Brut",12.5,5,3,1,1,7,91,174000,French Champagne,AOC(AOP),하이트진로,떼땅져,Taittinger,샹빠뉴,Champagne
+WHITE,"테 마타, 에스테이트 소비뇽 블랑",Te Mata. Estate Sauvignon Blanc,12.5,4,2,1,1,9,91,62000,New Zealand Sauvignon Blanc,,에노테카코리아,테 마타,Te Mata,혹스 베이,Hawke's Bay
+RED,"테네트, GSM","Tenet, GSM",15.5,3,5,1,4,17,91.8,260000,,AVA,금양인터내셔날,생미셸 와인 에스테이트,Ste.Michelle Wine Estates,콜롬비아 밸리,Columbia Valley
+RED,"테누타 산 귀도, 레 디페제","Tenuta San Guido, Le Difese",14.5,4,3,1,3,17,89.6,72000,Central Italy Red,IGT(IGP),에노테카코리아,테누타 산 귀도,Tenuta San Guido,토스카나,Toscana
+RED,"테누타 산 안토니오, 스카이아 코르비나","Tenuta Sant' Antonio, Scaia Corvina",13.5,3,3,1,3,15,90,44000,Northern Italy Red,IGT(IGP),동원와인플러스,테누타 산 안토니오,Tenuta Sant'Antonio,베네토,Veneto
+RED,"더 힐트, 벤트록 피노누아","The hilt, Bemtrock Pinot Noir",13.5,4,2,1,2,15,96,261000,Californian Pinot Noir,AVA,나라셀라,더 힐트,The Hilt,산타 리타 힐스,Santa Rita Hills
+WHITE,"더 힐트, 벤트록 샤도네이","The hilt, Bentrock Chardonnay",13.5,3,3,1,1,11,95,261000,Californian Chardonnay,AVA,나라셀라,더 힐트,The Hilt,산타 리타 힐스,Santa Rita Hills
+WHITE,"더 힐트, 이스테이트 샤도네이","The Hilt, Estate Chardonnay",13.5,3,4,1,1,11,91.6,150000,Californian Chardonnay,AVA,나라셀라,더 힐트,The Hilt,산타 바바라 카운티,Santa Barbara County
+RED,"더 힐트, 이스테이트 피노 누아","The Hilt, Estate Pinot Noir",13.5,3,3,1,2,15,92.4,150000,Californian Pinot Noir,AVA,나라셀라,더 힐트,The Hilt,산타 리타 힐스,Santa Rita Hills
+WHITE,"더 힐트, 라디안 샤도네이","The Hilt, Radian Chardonnay",13.5,3,3,1,1,11,95,235000,Californian Chardonnay,AVA,나라셀라,더 힐트,The Hilt,산타 리타 힐스,Santa Rita Hills
+RED,"더 힐트, 라디안 피노 누아","The Hilt, Radian Pinot Noir",13.5,4,2,1,2,15,97,261000,Californian Pinot Noir,AVA,나라셀라,더 힐트,The Hilt,산타 리타 힐스,Santa Rita Hills
+RED,"띠에라 로하, 까베르네 쇼비뇽 오크빌","Tierra Roja, Cabernet Sauvignon Oakville",14.5,4,5,1,5,17,94,750000,Californian Cabernet Sauvignon,AVA,와인투유코리아,띠에라 로하 와이너리,Tierra Roja Winery,오크빌,Oakville
+RED,"티나치, 아마로네 델라 발포리첼라","Tinazzi, Amarone della Valpolicella",14.5,4,2,1,2,17,94.5,140000,Italian Amarone,DOCG(DOP),베스트바이엔베버리지,티나찌,Tinazzi,발폴리첼라,Valpolicella
+RED,"타이투스 빈야드, 카베르네 소비뇽","Titus Vineyards, Cabernet Sauvignon",14.5,4,4,1,4,17,93,220000,Californian Cabernet Sauvignon,,와인투유코리아,타이투스 빈야드,Titus Vineyards,나파 밸리,Napa Valley
+RED,"토마스 쿠지네, 예브레","Tomas Cusine, Llebre",14,3,3,1,3,17,90,19000,Spanish Tempranillo,,젠니혼주류,토마스 쿠지네,Tomas Cusine,코스터스 델 세그레,Costers del Segre
+RED,"토마시, 아마로네 델라 발폴리첼라 클라시코","Tommasi, Amarone della Valpolicella Classico",15.5,2,5,1,3,17,91.6,200000,Italian Amarone,DOCG(DOP),금양인터내셔날,토마시,Tommasi,발폴리첼라,Valpolicella
+RED,"트라피체, 이스까이 말벡 까베르네 프랑","Trapiche, Iscay Malbec Cabernet Franc",14.5,3,4,1,5,17,96.3,140000,,,금양인터내셔날,트라피체,Trapiche,멘도사,Mendoza
+RED,트리가,Triga,16.5,3,4,1,4,17,92,150000,Spanish Red,DO(DOP),동원와인플러스,보데가스 볼베르,Bodegas Volver,알리칸테,Alicante
+RED,"바글리오, 차크라 말벡","Vaglio, Chacra Malbec",13.5,4,5,1,5,17,94,49000,Argentinian Malbec,,동원와인플러스,바글리오,Vaglio,루한 데 쿠요,lujan de cuyo
+RED,"바글리오, 미페럴 말벡","Vaglio, MiPeral Malbec",14.5,4,5,1,5,17,97,150000,Argentinian Malbec,,동원와인플러스,바글리오,Vaglio,우코 밸리,Uco Valley
+RED,"발레이븐, 카베르네 소비뇽","Valravn, Cabernet Sauvignon Sonoma County",14.5,3,4,1,4,17,91,120000,Californian Cabernet Sauvignon,,와인투유코리아,발레이븐,Valravn,소노마 카운티,Sonoma County
+RED,"발레이븐, 피노 누아","Valravn, Pinot Noir",13.5,3,3,1,2,15,92,120000,Californian Pinot Noir,,와인투유코리아,발레이븐,Valravn,소노마 카운티,Sonoma County
+RED,"빌라 알 코르틸레, 부르넬로 디 몬탈치노","Villa Al Cortile, Brunello di Montalcino",14.5,3,4,1,3,17,94,195000,Tuscan Red,DOCG(DOP),한산더블유앤비,빌라 알 코르틸레,Villa Al Cortile,토스카나,Toscana
+RED,"빌라 알 코르틸레, 부르넬로 디 몬탈치노 리제르바","Villa Al Cortile, Brunello di Montalcino Riserva",14.5,3,4,1,3,17,94,250000,Tuscan Red,DOCG(DOP),한산더블유앤비,빌라 알 코르틸레,Villa Al Cortile,토스카나,Toscana
+RED,"비냐 시겔, 지겔 싱글빈야드","Vina Siegel, SIegel Single Vineyard",14.5,3,4,1,4,17,90,70000,Chilean Cabernet Sauvignon,,리커밸리,비냐 시겔,Vina Siegel,콜차구아 밸리,Cholchagua Valley
+RED,"비노 델 솔, 타사하라 피노 누아","Vino del Sol, Tassajara Pinot Noir",13.5,3,2,1,2,15,91,50000,Californian Pinot Noir,,비노스와인,비노 델 솔,Vino del Sol,몬터레이,Monterey
+WHITE,"폴렌바이더, 볼퍼 골드그루베 리슬링 슈페트레제","Vollenweider, Wolfer Goldgrube Riesling Spatlese",8,5,3,2,1,11,93,130000,German Riesling,QmP,레뱅,폴렌바이더,Vollenweider,모젤-자르-루버,Mosel-Saar-Ruwer
+SPARKLING,"볼레로, 뀌베 마가렛","Vollereaux, Cuvee Marguerite",12,3,4,1,1,9,91.5,270000,French Champagne,AOC(AOP),인터리커,볼레로,Vollereaux,샹빠뉴,Champagne
+SPARKLING,"볼레로, 리저브 브뤼","Vollereaux, Reserve Brut",12.5,3,4,1,1,7,92,85000,French Champagne,AOC(AOP),인터리커,볼레로,Vollereaux,샹빠뉴,Champagne
+SPARKLING,"볼레로, 로제 브뤼","Vollereaux, Rose Brut",12.5,3,4,1,1,7,91.7,100000,French Champagne,AOC(AOP),인터리커,볼레로,Vollereaux,샹빠뉴,Champagne
+WHITE,발트라우드,Waltraud,12.5,3,2,1,1,9,89,36000,,,신동와인,미구엘 토레스,Miguel Torres,페네데스,Penedes
+WHITE,"얄룸바, 에덴 밸리 비오니에","Yalumba, Eden Valley Viognier",13.5,3,4,1,1,11,91.5,66000,Australian Viognier,,나라셀라,얄룸바,Yalumba,에덴 밸리,Eden Valley
+RED,"얄룸바, 멘지스 카버네 소비뇽","Yalumba, Menzies Cabernet Sauvignon",14.5,4,5,1,4,17,91.5,159000,Australian Cabernet Sauvignon,,나라셀라,얄룸바,Yalumba,바로사 밸리,Barossa Valley
+RED,"얄룸바, 옥타비우스 올드 바인 쉬라즈","Yalumba, Octavius Old Vine Shiraz",14.5,4,5,1,5,17,95.3,295000,Australian Shiraz,,나라셀라,얄룸바,Yalumba,바로사 밸리,Barossa Valley
+RED,"얄룸바, 시그너쳐 카버네 쉬라즈","Yalumba, Signature Cabernet Shiraz",14.5,3,4,1,5,18,92.9,159000,Australian Cabernet - Shiraz,,나라셀라,얄룸바,Yalumba,바로사 밸리,Barossa Valley
+RED,"제트 알렉산더 브라운, 언케이지드 까베르네 쇼비뇽","Z. Alexander Brown, Uncaged Cabernet Sauvignon",14.5,3,5,1,5,17,90,100000,,,와인투유코리아,제트 알렉산더 브라운,Z. Aexander Brown,캘리포니아,California
+RED,"제트 알렉산더 브라운, 언케이지드 레드 블랜드","Z. Alexander Brown, Uncaged Proprietary Red Blend",14.5,3,5,1,5,17,90,100000,,,와인투유코리아,제트 알렉산더 브라운,Z. Aexander Brown,캘리포니아,California
+WHITE,"진트 훔브레이트, 진트","Zind Humbrecht, Zind",12.5,3,3,1,1,11,90.4,85000,,AOC(AOP),금양인터내셔날,진트 훔브레이트,Zind Humbrecht,알자스,Alsace

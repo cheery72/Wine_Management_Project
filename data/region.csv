@@ -1,0 +1,150 @@
+name_korean,name_english,parent_name_korean,parent_name_english
+아르헨티나,Argentina,,
+호주,Australia,,
+오스트리아,Austria,,
+칠레,Chile,,
+프랑스,France,,
+독일,Germany,,
+이탈리아,Italy,,
+뉴질랜드,New Zealand,,
+포르투갈,Portugal,,
+스페인,Spain,,
+미국,U.S.A,,
+멘도사,Mendoza,아르헨티나,Argentina
+리오 네그로,Rio Negro,아르헨티나,Argentina
+사우스 오스트레일리아,South Australia,호주,Australia
+빅토리아,Victoria,호주,Australia
+웨스턴 오스트레일리아,Western Australia,호주,Australia
+니더외스터라이히,Niederosterreich,오스트리아,Austria
+아콩카구아,Aconcagua,칠레,Chile
+마이포 밸리,Maipo Valley,칠레,Chile
+라펠 밸리,Rapel Valley,칠레,Chile
+알자스,Alsace,프랑스,France
+보르도,Bordeaux,프랑스,France
+부르고뉴,Bourgogne,프랑스,France
+샹빠뉴,Champagne,프랑스,France
+루아르,Loire,프랑스,France
+론,Rhone,프랑스,France
+서던 프랑스,Southern France,프랑스,France
+모젤-자르-루버,Mosel-Saar-Ruwer,독일,Germany
+나헤,Nahe,독일,Germany
+아브루쪼,Abruzzo,이탈리아,Italy
+깜빠니아,Campania,이탈리아,Italy
+프리울리 베네찌아 줄리아,Friuli Venezia Giulia,이탈리아,Italy
+마르케,Marche,이탈리아,Italy
+피에몬테,Piemonte,이탈리아,Italy
+뿔리아,Puglia,이탈리아,Italy
+시칠리아,Sicilia,이탈리아,Italy
+토스카나,Toscana,이탈리아,Italy
+트렌티노-알토 아디제,Trentino-Alto Adige,이탈리아,Italy
+베네토,Veneto,이탈리아,Italy
+노스 아일랜드,North Island,뉴질랜드,New Zealand
+사우스 아일랜드,South Island,뉴질랜드,New Zealand
+아소르스,Azores,포르투갈,Portugal
+도우루,Douro,포르투갈,Portugal
+알리칸테,Alicante,스페인,Spain
+비에르소,Bierzo,스페인,Spain
+까리네냐,Carinena,스페인,Spain
+까탈루냐,Cataluna,스페인,Spain
+코스터스 델 세그레,Costers del Segre,스페인,Spain
+페네데스,Penedes,스페인,Spain
+리아스 바이사스,Rias Baixas,스페인,Spain
+리오하,Rioja,스페인,Spain
+발렌시아,Valencia,스페인,Spain
+캘리포니아,California,미국,U.S.A
+오리건,Oregon,미국,U.S.A
+워싱턴,Washington State,미국,U.S.A
+멘도치노 카운티,Mendocino County,캘리포니아,California
+몬터레이 카운티,Monterey County,캘리포니아,California
+나파 카운티,Napa County,캘리포니아,California
+노스 코스트,North Coast,캘리포니아,California
+샌 호아퀸 카운티,San Joaquin County,캘리포니아,California
+샌 루이스 오비스포 카운티,San Luis Obispo County,캘리포니아,California
+산타 바바라 카운티,Santa Barbara County,캘리포니아,California
+소노마 카운티,Sonoma County,캘리포니아,California
+콜롬비아 고지 (오리건),Columbia Gorge (OR),오리건,Oregon
+윌라메트 밸리,Willamette Valley,오리건,Oregon
+콜롬비아 밸리,Columbia Valley,워싱턴,Washington State
+앤더슨 밸리,Anderson Valley,멘도치노 카운티,Mendocino County
+몬터레이,Monterey,몬터레이 카운티,Monterey County
+하월 마운틴,Howell Mountain,나파 카운티,Napa County
+로스 카네로스,Los Carneros,나파 카운티,Napa County
+나파 밸리,Napa Valley,나파 카운티,Napa County
+오크빌,Oakville,나파 카운티,Napa County
+세인트 헬레나,St. Helena,나파 카운티,Napa County
+로디,Lodi,샌 호아퀸 카운티,San Joaquin County
+파소 로블스,Paso Robles,샌 루이스 오비스포 카운티,San Luis Obispo County
+산타 마리아 밸리,Santa Maria Valley,산타 바바라 카운티,Santa Barbara County
+산타 리타 힐스,Santa Rita Hills,산타 바바라 카운티,Santa Barbara County
+알렉산더 밸리,Alexander Valley,소노마 카운티,Sonoma County
+드라이 크릭 밸리,Dry Creek Valley,소노마 카운티,Sonoma County
+나이츠 밸리,Knights Valley,소노마 카운티,Sonoma County
+러시안 리버 밸리,Russian River Valley,소노마 카운티,Sonoma County
+소노마 코스트,Sonoma Coast,소노마 카운티,Sonoma County
+소노마 밸리,Sonoma Valley,소노마 카운티,Sonoma County
+아스티,Asti,피에몬테,Piemonte
+바르바레스코,Barbaresco,피에몬테,Piemonte
+바롤로,Barolo,피에몬테,Piemonte
+랑게,Langhe,피에몬테,Piemonte
+볼게리,Bolgheri,토스카나,Toscana
+키안티,Chianti,토스카나,Toscana
+키안티 클라시코,Chianti Classico,토스카나,Toscana
+몬탈치노,Montalcino,토스카나,Toscana
+몬테풀치아노,Montepulciano,토스카나,Toscana
+발폴리첼라,Valpolicella,베네토,Veneto
+베로나,Verona,베네토,Veneto
+아콩카구아 밸리,Aconcagua Valley,아콩카구아,Aconcagua
+카사블랑카 밸리,Casablanca Valley,아콩카구아,Aconcagua
+카차포알 밸리,Cachapoal Valley,라펠 밸리,Rapel Valley
+콜차구아 밸리,Cholchagua Valley,라펠 밸리,Rapel Valley
+아들레이드,Adelaide,사우스 오스트레일리아,South Australia
+애들레이드 힐즈,Adelaide Hills,사우스 오스트레일리아,South Australia
+바로사 밸리,Barossa Valley,사우스 오스트레일리아,South Australia
+클레어 밸리,Clare Valley,사우스 오스트레일리아,South Australia
+에덴 밸리,Eden Valley,사우스 오스트레일리아,South Australia
+랭혼 크릭,Langhorne Creek,사우스 오스트레일리아,South Australia
+맥라렌 베일,McLaren Vale,사우스 오스트레일리아,South Australia
+패더웨이,Padthaway,사우스 오스트레일리아,South Australia
+깁스랜드,Gippsland,빅토리아,Victoria
+야라 밸리,Yarra Valley,빅토리아,Victoria
+마가렛 리버,Margaret River,웨스턴 오스트레일리아,Western Australia
+그라브,Graves,보르도,Bordeaux
+오-메독,Haut-Medoc,보르도,Bordeaux
+마고,Margaux,보르도,Bordeaux
+뽀이약,Pauillac,보르도,Bordeaux
+뽀므롤,Pomerol,보르도,Bordeaux
+생-떼밀리옹,Saint-Emilion,보르도,Bordeaux
+생-떼밀리옹 그랑 크뤼,Saint-Emilion Grand Cru,보르도,Bordeaux
+생-쥴리앙,Saint-Julien,보르도,Bordeaux
+샤블리,Chablis,부르고뉴,Bourgogne
+꼬뜨 샬로네즈,Côte Chalonnaise,부르고뉴,Bourgogne
+꼬뜨 드 본,Côte de Beaune,부르고뉴,Bourgogne
+앙쥬-소뮈르,Anjou-Saumur,루아르,Loire
+센트럴 루아르,Central Loire,루아르,Loire
+샤또네프 뒤 빠쁘,Chateauneuf du Pape,론,Rhone
+지공다스,Gigondas,론,Rhone
+에르미타주,Hermitage,론,Rhone
+생-죠셉,Saint-Joseph,론,Rhone
+랑그독 루씨용,Languedoc Roussillon,서던 프랑스,Southern France
+멘도사 리버 에어리어,Mendoza River Area,멘도사,Mendoza
+우코 밸리,Uco Valley,멘도사,Mendoza
+파타고니아,Patagonia,리오 네그로,Rio Negro
+아팔타 밸리,Apalta Valley,콜차구아 밸리,Cholchagua Valley
+루한 데 쿠요,lujan de cuyo,멘도사 리버 에어리어,Mendoza River Area
+칸누비,Cannubi,바롤로,Barolo
+혹스 베이,Hawke's Bay,노스 아일랜드,North Island
+말보로,Marlborough,사우스 아일랜드,South Island
+넬슨,Nelson,사우스 아일랜드,South Island
+트라이젠탈,Traisental,니더외스터라이히,Niederosterreich
+바인피어텔,Weinviertel,니더외스터라이히,Niederosterreich
+샤블리 프리미에 크뤼,Chablis Premier Cru,샤블리,Chablis
+지브리,Givry,꼬뜨 샬로네즈,Côte Chalonnaise
+몽따니,Montagny,꼬뜨 샬로네즈,Côte Chalonnaise
+샤샤뉴-몽라셰,Chassagne-Montrachet,꼬뜨 드 본,Côte de Beaune
+쀨리니-몽라셰,Puligny-Montrachet,꼬뜨 드 본,Côte de Beaune
+상트네,Santenay,꼬뜨 드 본,Côte de Beaune
+사비니-레-본,Savigny-les-Beaune,꼬뜨 드 본,Côte de Beaune
+볼네,Volnay,꼬뜨 드 본,Côte de Beaune
+소뮈르,Saumur,앙쥬-소뮈르,Anjou-Saumur
+상세르,Sancerre,센트럴 루아르,Central Loire
+야키마 밸리,Yakima Valley,콜롬비아 밸리,Columbia Valley

@@ -46,4 +46,8 @@ class Wine(
 
     @OneToMany(mappedBy = "wine")
     val wineGrape: List<WineGrape> = emptyList(),
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "winery_id")
+    val winery: Winery,
 )

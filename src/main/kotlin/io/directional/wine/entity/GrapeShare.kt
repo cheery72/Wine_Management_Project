@@ -16,4 +16,8 @@ class GrapeShare(
     @JoinColumn(name = "grape_id")
     val grape: Grape,
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    val region: Region,
+
 )

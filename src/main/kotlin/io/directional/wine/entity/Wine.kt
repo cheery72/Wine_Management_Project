@@ -40,4 +40,7 @@ class Wine(
 
     @OneToMany(mappedBy = "wine")
     val aroma: List<WineAroma> = emptyList(),
+
+    @OneToMany(mappedBy = "wine")
+    val pairing: List<WinePairing> = emptyList(),
 )

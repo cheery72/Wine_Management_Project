@@ -25,4 +25,7 @@ class Grape(
     @OneToMany(mappedBy = "grape")
     val wineGrape: List<WineGrape> = emptyList(),
 
+    @OneToMany(mappedBy = "grape")
+    val grapeShare: List<GrapeShare> = emptyList(),
+
 )

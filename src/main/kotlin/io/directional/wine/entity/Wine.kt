@@ -50,4 +50,9 @@ class Wine(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "winery_id")
     val winery: Winery,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    val region: Region,
+
 )

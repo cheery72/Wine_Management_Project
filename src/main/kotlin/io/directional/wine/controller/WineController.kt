@@ -12,13 +12,14 @@ class WineController(
     private val wineService: WineService,
 ) {
 
-    @PostMapping("/{wineryId}/{regionId}/wines")
+    @PostMapping("/{wineryId}/{regionId}/{importerId}/wines")
     fun createWine(
         @PathVariable wineryId: Long,
         @PathVariable regionId: Long,
+        @PathVariable importerId: Long,
         @RequestBody createWineRequest: CreateWineRequest
     ): ResponseEntity<Unit> {
-        wineService.createWine(wineryId,regionId,createWineRequest)
+        wineService.createWine(wineryId,regionId,importerId,createWineRequest)
 
         return ResponseEntity
             .status(HttpStatus.CREATED)

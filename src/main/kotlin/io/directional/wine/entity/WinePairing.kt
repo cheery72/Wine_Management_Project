@@ -8,7 +8,7 @@ class WinePairing(
     @Id
     @Column(name = "wine_pairing_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     val pairing: String,
 

@@ -8,7 +8,7 @@ class WineAroma(
     @Id
     @Column(name = "wine_aroma_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     val aroma: String,
 

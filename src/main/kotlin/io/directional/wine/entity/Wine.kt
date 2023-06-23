@@ -36,7 +36,7 @@ class Wine(
 
     val grade: String?,
 
-    val importer: String,
+    var deleted: Boolean = false,
 
     @OneToMany(mappedBy = "wine")
     val aroma: List<WineAroma> = emptyList(),
@@ -55,9 +55,13 @@ class Wine(
     @JoinColumn(name = "region_id")
     val region: Region,
 
-) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "importer_id")
+    val importer: Importer,
+
+) : BaseTime() {
     companion object {
-        fun toEntity(createWineRequest: CreateWineRequest, winery: Winery, region: Region): Wine {
+        fun toEntity(createWineRequest: CreateWineRequest, winery: Winery, region: Region, importer: Importer): Wine {
             // Wine 엔티티로 변환하는 로직 작성
             return Wine(
                 type = createWineRequest.type,
@@ -73,7 +77,7 @@ class Wine(
                 price = createWineRequest.price,
                 style = createWineRequest.style,
                 grade = createWineRequest.grade,
-                importer = createWineRequest.importer,
+                importer = importer,
                 winery = winery,
                 region = region
             )

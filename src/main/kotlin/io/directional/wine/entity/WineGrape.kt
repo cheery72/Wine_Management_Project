@@ -8,7 +8,7 @@ class WineGrape(
     @Id
     @Column(name = "wine_grape_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wine_id")

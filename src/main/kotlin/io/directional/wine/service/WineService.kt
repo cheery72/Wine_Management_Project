@@ -1,11 +1,13 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateWineRequest
+import io.directional.wine.entity.Importer
 import io.directional.wine.entity.Region
 import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
+import io.directional.wine.repository.ImporterRepository
 import io.directional.wine.repository.RegionRepository
 import io.directional.wine.repository.WineRepository
 import io.directional.wine.repository.WineryRepository
@@ -18,24 +20,31 @@ class WineService(
     private val wineRepository: WineRepository,
     private val wineryRepository: WineryRepository,
     private val regionRepository: RegionRepository,
+    private val importerRepository: ImporterRepository,
 ) {
 
     @Transactional
-    fun createWine(wineryId: Long,regionId: Long, createWineRequest: CreateWineRequest) {
+    fun createWine(wineryId: Long, regionId: Long, importerId: Long, createWineRequest: CreateWineRequest) {
         val winery = findWinery(wineryId)
         val region = findRegion(regionId)
-        val wine = Wine.toEntity(createWineRequest, winery, region)
+        val importer = findImporter(importerId)
+        val wine = Wine.toEntity(createWineRequest, winery, region, importer)
 
         wineRepository.save(wine)
     }
 
-    fun findWinery(wineryId: Long): Winery {
-        return wineryRepository.findById(wineryId)
+    private fun findImporter(importerId: Long): Importer {
+        return importerRepository.findByIdAndDeletedFalse(importerId)
+            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_IMPORTER)}
+    }
+
+    private fun findWinery(wineryId: Long): Winery {
+        return wineryRepository.findByIdAndDeletedFalse(wineryId)
             .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINERY)}
     }
 
-    fun findRegion(regionId: Long): Region {
-        return regionRepository.findById(regionId)
+    private fun findRegion(regionId: Long): Region {
+        return regionRepository.findByIdAndDeletedFalse(regionId)
             .orElseThrow { ClientException(ErrorCode.NOT_FOUND_REGION)}
     }
 

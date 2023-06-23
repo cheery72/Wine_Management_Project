@@ -9,11 +9,13 @@ class Winery(
     @Id
     @Column(name = "winery_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     val nameKorean: String,
 
     val nameEnglish: String,
+
+    var deleted: Boolean = false,
 
     @OneToMany(mappedBy = "winery")
     val wine: List<Wine> = emptyList(),
@@ -22,4 +24,4 @@ class Winery(
     @JoinColumn(name = "region_id")
     val region: Region,
 
-)
+) : BaseTime()

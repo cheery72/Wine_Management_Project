@@ -16,11 +16,13 @@ class Region(
     @Id
     @Column(name = "region_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     val nameKorean: String,
 
     val nameEnglish: String,
+
+    var deleted: Boolean = false,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
@@ -37,4 +39,5 @@ class Region(
 
     @OneToMany(mappedBy = "region")
     val grapeShare: List<GrapeShare> = emptyList(),
-)
+
+) : BaseTime()

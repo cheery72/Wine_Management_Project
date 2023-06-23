@@ -8,7 +8,7 @@ class GrapeShare(
     @Id
     @Column(name = "grape_share_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     val share: Double,
 

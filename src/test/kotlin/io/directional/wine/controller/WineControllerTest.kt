@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
@@ -39,6 +40,8 @@ class WineControllerTest {
 
     private val regionId = 1L
 
+    private val importerId = 1L
+
     private val createWineRequest = CreateWineRequest(
         type = "RED",
         nameKorean = "1881 나파, 카베르네 소비뇽",
@@ -53,7 +56,6 @@ class WineControllerTest {
         price = 200000,
         style = "Californian Cabernet Sauvignon",
         grade = null,
-        importer = "와인투유코리아",
     )
 
     @BeforeEach
@@ -69,16 +71,16 @@ class WineControllerTest {
     @Test
     @DisplayName("와인 생성 성공 테스트")
     fun createWine_Success_Test() {
-        Mockito.doNothing().`when`(wineService).createWine(wineryId, regionId, createWineRequest)
+        Mockito.doNothing().`when`(wineService).createWine(wineryId, regionId, importerId, createWineRequest)
 
         mockMvc.perform(
-            MockMvcRequestBuilders.post("$BASE_URL/{wineryId}/{regionId}/wines", wineryId, regionId)
+            MockMvcRequestBuilders.post("$BASE_URL/{wineryId}/{regionId}/{importerId}/wines", wineryId, regionId,importerId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(createWineRequest.toJsonString())
         )
             .andExpect(MockMvcResultMatchers.status().isCreated)
 
-        Mockito.verify(wineService).createWine(wineryId, regionId, createWineRequest)
+        Mockito.verify(wineService).createWine(wineryId, regionId, importerId, createWineRequest)
     }
 
 }

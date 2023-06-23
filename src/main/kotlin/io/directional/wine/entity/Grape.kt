@@ -8,7 +8,7 @@ class Grape(
     @Id
     @Column(name = "grape_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     val nameKorean: String,
 
@@ -22,10 +22,12 @@ class Grape(
 
     val tannin: Int,
 
+    var deleted: Boolean = false,
+
     @OneToMany(mappedBy = "grape")
     val wineGrape: List<WineGrape> = emptyList(),
 
     @OneToMany(mappedBy = "grape")
     val grapeShare: List<GrapeShare> = emptyList(),
 
-)
+) : BaseTime()

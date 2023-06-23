@@ -15,5 +15,4 @@ data class CreateWineRequest (
     val price: Int,
     val style: String?,
     val grade: String?,
-    val importer: String,
 )

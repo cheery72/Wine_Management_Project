@@ -243,4 +243,20 @@ class WineServiceTest {
         verify(wineRepository, times(1)).findByIdAndDeletedFalse(wineId)
     }
 
+    @Test
+    @DisplayName("와인 삭제 성공 테스트")
+    fun deleteWine_Success_Test() {
+        // given
+        val wineId = 1L
+
+        // when
+        `when`(wineRepository.findByIdAndDeletedFalse(wineId)).thenReturn(Optional.of(wine))
+
+        wineService.deleteWine(wineId)
+
+        // then
+        verify(wineRepository, times(1)).findByIdAndDeletedFalse(wineId)
+        assertTrue(wine.deleted)
+
+    }
 }

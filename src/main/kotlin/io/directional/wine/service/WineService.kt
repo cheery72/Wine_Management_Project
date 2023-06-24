@@ -45,6 +45,13 @@ class WineService(
 
     }
 
+    @Transactional
+    fun deleteWine(wineId: Long) {
+        val wine = findWine(wineId)
+
+        wine.setDeleted()
+    }
+
     private fun findWine(wineId: Long): Wine {
         return wineRepository.findByIdAndDeletedFalse(wineId)
             .orElseThrow{ ClientException(ErrorCode.NOT_FOUND_WINE)}

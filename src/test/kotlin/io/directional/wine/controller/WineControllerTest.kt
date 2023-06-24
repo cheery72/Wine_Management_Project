@@ -119,4 +119,18 @@ class WineControllerTest {
 
         Mockito.verify(wineService).updateWine(wineId, updateWineRequest)
     }
+
+    @Test
+    @DisplayName("와인 삭제 성공 테스트")
+    fun deleteWine() {
+        val wineId = 1L
+
+        Mockito.doNothing().`when`(wineService).deleteWine(wineId)
+        mockMvc.perform(
+            MockMvcRequestBuilders.delete("$BASE_URL/{wineId}/wines", wineId)
+        )
+            .andExpect(MockMvcResultMatchers.status().isNoContent)
+
+        Mockito.verify(wineService).deleteWine(wineId)
+    }
 }

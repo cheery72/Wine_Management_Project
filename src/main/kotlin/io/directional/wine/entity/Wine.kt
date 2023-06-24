@@ -103,5 +103,9 @@ class Wine(
         this.region = region
         this.importer = importer
     }
+
+    fun setDeleted() {
+        this.deleted = true
+    }
 }
 

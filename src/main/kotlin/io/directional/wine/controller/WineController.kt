@@ -38,4 +38,15 @@ class WineController(
             .status(HttpStatus.NO_CONTENT)
             .build()
     }
+
+    @DeleteMapping("/{wineId}/wines")
+    fun deleteWine(
+        @PathVariable wineId: Long
+    ): ResponseEntity<Unit> {
+        wineService.deleteWine(wineId)
+
+        return ResponseEntity
+            .status(HttpStatus.NO_CONTENT)
+            .build()
+    }
 }

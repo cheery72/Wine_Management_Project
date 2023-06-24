@@ -1,6 +1,7 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateWineRequest
+import io.directional.wine.dto.UpdateWineRequest
 import io.directional.wine.entity.Importer
 import io.directional.wine.entity.Region
 import io.directional.wine.entity.Wine
@@ -31,6 +32,22 @@ class WineService(
         val wine = Wine.toEntity(createWineRequest, winery, region, importer)
 
         wineRepository.save(wine)
+    }
+
+    @Transactional
+    fun updateWine(wineId: Long, updateWineRequest: UpdateWineRequest) {
+        val wine = findWine(wineId)
+        val winery = findWinery(updateWineRequest.wineryId)
+        val region = findRegion(updateWineRequest.regionId)
+        val importer = findImporter(updateWineRequest.importerId)
+
+        wine.setWineInfo(updateWineRequest, winery, region, importer)
+
+    }
+
+    private fun findWine(wineId: Long): Wine {
+        return wineRepository.findByIdAndDeletedFalse(wineId)
+            .orElseThrow{ ClientException(ErrorCode.NOT_FOUND_WINE)}
     }
 
     private fun findImporter(importerId: Long): Importer {

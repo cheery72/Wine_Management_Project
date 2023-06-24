@@ -1,6 +1,7 @@
 package io.directional.wine.entity
 
 import io.directional.wine.dto.CreateWineRequest
+import io.directional.wine.dto.UpdateWineRequest
 import jakarta.persistence.*
 @Entity
 class Wine(
@@ -10,31 +11,31 @@ class Wine(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    val type: String,
+    var type: String,
 
-    val nameKorean: String,
+    var nameKorean: String,
 
-    val nameEnglish: String,
+    var nameEnglish: String,
 
-    val alcohol: Double,
+    var alcohol: Double,
 
-    val acidity: Int,
+    var acidity: Int,
 
-    val body: Int,
+    var body: Int,
 
-    val sweetness: Int,
+    var sweetness: Int,
 
-    val tannin: Int,
+    var tannin: Int,
 
-    val servingTemperature: Double,
+    var servingTemperature: Double,
 
-    val score: Double,
+    var score: Double,
 
     var price: Int,
 
-    val style: String?,
+    var style: String?,
 
-    val grade: String?,
+    var grade: String?,
 
     var deleted: Boolean = false,
 
@@ -49,15 +50,15 @@ class Wine(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "winery_id")
-    val winery: Winery,
+    var winery: Winery,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
-    val region: Region,
+    var region: Region,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "importer_id")
-    val importer: Importer,
+    var importer: Importer,
 
 ) : BaseTime() {
     companion object {
@@ -82,6 +83,25 @@ class Wine(
                 region = region
             )
         }
+    }
+
+    fun setWineInfo(updateWineRequest: UpdateWineRequest, winery: Winery, region: Region, importer: Importer) {
+        this.type = updateWineRequest.type
+        this.nameKorean = updateWineRequest.nameKorean
+        this.nameEnglish = updateWineRequest.nameEnglish
+        this.alcohol = updateWineRequest.alcohol
+        this.acidity = updateWineRequest.acidity
+        this.body = updateWineRequest.body
+        this.sweetness = updateWineRequest.sweetness
+        this.tannin = updateWineRequest.tannin
+        this.servingTemperature = updateWineRequest.servingTemperature
+        this.score = updateWineRequest.score
+        this.price = updateWineRequest.price
+        this.style = updateWineRequest.style
+        this.grade = updateWineRequest.grade
+        this.winery = winery
+        this.region = region
+        this.importer = importer
     }
 }
 

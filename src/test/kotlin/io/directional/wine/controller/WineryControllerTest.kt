@@ -2,6 +2,7 @@ package io.directional.wine.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateWineryRequest
+import io.directional.wine.dto.UpdateWineryRequest
 import io.directional.wine.service.WineryService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -66,5 +67,26 @@ class WineryControllerTest {
             .andExpect(MockMvcResultMatchers.status().isCreated)
 
         Mockito.verify(wineryService).createWinery(regionId, createWineryRequest)
+    }
+
+    @Test
+    @DisplayName("와이너리 수정 성공 테스트")
+    fun updateWinery_Success_Test() {
+        val wineryId = 1L
+        val updateWineryRequest = UpdateWineryRequest(
+            regionId = 1L,
+            wineryNameEnglish = "wineryNameEnglish",
+            wineryNameKorean = "wineryNameKorean",
+        )
+
+        Mockito.doNothing().`when`(wineryService).updateWinery(wineryId,updateWineryRequest)
+        mockMvc.perform(
+            MockMvcRequestBuilders.put("$BASE_URL/{wineryId}/winerys", wineryId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(updateWineryRequest.toJsonString())
+        )
+            .andExpect(MockMvcResultMatchers.status().isNoContent)
+
+        Mockito.verify(wineryService).updateWinery(wineryId, updateWineryRequest)
     }
 }

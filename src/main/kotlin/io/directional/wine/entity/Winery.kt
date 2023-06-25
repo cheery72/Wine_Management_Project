@@ -1,6 +1,7 @@
 package io.directional.wine.entity
 
 import io.directional.wine.dto.CreateWineryRequest
+import io.directional.wine.dto.UpdateWineryRequest
 import jakarta.persistence.*
 
 
@@ -12,15 +13,15 @@ class Winery(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    val nameKorean: String,
+    var nameKorean: String,
 
-    val nameEnglish: String,
+    var nameEnglish: String,
 
     var deleted: Boolean = false,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
-    val region: Region,
+    var region: Region,
 
 ) : BaseTime() {
 
@@ -32,5 +33,11 @@ class Winery(
                 region = region
             )
         }
+    }
+
+    fun setWineryInfo(updateWineryRequest: UpdateWineryRequest, region: Region) {
+        this.nameEnglish = updateWineryRequest.wineryNameEnglish
+        this.nameKorean = updateWineryRequest.wineryNameKorean
+        this.region = region
     }
 }

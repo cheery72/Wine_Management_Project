@@ -1,6 +1,7 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateWineryRequest
+import io.directional.wine.dto.UpdateWineryRequest
 import io.directional.wine.entity.Region
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
@@ -26,8 +27,21 @@ class WineryService(
         wineryRepository.save(winery)
     }
 
-    fun findRegion(regionId: Long): Region {
+    @Transactional
+    fun updateWinery(wineryId: Long, updateWineryRequest: UpdateWineryRequest){
+        val winery: Winery = findWinery(wineryId)
+        val region: Region = findRegion(updateWineryRequest.regionId)
+
+        winery.setWineryInfo(updateWineryRequest, region)
+    }
+
+    private fun findRegion(regionId: Long): Region {
         return regionRepository.findByIdAndDeletedFalse(regionId)
             .orElseThrow { ClientException(ErrorCode.NOT_FOUND_REGION) }
+    }
+
+    private fun findWinery(wineryId: Long): Winery {
+        return wineryRepository.findByIdAndDeletedFalse(wineryId)
+            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINERY)}
     }
 }

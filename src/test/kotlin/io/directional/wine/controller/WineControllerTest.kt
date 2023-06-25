@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateWineRequest
 import io.directional.wine.dto.UpdateWineRequest
 import io.directional.wine.dto.WineDetailsResponse
+import io.directional.wine.dto.WineWithTopRegionResponse
 import io.directional.wine.service.WineService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -164,5 +165,40 @@ class WineControllerTest {
 
         Mockito.verify(wineService).findWineDetails(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion)
+    }
+
+    @Test
+    @DisplayName("와인 다수 조회 테스트")
+    fun findWineWithTopRegion_Success_Test() {
+        val wineType = "RED"
+        val alcoholMin = 13.5
+        val alcoholMax = 15.0
+        val priceMin = 190000
+        val priceMax = 210000
+        val wineStyle = "Californian Cabernet Sauvignon"
+        val wineGrade = null
+        val wineRegion = "나파 밸리"
+
+
+        Mockito.`when`(wineService.findWineWithTopRegion(anyString(), anyDouble(), anyDouble(), anyInt(),
+            anyInt(), anyString(), anyString(), anyString()))
+            .thenReturn(listOf(mock(WineWithTopRegionResponse::class.java)))
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("$BASE_URL/wines/all")
+                .param("wineType",wineType)
+                .param("alcoholMin", alcoholMin.toString())
+                .param("alcoholMax", alcoholMax.toString())
+                .param("priceMin", priceMin.toString())
+                .param("priceMax", priceMax.toString())
+                .param("wineStyle", wineStyle)
+                .param("wineGrade", wineGrade)
+                .param("wineRegion", wineRegion)
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+        Mockito.verify(wineService).findWineWithTopRegion(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+            wineStyle, wineGrade, wineRegion)
+
     }
 }

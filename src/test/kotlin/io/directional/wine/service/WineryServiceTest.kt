@@ -2,6 +2,7 @@ package io.directional.wine.service
 
 import io.directional.wine.dto.CreateWineryRequest
 import io.directional.wine.dto.UpdateWineryRequest
+import io.directional.wine.dto.WineryWithRegionDto
 import io.directional.wine.entity.Region
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
@@ -128,5 +129,36 @@ class WineryServiceTest {
         verify(wineryRepository, times(1)).findByIdAndDeletedFalse(wineryId)
         assertTrue(winery.deleted)
 
+    }
+
+
+    @Test
+    @DisplayName("와이너리 단일 조회 성공 테스트")
+    fun findWineryWithRegion_Success_Test() {
+        // given
+        val wineryName = "name"
+        val wineryRegion = "region"
+        val wineryWithRegionDto = WineryWithRegionDto(
+            wineryNameEnglish =  "wineryNameEnglish",
+            wineryNameKorean = "wineryNameKorean",
+            wineryRegionNameEnglish = "wineryRegionNameEnglish",
+            wineryRegionNameKorean = "wineryRegionNameKorean",
+            wineryWineNameEnglish = "wineryWineNameEnglish",
+            wineryWineNameKorean = "wineryWineNameKorean",
+        )
+
+        // when
+        `when`(wineryRepository.findWineryWithRegion(wineryName,wineryRegion)).thenReturn(wineryWithRegionDto)
+
+        val result: WineryWithRegionDto? = wineryService.findWineryWithRegion(wineryName, wineryRegion)
+
+        // then
+        verify(wineryRepository, times(1)).findWineryWithRegion(wineryName, wineryRegion)
+        assertEquals(result!!.wineryNameEnglish,wineryWithRegionDto.wineryNameEnglish)
+        assertEquals(result.wineryNameKorean,wineryWithRegionDto.wineryNameKorean)
+        assertEquals(result.wineryRegionNameKorean,wineryWithRegionDto.wineryRegionNameKorean)
+        assertEquals(result.wineryRegionNameEnglish,wineryWithRegionDto.wineryRegionNameEnglish)
+        assertEquals(result.wineryWineNameEnglish,wineryWithRegionDto.wineryWineNameEnglish)
+        assertEquals(result.wineryWineNameKorean,wineryWithRegionDto.wineryWineNameKorean)
     }
 }

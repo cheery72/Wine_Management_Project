@@ -3,11 +3,13 @@ package io.directional.wine.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateWineryRequest
 import io.directional.wine.dto.UpdateWineryRequest
+import io.directional.wine.dto.WineryWithRegionDto
 import io.directional.wine.service.WineryService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -102,5 +104,27 @@ class WineryControllerTest {
             .andExpect(MockMvcResultMatchers.status().isNoContent)
 
         Mockito.verify(wineryService).deleteWinery(wineryId)
+    }
+
+    @Test
+    @DisplayName("와이너리 단일 조회 성공 테스트")
+    fun findWineryWithRegion_Success_Test() {
+        val wineryName = "wineryName"
+        val wineryRegion = "wineryRegion"
+
+        Mockito.`when`(wineryService.findWineryWithRegion(
+            ArgumentMatchers.anyString(),
+            ArgumentMatchers.anyString(),
+        ))
+            .thenReturn(Mockito.mock(WineryWithRegionDto::class.java))
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("$BASE_URL/winerys")
+                .param("wineryName",wineryName)
+                .param("wineryRegion", wineryRegion)
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+        Mockito.verify(wineryService).findWineryWithRegion(wineryName, wineryRegion)
     }
 }

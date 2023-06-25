@@ -1,9 +1,10 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateWineRequest
+import io.directional.wine.dto.RecursiveRegionDto
 import io.directional.wine.dto.UpdateWineRequest
+import io.directional.wine.dto.WineDetailsResponse
 import io.directional.wine.entity.Importer
-import io.directional.wine.entity.Region
 import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
@@ -21,6 +22,7 @@ class WineService(
     private val wineRepository: WineRepository,
     private val wineryRepository: WineryRepository,
     private val importerRepository: ImporterRepository,
+    private val regionRepository: RegionRepository,
 ) {
 
     @Transactional
@@ -47,6 +49,21 @@ class WineService(
         val wine = findWine(wineId)
 
         wine.setDeleted()
+    }
+    fun findWineDetails(
+        wineType: String, alcoholMin: Double, alcoholMax: Double,
+        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String)
+    : WineDetailsResponse?{
+        val wineDetailsDto = wineRepository.findWineDetails(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+                                                            wineStyle, wineGrade, wineRegion)
+
+        val recursiveRegionDTO = findRegionList(wineDetailsDto!!.regionId)
+
+        return WineDetailsResponse.fromWineDetailsResponse(wineDetailsDto, recursiveRegionDTO)
+    }
+
+    private fun findRegionList(regionId: Long): List<RecursiveRegionDto> {
+        return regionRepository.findByIdRecursiveRegions(regionId)
     }
 
     private fun findWine(wineId: Long): Wine {

@@ -3,18 +3,19 @@ package io.directional.wine.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateWineRequest
 import io.directional.wine.dto.UpdateWineRequest
+import io.directional.wine.dto.WineDetailsResponse
 import io.directional.wine.service.WineService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers.any
+import org.mockito.ArgumentMatchers.*
 import org.mockito.Mockito
+import org.mockito.Mockito.mock
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
-import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
@@ -119,7 +120,7 @@ class WineControllerTest {
 
     @Test
     @DisplayName("와인 삭제 성공 테스트")
-    fun deleteWine() {
+    fun deleteWine_Success_Test() {
         val wineId = 1L
 
         Mockito.doNothing().`when`(wineService).deleteWine(wineId)
@@ -129,5 +130,39 @@ class WineControllerTest {
             .andExpect(MockMvcResultMatchers.status().isNoContent)
 
         Mockito.verify(wineService).deleteWine(wineId)
+    }
+
+    @Test
+    @DisplayName("와인 단일 조회 성공 테스트")
+    fun findWineDetails_Success_Test() {
+        val wineType = "RED"
+        val alcoholMin = 13.5
+        val alcoholMax = 15.0
+        val priceMin = 190000
+        val priceMax = 210000
+        val wineStyle = "Californian Cabernet Sauvignon"
+        val wineGrade = null
+        val wineRegion = "나파 밸리"
+
+
+        Mockito.`when`(wineService.findWineDetails(anyString(), anyDouble(), anyDouble(), anyInt(),
+                                                                anyInt(), anyString(), anyString(), anyString()))
+            .thenReturn(mock(WineDetailsResponse::class.java))
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("$BASE_URL/wines")
+                .param("wineType",wineType)
+                .param("alcoholMin", alcoholMin.toString())
+                .param("alcoholMax", alcoholMax.toString())
+                .param("priceMin", priceMin.toString())
+                .param("priceMax", priceMax.toString())
+                .param("wineStyle", wineStyle)
+                .param("wineGrade", wineGrade)
+                .param("wineRegion", wineRegion)
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+        Mockito.verify(wineService).findWineDetails(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+            wineStyle, wineGrade, wineRegion)
     }
 }

@@ -1,15 +1,16 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.CreateWineRequest
-import io.directional.wine.dto.UpdateWineRequest
+import io.directional.wine.dto.*
 import io.directional.wine.entity.Importer
 import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
 import io.directional.wine.repository.ImporterRepository
+import io.directional.wine.repository.RegionRepository
 import io.directional.wine.repository.WineRepository
 import io.directional.wine.repository.WineryRepository
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -33,6 +34,9 @@ class WineServiceTest {
 
     @Mock
     private lateinit var importerRepository: ImporterRepository
+
+    @Mock
+    private lateinit var regionRepository: RegionRepository
 
     private lateinit var wineService: WineService
 
@@ -96,9 +100,33 @@ class WineServiceTest {
         importerId = 5L
     )
 
+    private val wineDetailsDto = WineDetailsDto(
+        wineType = "",
+        wineKoreanName = "",
+        wineEnglishName = "",
+        wineAlcohol = 0.0,
+        wineAcidity = 0,
+        wineBody = 0,
+        wineSweetness = 0,
+        wineTannin = 0,
+        wineScore = 0.0,
+        winePrice = 0,
+        wineStyle = "",
+        wineGrade = "",
+        wineImporter = "",
+        aroma = "",
+        pairing = "",
+        wineGrapeKoreanName = "",
+        wineGrapeEnglishName = "",
+        wineRegionKoreanName = "",
+        wineRegionEnglishName = "",
+        wineryId = 1L,
+        regionId = 5L,
+    )
+
     @BeforeEach
     fun setup() {
-        wineService = WineService(wineRepository, wineryRepository, importerRepository)
+        wineService = WineService(wineRepository, wineryRepository, importerRepository, regionRepository)
     }
 
     @Test
@@ -225,5 +253,49 @@ class WineServiceTest {
         verify(wineRepository, times(1)).findByIdAndDeletedFalse(wineId)
         assertTrue(wine.deleted)
 
+    }
+
+    @Test
+    @DisplayName("와인 단일 조회 성공 테스트")
+    fun findWine_Success_Test() {
+        // given
+        val wineType = "RED"
+        val alcoholMin = 13.5
+        val alcoholMax = 15.0
+        val priceMin = 190000
+        val priceMax = 210000
+        val wineStyle = "Californian Cabernet Sauvignon"
+        val wineGrade = null
+        val wineRegion = "나파 밸리"
+        val recursiveRegionDto = mock(RecursiveRegionDto::class.java)
+
+        // when
+        `when`(wineRepository.findWineDetails(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+            wineStyle, wineGrade, wineRegion)).thenReturn(wineDetailsDto)
+        `when`(regionRepository.findByIdRecursiveRegions(wineDetailsDto.regionId)).thenReturn(listOf(recursiveRegionDto))
+
+        val wineDetailsResponse: WineDetailsResponse? = wineService.findWineDetails(
+            wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+            wineStyle, wineGrade, wineRegion
+        )
+
+        // then
+        verify(wineRepository, times(1)).findWineDetails(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+            wineStyle, wineGrade, wineRegion)
+        verify(regionRepository, times(1)).findByIdRecursiveRegions(wineDetailsDto.regionId)
+        assertThat(wineDetailsResponse!!.wineType).isEqualTo(wineDetailsDto.wineType)
+        assertThat(wineDetailsResponse.wineKoreanName).isEqualTo(wineDetailsDto.wineKoreanName)
+        assertThat(wineDetailsResponse.wineEnglishName).isEqualTo(wineDetailsDto.wineEnglishName)
+        assertThat(wineDetailsResponse.wineAlcohol).isEqualTo(wineDetailsDto.wineAlcohol)
+        assertThat(wineDetailsResponse.wineAcidity).isEqualTo(wineDetailsDto.wineAcidity)
+        assertThat(wineDetailsResponse.wineBody).isEqualTo(wineDetailsDto.wineBody)
+        assertThat(wineDetailsResponse.wineSweetness).isEqualTo(wineDetailsDto.wineSweetness)
+        assertThat(wineDetailsResponse.wineTannin).isEqualTo(wineDetailsDto.wineTannin)
+        assertThat(wineDetailsResponse.wineScore).isEqualTo(wineDetailsDto.wineScore)
+        assertThat(wineDetailsResponse.winePrice).isEqualTo(wineDetailsDto.winePrice)
+        assertThat(wineDetailsResponse.wineStyle).isEqualTo(wineDetailsDto.wineStyle)
+        assertThat(wineDetailsResponse.wineGrade).isEqualTo(wineDetailsDto.wineGrade)
+        assertThat(wineDetailsResponse.wineGrapeEnglishName).isEqualTo(wineDetailsDto.wineGrapeEnglishName)
+        assertThat(wineDetailsResponse.wineGrapeKoreanName).isEqualTo(wineDetailsDto.wineGrapeKoreanName)
     }
 }

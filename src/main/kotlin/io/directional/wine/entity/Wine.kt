@@ -39,6 +39,15 @@ class Wine(
 
     var deleted: Boolean = false,
 
+    @OneToMany(mappedBy = "wine")
+    val aroma: List<WineAroma> = emptyList(),
+
+    @OneToMany(mappedBy = "wine")
+    val pairing: List<WinePairing> = emptyList(),
+
+    @OneToMany(mappedBy = "wine")
+    val wineGrape: List<WineGrape> = emptyList(),
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "winery_id")
     var winery: Winery,

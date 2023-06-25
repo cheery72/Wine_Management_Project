@@ -2,6 +2,7 @@ package io.directional.wine.controller
 
 import io.directional.wine.dto.CreateWineRequest
 import io.directional.wine.dto.UpdateWineRequest
+import io.directional.wine.dto.WineDetailsResponse
 import io.directional.wine.service.WineService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -48,4 +49,20 @@ class WineController(
             .status(HttpStatus.NO_CONTENT)
             .build()
     }
-}
+
+    @GetMapping("/wines")
+    fun findWineDetails(
+        @RequestParam wineType: String,
+        @RequestParam alcoholMin: Double,
+        @RequestParam alcoholMax: Double,
+        @RequestParam priceMin: Int,
+        @RequestParam priceMax: Int,
+        @RequestParam wineStyle: String?,
+        @RequestParam wineGrade: String?,
+        @RequestParam wineRegion: String,
+    ): ResponseEntity<WineDetailsResponse> {
+
+        return ResponseEntity
+            .ok(wineService.findWineDetails(wineType,alcoholMin,alcoholMax,priceMin,priceMax,wineStyle,wineGrade,wineRegion))
+        }
+    }

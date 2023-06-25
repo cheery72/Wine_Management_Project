@@ -35,6 +35,15 @@ class GrapeControllerTest {
 
     private val BASE_URL = "/api/v1"
 
+    private val createGrapeRequest = CreateGrapeRequest(
+        grapeNameKorean = "알리아니코",
+        grapeNameEnglish = "Aglianico",
+        grapeAcidity = 4,
+        grapeBody = 5,
+        grapeSweetness = 1,
+        grapeTannin = 4,
+    )
+
     @BeforeEach
     fun setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx!!)
@@ -47,15 +56,6 @@ class GrapeControllerTest {
     @Test
     @DisplayName("포도 품종 생성 성공 테스트")
     fun createGrape_Success_Test() {
-        val createGrapeRequest = CreateGrapeRequest(
-            grapeNameKorean = "알리아니코",
-            grapeNameEnglish = "Aglianico",
-            grapeAcidity = 4,
-            grapeBody = 5,
-            grapeSweetness = 1,
-            grapeTannin = 4,
-        )
-
         Mockito.doNothing().`when`(grapeService).createGrape(Mockito.mock(CreateGrapeRequest::class.java))
 
         mockMvc.perform(
@@ -68,4 +68,19 @@ class GrapeControllerTest {
         Mockito.verify(grapeService).createGrape(createGrapeRequest)
     }
 
+    @Test
+    @DisplayName("포도 품종 수정 성공 테스트")
+    fun updateGrape_Success_Test() {
+        val grapeId = 1L
+
+        Mockito.doNothing().`when`(grapeService).updateGrape(grapeId,createGrapeRequest)
+        mockMvc.perform(
+            MockMvcRequestBuilders.put("$BASE_URL/{grapeId}/grapes", grapeId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(createGrapeRequest.toJsonString())
+        )
+            .andExpect(MockMvcResultMatchers.status().isNoContent)
+
+        Mockito.verify(grapeService).updateGrape(grapeId, createGrapeRequest)
+    }
 }

@@ -52,4 +52,33 @@ class GrapeServiceTest{
         assertEquals(savedGrape.deleted,false)
         Mockito.verify(grapeRepository).save(Mockito.any(Grape::class.java))
     }
+
+
+    @Test
+    @DisplayName("포도 품종 수정 성공 테스트")
+    fun updateGrape_Success_Test() {
+        // given
+        val grapeId = 1L
+        val grape = Grape(
+            nameKorean = "알리아니코0",
+            nameEnglish = "Aglianico0",
+            acidity = 1,
+            body = 2,
+            sweetness = 3,
+            tannin = 5,
+        )
+
+        // when
+        Mockito.`when`(grapeRepository.findByIdAndDeletedFalse(grapeId)).thenReturn(Optional.of(grape))
+
+        grapeService.updateGrape(grapeId, createGrapeRequest)
+
+        // then
+        assertEquals(grape.nameKorean,createGrapeRequest.grapeNameKorean)
+        assertEquals(grape.nameEnglish,createGrapeRequest.grapeNameEnglish)
+        assertEquals(grape.acidity,createGrapeRequest.grapeAcidity)
+        assertEquals(grape.body,createGrapeRequest.grapeBody)
+        assertEquals(grape.sweetness,createGrapeRequest.grapeSweetness)
+        assertEquals(grape.tannin,createGrapeRequest.grapeTannin)
+    }
 }

@@ -22,6 +22,7 @@ class WineRepositoryImpl(
 ) : WineRepositoryCustom {
 
     override fun findWineDetails(
+        wineName: String,
         wineType: String,
         alcoholMin: Double,
         alcoholMax: Double,
@@ -65,12 +66,12 @@ class WineRepositoryImpl(
             .join(qWine.winery, qWinery)
             .join(qWine.wineGrape,qWineGrape)
             .join(qWineGrape.grape,qGrape)
-            .where(
+            .where(qWine.nameEnglish.eq(wineName).or(qWine.nameKorean.eq(wineName)).and(
                 qWine.type.eq(wineType)
                     .and(qWine.alcohol.between(alcoholMin, alcoholMax))
                     .and(qWine.price.between(priceMin, priceMax))
                     .and(qWine.style.eq(wineStyle))
-                    .and(booleanBuilder)
+                    .and(booleanBuilder))
             )
             .groupBy(qWine.nameEnglish,
                 qWine.nameKorean,
@@ -101,6 +102,7 @@ class WineRepositoryImpl(
     }
 
     override fun findWineWithTopRegion(
+        wineName: String,
         wineType: String,
         alcoholMin: Double,
         alcoholMax: Double,
@@ -123,11 +125,12 @@ class WineRepositoryImpl(
             ).from(qWine)
             .leftJoin(qWine.winery, qWinery)
             .where(
+                qWine.nameEnglish.eq(wineName).or(qWine.nameKorean.eq(wineName)).and(
                 qWine.type.eq(wineType)
                     .and(qWine.alcohol.between(alcoholMin, alcoholMax))
                     .and(qWine.price.between(priceMin, priceMax))
                     .and(qWine.style.eq(wineStyle))
-                    .and(booleanBuilder)
+                    .and(booleanBuilder))
             )
             .groupBy(qWine.nameEnglish,qWine.nameKorean,qWine.type,qRegion.id,
                 qWine.alcohol,qWine.acidity,qWine.body,qWine.sweetness,qWine.tannin,

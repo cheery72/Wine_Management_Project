@@ -235,6 +235,7 @@ class WineServiceTest {
     @DisplayName("와인 단일 조회 성공 테스트")
     fun findWine_Success_Test() {
         // given
+        val wineName = "1881 Napa, Cabernet Sauvignon"
         val wineType = "RED"
         val alcoholMin = 13.5
         val alcoholMax = 15.0
@@ -252,18 +253,18 @@ class WineServiceTest {
             wineRegionKoreanName = "", wineRegionEnglishName = "", wineryId = 1L, regionId = 5L)
 
         // when
-        `when`(wineRepository.findWineDetails(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+        `when`(wineRepository.findWineDetails(wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion)).thenReturn(wineDetailsDto)
         `when`(regionRepository.findByIdRecursiveRegions(wineDetailsDto.regionId)).thenReturn(listOf(recursiveRegionDto))
 
         val wineDetailsResponse: WineDetailsResponse? = wineService.findWineDetails(
-            wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+            wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion
         )
 
         // then
-        verify(wineRepository, times(1)).findWineDetails(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
-            wineStyle, wineGrade, wineRegion)
+        verify(wineRepository, times(1)).findWineDetails(wineName, wineType, alcoholMin, alcoholMax,
+            priceMin, priceMax, wineStyle, wineGrade, wineRegion)
         verify(regionRepository, times(1)).findByIdRecursiveRegions(wineDetailsDto.regionId)
         assertThat(wineDetailsResponse!!.wineType).isEqualTo(wineDetailsDto.wineType)
         assertThat(wineDetailsResponse.wineKoreanName).isEqualTo(wineDetailsDto.wineKoreanName)
@@ -285,6 +286,7 @@ class WineServiceTest {
     @DisplayName("와인 다수 조회 테스트")
     fun findWineWithTopRegion_Success_Test() {
         // given
+        val wineName = "1881 Napa, Cabernet Sauvignon"
         val wineType = "RED"
         val alcoholMin = 13.5
         val alcoholMax = 15.0
@@ -297,17 +299,17 @@ class WineServiceTest {
             listOf(WineWithTopRegionDto(wineType = "", wineKoreanName = "", wineEnglishName = "", regionId = 5L))
 
         // when
-        `when`(wineRepository.findWineWithTopRegion(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+        `when`(wineRepository.findWineWithTopRegion(wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion)).thenReturn(wineWithTopRegionDto)
 
         val wineWithTopRegionResponse: List<WineWithTopRegionResponse> = wineService.findWineWithTopRegion(
-            wineType, alcoholMin, alcoholMax, priceMin, priceMax,
-            wineStyle, wineGrade, wineRegion
+            wineName, wineType, alcoholMin, alcoholMax,
+            priceMin, priceMax, wineStyle, wineGrade, wineRegion
         )
 
         // then
-        verify(wineRepository, times(1)).findWineWithTopRegion(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
-            wineStyle, wineGrade, wineRegion)
+        verify(wineRepository, times(1)).findWineWithTopRegion(wineName, wineType, alcoholMin, alcoholMax,
+            priceMin, priceMax, wineStyle, wineGrade, wineRegion)
         assertThat(wineWithTopRegionDto.get(0).wineType).isEqualTo(wineWithTopRegionResponse.get(0).wineType)
         assertThat(wineWithTopRegionDto.get(0).wineKoreanName).isEqualTo(wineWithTopRegionResponse.get(0).wineKoreanName)
         assertThat(wineWithTopRegionDto.get(0).wineEnglishName).isEqualTo(wineWithTopRegionResponse.get(0).wineEnglishName)

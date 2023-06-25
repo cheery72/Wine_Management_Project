@@ -48,11 +48,11 @@ class WineService(
         wine.setDeleted()
     }
     fun findWineDetails(
-        wineType: String, alcoholMin: Double, alcoholMax: Double,
+        wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double,
         priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String)
     : WineDetailsResponse?{
-        val wineDetailsDto = wineRepository.findWineDetails(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
-                                                            wineStyle, wineGrade, wineRegion)
+        val wineDetailsDto = wineRepository.findWineDetails(wineName ,wineType, alcoholMin, alcoholMax, priceMin,
+                                                            priceMax, wineStyle, wineGrade, wineRegion)
 
         val recursiveRegionDTO = findRegionList(wineDetailsDto!!.regionId)
 
@@ -60,12 +60,12 @@ class WineService(
     }
 
     fun findWineWithTopRegion(
-        wineType: String, alcoholMin: Double, alcoholMax: Double,
+        wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double,
         priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String)
     : List<WineWithTopRegionResponse> {
 
         val wineWithTopRegionDtoList: List<WineWithTopRegionDto?> = wineRepository.findWineWithTopRegion(
-            wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+            wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion)
 
         val topRegions: HashMap<Long,List<String>>  = findTopRegions(wineWithTopRegionDtoList)

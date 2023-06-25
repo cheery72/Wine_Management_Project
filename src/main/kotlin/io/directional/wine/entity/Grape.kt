@@ -1,5 +1,6 @@
 package io.directional.wine.entity
 
+import io.directional.wine.dto.CreateGrapeRequest
 import jakarta.persistence.*
 
 @Entity
@@ -24,4 +25,24 @@ class Grape(
 
     var deleted: Boolean = false,
 
-) : BaseTime()
+    @OneToMany(mappedBy = "grape")
+    val wineGrape: List<WineGrape> = emptyList(),
+
+    @OneToMany(mappedBy = "grape")
+    val grapeShare: List<GrapeShare> = emptyList(),
+
+) : BaseTime() {
+
+    companion object {
+        fun toEntity(createGrapeRequest: CreateGrapeRequest): Grape{
+            return Grape(
+                nameKorean = createGrapeRequest.grapeNameKorean,
+                nameEnglish = createGrapeRequest.grapeNameEnglish,
+                acidity = createGrapeRequest.grapeAcidity,
+                body = createGrapeRequest.grapeBody,
+                sweetness = createGrapeRequest.grapeSweetness,
+                tannin = createGrapeRequest.grapeTannin
+            )
+        }
+    }
+}

@@ -23,4 +23,17 @@ class GrapeController(
             .status(HttpStatus.CREATED)
             .build()
     }
+
+    @PutMapping("/{grapeId}/grapes")
+    fun updateGrape(
+        @PathVariable grapeId: Long,
+        @RequestBody createGrapeRequest: CreateGrapeRequest
+    ): ResponseEntity<Unit> {
+
+        grapeService.updateGrape(grapeId, createGrapeRequest)
+
+        return ResponseEntity
+            .status(HttpStatus.NO_CONTENT)
+            .build()
+    }
 }

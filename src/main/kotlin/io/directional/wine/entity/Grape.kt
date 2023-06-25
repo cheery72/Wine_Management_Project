@@ -11,17 +11,17 @@ class Grape(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    val nameKorean: String,
+    var nameKorean: String,
 
-    val nameEnglish: String,
+    var nameEnglish: String,
 
-    val acidity: Int,
+    var acidity: Int,
 
-    val body: Int,
+    var body: Int,
 
-    val sweetness: Int,
+    var sweetness: Int,
 
-    val tannin: Int,
+    var tannin: Int,
 
     var deleted: Boolean = false,
 
@@ -44,5 +44,14 @@ class Grape(
                 tannin = createGrapeRequest.grapeTannin
             )
         }
+    }
+
+    fun setGrapeInfo(createGrapeRequest: CreateGrapeRequest){
+        this.nameEnglish = createGrapeRequest.grapeNameEnglish
+        this.nameKorean = createGrapeRequest.grapeNameKorean
+        this.body = createGrapeRequest.grapeBody
+        this.acidity = createGrapeRequest.grapeAcidity
+        this.tannin = createGrapeRequest.grapeTannin
+        this.sweetness = createGrapeRequest.grapeSweetness
     }
 }

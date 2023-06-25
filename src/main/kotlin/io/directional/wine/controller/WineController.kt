@@ -53,6 +53,7 @@ class WineController(
 
     @GetMapping("/wines")
     fun findWineDetails(
+        @RequestParam wineName: String,
         @RequestParam wineType: String,
         @RequestParam alcoholMin: Double,
         @RequestParam alcoholMax: Double,
@@ -64,11 +65,12 @@ class WineController(
     ): ResponseEntity<WineDetailsResponse> {
 
         return ResponseEntity
-            .ok(wineService.findWineDetails(wineType,alcoholMin,alcoholMax,priceMin,priceMax,wineStyle,wineGrade,wineRegion))
+            .ok(wineService.findWineDetails(wineName,wineType,alcoholMin,alcoholMax,priceMin,priceMax,wineStyle,wineGrade,wineRegion))
         }
 
     @GetMapping("/wines/all")
     fun findWineWithTopRegion(
+        @RequestParam wineName: String,
         @RequestParam wineType: String,
         @RequestParam alcoholMin: Double,
         @RequestParam alcoholMax: Double,
@@ -80,6 +82,6 @@ class WineController(
     ): ResponseEntity<List<WineWithTopRegionResponse>> {
 
         return ResponseEntity
-            .ok(wineService.findWineWithTopRegion(wineType,alcoholMin,alcoholMax,priceMin,priceMax,wineStyle,wineGrade,wineRegion))
+            .ok(wineService.findWineWithTopRegion(wineName,wineType,alcoholMin,alcoholMax,priceMin,priceMax,wineStyle,wineGrade,wineRegion))
     }
 }

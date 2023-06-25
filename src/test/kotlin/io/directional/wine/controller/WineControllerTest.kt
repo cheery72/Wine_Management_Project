@@ -136,6 +136,7 @@ class WineControllerTest {
     @Test
     @DisplayName("와인 단일 조회 성공 테스트")
     fun findWineDetails_Success_Test() {
+        val wineName = "1881 Napa, Cabernet Sauvignon"
         val wineType = "RED"
         val alcoholMin = 13.5
         val alcoholMax = 15.0
@@ -146,12 +147,13 @@ class WineControllerTest {
         val wineRegion = "나파 밸리"
 
 
-        Mockito.`when`(wineService.findWineDetails(anyString(), anyDouble(), anyDouble(), anyInt(),
+        Mockito.`when`(wineService.findWineDetails(anyString(),anyString(), anyDouble(), anyDouble(), anyInt(),
                                                                 anyInt(), anyString(), anyString(), anyString()))
             .thenReturn(mock(WineDetailsResponse::class.java))
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("$BASE_URL/wines")
+                .param("wineName",wineName)
                 .param("wineType",wineType)
                 .param("alcoholMin", alcoholMin.toString())
                 .param("alcoholMax", alcoholMax.toString())
@@ -163,13 +165,14 @@ class WineControllerTest {
         )
             .andExpect(MockMvcResultMatchers.status().isOk)
 
-        Mockito.verify(wineService).findWineDetails(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+        Mockito.verify(wineService).findWineDetails(wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion)
     }
 
     @Test
     @DisplayName("와인 다수 조회 테스트")
     fun findWineWithTopRegion_Success_Test() {
+        val wineName = "1881 Napa, Cabernet Sauvignon"
         val wineType = "RED"
         val alcoholMin = 13.5
         val alcoholMax = 15.0
@@ -180,12 +183,13 @@ class WineControllerTest {
         val wineRegion = "나파 밸리"
 
 
-        Mockito.`when`(wineService.findWineWithTopRegion(anyString(), anyDouble(), anyDouble(), anyInt(),
+        Mockito.`when`(wineService.findWineWithTopRegion(anyString(), anyString(), anyDouble(), anyDouble(), anyInt(),
             anyInt(), anyString(), anyString(), anyString()))
             .thenReturn(listOf(mock(WineWithTopRegionResponse::class.java)))
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("$BASE_URL/wines/all")
+                .param("wineName",wineName)
                 .param("wineType",wineType)
                 .param("alcoholMin", alcoholMin.toString())
                 .param("alcoholMax", alcoholMax.toString())
@@ -197,7 +201,7 @@ class WineControllerTest {
         )
             .andExpect(MockMvcResultMatchers.status().isOk)
 
-        Mockito.verify(wineService).findWineWithTopRegion(wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+        Mockito.verify(wineService).findWineWithTopRegion(wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion)
 
     }

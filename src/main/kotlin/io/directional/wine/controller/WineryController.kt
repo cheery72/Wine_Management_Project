@@ -2,6 +2,7 @@ package io.directional.wine.controller
 
 import io.directional.wine.dto.CreateWineryRequest
 import io.directional.wine.dto.UpdateWineryRequest
+import io.directional.wine.dto.WineryWithRegionDto
 import io.directional.wine.service.WineryService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -46,5 +47,15 @@ class WineryController(
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
                 .build()
+    }
+
+    @GetMapping("/winerys")
+    fun findWineryWithRegion(
+        @RequestParam wineryName: String,
+        @RequestParam wineryRegion: String
+    ): ResponseEntity<WineryWithRegionDto> {
+
+        return ResponseEntity
+                .ok(wineryService.findWineryWithRegion(wineryName,wineryRegion))
     }
 }

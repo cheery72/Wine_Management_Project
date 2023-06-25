@@ -1,5 +1,6 @@
 package io.directional.wine.entity
 
+import io.directional.wine.dto.CreateWineryRequest
 import jakarta.persistence.*
 
 
@@ -21,4 +22,15 @@ class Winery(
     @JoinColumn(name = "region_id")
     val region: Region,
 
-) : BaseTime()
+) : BaseTime() {
+
+    companion object {
+        fun toEntity(createWineryRequest: CreateWineryRequest, region: Region): Winery {
+            return Winery(
+                nameKorean = createWineryRequest.wineryNameKorean,
+                nameEnglish = createWineryRequest.wineryNameEnglish,
+                region = region
+            )
+        }
+    }
+}

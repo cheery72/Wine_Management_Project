@@ -39,22 +39,9 @@ class Wine(
 
     var deleted: Boolean = false,
 
-    @OneToMany(mappedBy = "wine")
-    val aroma: List<WineAroma> = emptyList(),
-
-    @OneToMany(mappedBy = "wine")
-    val pairing: List<WinePairing> = emptyList(),
-
-    @OneToMany(mappedBy = "wine")
-    val wineGrape: List<WineGrape> = emptyList(),
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "winery_id")
     var winery: Winery,
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "region_id")
-    var region: Region,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "importer_id")
@@ -62,7 +49,7 @@ class Wine(
 
 ) : BaseTime() {
     companion object {
-        fun toEntity(createWineRequest: CreateWineRequest, winery: Winery, region: Region, importer: Importer): Wine {
+        fun toEntity(createWineRequest: CreateWineRequest, winery: Winery, importer: Importer): Wine {
             // Wine 엔티티로 변환하는 로직 작성
             return Wine(
                 type = createWineRequest.type,
@@ -80,12 +67,11 @@ class Wine(
                 grade = createWineRequest.grade,
                 importer = importer,
                 winery = winery,
-                region = region
             )
         }
     }
 
-    fun setWineInfo(updateWineRequest: UpdateWineRequest, winery: Winery, region: Region, importer: Importer) {
+    fun setWineInfo(updateWineRequest: UpdateWineRequest, winery: Winery, importer: Importer) {
         this.type = updateWineRequest.type
         this.nameKorean = updateWineRequest.nameKorean
         this.nameEnglish = updateWineRequest.nameEnglish
@@ -100,7 +86,6 @@ class Wine(
         this.style = updateWineRequest.style
         this.grade = updateWineRequest.grade
         this.winery = winery
-        this.region = region
         this.importer = importer
     }
 

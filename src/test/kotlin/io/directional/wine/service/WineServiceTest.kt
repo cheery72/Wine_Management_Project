@@ -3,13 +3,11 @@ package io.directional.wine.service
 import io.directional.wine.dto.CreateWineRequest
 import io.directional.wine.dto.UpdateWineRequest
 import io.directional.wine.entity.Importer
-import io.directional.wine.entity.Region
 import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
 import io.directional.wine.repository.ImporterRepository
-import io.directional.wine.repository.RegionRepository
 import io.directional.wine.repository.WineRepository
 import io.directional.wine.repository.WineryRepository
 import org.junit.jupiter.api.Assertions.*
@@ -34,16 +32,11 @@ class WineServiceTest {
     private lateinit var wineryRepository: WineryRepository
 
     @Mock
-    private lateinit var regionRepository: RegionRepository
-
-    @Mock
     private lateinit var importerRepository: ImporterRepository
 
     private lateinit var wineService: WineService
 
     private val wineryId = 1L
-
-    private val regionId = 1L
 
     private val importerId = 1L
 
@@ -78,12 +71,11 @@ class WineServiceTest {
         style = "Californian Cabernet Sauvignon",
         grade = null,
         winery = mock(Winery::class.java),
-        region = mock(Region::class.java),
         importer =  mock(Importer::class.java)
     )
 
     private val winery = mock(Winery::class.java)
-    private val region = mock(Region::class.java)
+
     private val importer = mock(Importer::class.java)
 
     private val updateWineRequest = UpdateWineRequest(
@@ -101,13 +93,12 @@ class WineServiceTest {
         style = "French Champagne",
         grade = "AOC(AOP)",
         wineryId = 4L,
-        regionId = 5L,
-        importerId = 6L
+        importerId = 5L
     )
 
     @BeforeEach
     fun setup() {
-        wineService = WineService(wineRepository, wineryRepository, regionRepository, importerRepository)
+        wineService = WineService(wineRepository, wineryRepository, importerRepository)
     }
 
     @Test
@@ -118,11 +109,10 @@ class WineServiceTest {
 
         // when
         `when`(wineryRepository.findByIdAndDeletedFalse(wineryId)).thenReturn(Optional.of(winery))
-        `when`(regionRepository.findByIdAndDeletedFalse(regionId)).thenReturn(Optional.of(region))
         `when`(importerRepository.findByIdAndDeletedFalse(importerId)).thenReturn(Optional.of(importer))
         `when`(wineRepository.save(any(Wine::class.java))).thenReturn(wine)
 
-        wineService.createWine(wineryId,regionId,importerId,createWineRequest)
+        wineService.createWine(wineryId,importerId,createWineRequest)
 
         // then
         val wineCaptor: ArgumentCaptor<Wine> = ArgumentCaptor.forClass(Wine::class.java)
@@ -131,7 +121,6 @@ class WineServiceTest {
         assertEquals(savedWine.type,createWineRequest.type)
         assertEquals(savedWine.deleted,false)
         verify(wineryRepository).findByIdAndDeletedFalse(wineryId)
-        verify(regionRepository).findByIdAndDeletedFalse(regionId)
         verify(importerRepository).findByIdAndDeletedFalse(importerId)
         verify(wineRepository).save(any(Wine::class.java))
     }
@@ -145,7 +134,7 @@ class WineServiceTest {
         val exception: ClientException = assertThrows(
             ClientException::class.java
         ) {
-            wineService.createWine(wineryId, regionId, importerId, createWineRequest)
+            wineService.createWine(wineryId, importerId, createWineRequest)
         }
 
         // then
@@ -154,42 +143,21 @@ class WineServiceTest {
     }
 
     @Test
-    @DisplayName("와인 생성 Region Exception 테스트")
-    fun createWine_Region_Exception_Test(){
-        // when
-        `when`(wineryRepository.findByIdAndDeletedFalse(wineryId)).thenReturn(Optional.of(winery))
-        `when`(regionRepository.findByIdAndDeletedFalse(regionId)).thenReturn(Optional.empty())
-
-        val exception: ClientException = assertThrows(
-            ClientException::class.java
-        ) {
-            wineService.createWine(wineryId, regionId, importerId, createWineRequest)
-        }
-
-        // then
-        assertEquals(ErrorCode.NOT_FOUND_REGION, exception.errorCode)
-        verify(wineryRepository, times(1)).findByIdAndDeletedFalse(wineryId)
-        verify(regionRepository, times(1)).findByIdAndDeletedFalse(regionId)
-    }
-
-    @Test
     @DisplayName("와인 생성 Importer Exception 테스트")
     fun createWine_Importer_Exception_Test(){
         // when
         `when`(wineryRepository.findByIdAndDeletedFalse(wineryId)).thenReturn(Optional.of(winery))
-        `when`(regionRepository.findByIdAndDeletedFalse(regionId)).thenReturn(Optional.of(region))
         `when`(importerRepository.findByIdAndDeletedFalse(importerId)).thenReturn(Optional.empty())
 
         val exception: ClientException = assertThrows(
             ClientException::class.java
         ) {
-            wineService.createWine(wineryId, regionId, importerId, createWineRequest)
+            wineService.createWine(wineryId, importerId, createWineRequest)
         }
 
         // then
         assertEquals(ErrorCode.NOT_FOUND_IMPORTER, exception.errorCode)
         verify(wineryRepository, times(1)).findByIdAndDeletedFalse(wineryId)
-        verify(regionRepository, times(1)).findByIdAndDeletedFalse(regionId)
         verify(importerRepository, times(1)).findByIdAndDeletedFalse(importerId)
     }
 
@@ -202,7 +170,6 @@ class WineServiceTest {
         // when
         `when`(wineRepository.findByIdAndDeletedFalse(wineId)).thenReturn(Optional.of(wine))
         `when`(wineryRepository.findByIdAndDeletedFalse(updateWineRequest.wineryId)).thenReturn(Optional.of(winery))
-        `when`(regionRepository.findByIdAndDeletedFalse(updateWineRequest.regionId)).thenReturn(Optional.of(region))
         `when`(importerRepository.findByIdAndDeletedFalse(updateWineRequest.importerId)).thenReturn(Optional.of(importer))
 
         wineService.updateWine(wineId,updateWineRequest)

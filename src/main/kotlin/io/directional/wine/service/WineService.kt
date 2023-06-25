@@ -20,16 +20,14 @@ import org.springframework.transaction.annotation.Transactional
 class WineService(
     private val wineRepository: WineRepository,
     private val wineryRepository: WineryRepository,
-    private val regionRepository: RegionRepository,
     private val importerRepository: ImporterRepository,
 ) {
 
     @Transactional
-    fun createWine(wineryId: Long, regionId: Long, importerId: Long, createWineRequest: CreateWineRequest) {
+    fun createWine(wineryId: Long, importerId: Long, createWineRequest: CreateWineRequest) {
         val winery = findWinery(wineryId)
-        val region = findRegion(regionId)
         val importer = findImporter(importerId)
-        val wine = Wine.toEntity(createWineRequest, winery, region, importer)
+        val wine = Wine.toEntity(createWineRequest, winery, importer)
 
         wineRepository.save(wine)
     }
@@ -38,10 +36,9 @@ class WineService(
     fun updateWine(wineId: Long, updateWineRequest: UpdateWineRequest) {
         val wine = findWine(wineId)
         val winery = findWinery(updateWineRequest.wineryId)
-        val region = findRegion(updateWineRequest.regionId)
         val importer = findImporter(updateWineRequest.importerId)
 
-        wine.setWineInfo(updateWineRequest, winery, region, importer)
+        wine.setWineInfo(updateWineRequest, winery, importer)
 
     }
 
@@ -65,11 +62,6 @@ class WineService(
     private fun findWinery(wineryId: Long): Winery {
         return wineryRepository.findByIdAndDeletedFalse(wineryId)
             .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINERY)}
-    }
-
-    private fun findRegion(regionId: Long): Region {
-        return regionRepository.findByIdAndDeletedFalse(regionId)
-            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_REGION)}
     }
 
 }

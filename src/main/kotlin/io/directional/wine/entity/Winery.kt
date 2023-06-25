@@ -17,9 +17,6 @@ class Winery(
 
     var deleted: Boolean = false,
 
-    @OneToMany(mappedBy = "winery")
-    val wine: List<Wine> = emptyList(),
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
     val region: Region,

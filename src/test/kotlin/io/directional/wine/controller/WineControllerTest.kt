@@ -40,8 +40,6 @@ class WineControllerTest {
 
     private val wineryId = 1L
 
-    private val regionId = 1L
-
     private val importerId = 1L
 
 
@@ -74,16 +72,16 @@ class WineControllerTest {
             grade = null,
         )
 
-        Mockito.doNothing().`when`(wineService).createWine(wineryId, regionId, importerId, Mockito.mock(CreateWineRequest::class.java))
+        Mockito.doNothing().`when`(wineService).createWine(wineryId, importerId, Mockito.mock(CreateWineRequest::class.java))
 
         mockMvc.perform(
-            MockMvcRequestBuilders.post("$BASE_URL/{wineryId}/{regionId}/{importerId}/wines", wineryId, regionId,importerId)
+            MockMvcRequestBuilders.post("$BASE_URL/{wineryId}/{importerId}/wines", wineryId, importerId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(createWineRequest.toJsonString())
         )
             .andExpect(MockMvcResultMatchers.status().isCreated)
 
-        Mockito.verify(wineService).createWine(wineryId, regionId, importerId, createWineRequest)
+        Mockito.verify(wineService).createWine(wineryId, importerId, createWineRequest)
     }
 
     @Test
@@ -105,7 +103,6 @@ class WineControllerTest {
             style = "French Champagne",
             grade = "AOC(AOP)",
             wineryId = 2L,
-            regionId = 2L,
             importerId = 2L
         )
 

@@ -16,6 +16,5 @@ data class UpdateWineRequest (
     val style: String?,
     val grade: String?,
     val wineryId: Long,
-    val regionId: Long,
     val importerId: Long,
 )

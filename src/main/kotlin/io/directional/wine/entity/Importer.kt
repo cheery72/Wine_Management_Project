@@ -14,7 +14,4 @@ class Importer(
 
     var deleted: Boolean,
 
-    @OneToMany(mappedBy = "importer")
-    val wineGrape: List<Wine> = emptyList(),
-
 ) : BaseTime()

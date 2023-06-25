@@ -24,10 +24,4 @@ class Grape(
 
     var deleted: Boolean = false,
 
-    @OneToMany(mappedBy = "grape")
-    val wineGrape: List<WineGrape> = emptyList(),
-
-    @OneToMany(mappedBy = "grape")
-    val grapeShare: List<GrapeShare> = emptyList(),
-
 ) : BaseTime()

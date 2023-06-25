@@ -1,6 +1,7 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateWineryRequest
+import io.directional.wine.dto.UpdateWineryRequest
 import io.directional.wine.entity.Region
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
@@ -79,5 +80,35 @@ class WineryServiceTest {
         // then
         assertEquals(exception.errorCode,ErrorCode.NOT_FOUND_REGION)
         verify(regionRepository, times(1)).findByIdAndDeletedFalse(regionId)
+    }
+
+    @Test
+    @DisplayName("와이너리 수정 성공 테스트")
+    fun updateWinery_Success_Test() {
+        // given
+        val wineryId = 1L
+        val winery = Winery(
+            id = wineryId,
+            nameEnglish = "wineryNameEnglish",
+            nameKorean = "wineryNameKorean",
+            region = region
+        )
+
+        val updateWineryRequest = UpdateWineryRequest(
+            regionId = 2L,
+            wineryNameKorean = "wineryNameKorean 수정",
+            wineryNameEnglish = "wineryNameEnglish 수정"
+        )
+
+        // when
+        `when`(wineryRepository.findByIdAndDeletedFalse(wineryId)).thenReturn(Optional.of(winery))
+        `when`(regionRepository.findByIdAndDeletedFalse(updateWineryRequest.regionId)).thenReturn(Optional.of(region))
+
+        wineryService.updateWinery(wineryId, updateWineryRequest)
+
+        // then
+        assertEquals(winery.nameKorean,updateWineryRequest.wineryNameKorean)
+        assertEquals(winery.nameEnglish,updateWineryRequest.wineryNameEnglish)
+
     }
 }

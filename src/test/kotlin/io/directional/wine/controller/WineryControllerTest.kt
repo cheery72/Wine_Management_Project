@@ -89,4 +89,18 @@ class WineryControllerTest {
 
         Mockito.verify(wineryService).updateWinery(wineryId, updateWineryRequest)
     }
+
+    @Test
+    @DisplayName("와이너리 삭제 성공 테스트")
+    fun deleteWinery_Success_Test() {
+        val wineryId = 1L
+
+        Mockito.doNothing().`when`(wineryService).deleteWinery(wineryId)
+        mockMvc.perform(
+            MockMvcRequestBuilders.delete("$BASE_URL/{wineryId}/winerys", wineryId)
+        )
+            .andExpect(MockMvcResultMatchers.status().isNoContent)
+
+        Mockito.verify(wineryService).deleteWinery(wineryId)
+    }
 }

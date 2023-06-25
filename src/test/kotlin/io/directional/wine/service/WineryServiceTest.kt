@@ -40,6 +40,13 @@ class WineryServiceTest {
 
     private val regionId = 1L
 
+    private val winery = Winery(
+        id = 1L,
+        nameEnglish = "wineryNameEnglish",
+        nameKorean = "wineryNameKorean",
+        region = region
+    )
+
     @BeforeEach
     fun setup() {
         wineryService = WineryService(wineryRepository, regionRepository)
@@ -87,12 +94,6 @@ class WineryServiceTest {
     fun updateWinery_Success_Test() {
         // given
         val wineryId = 1L
-        val winery = Winery(
-            id = wineryId,
-            nameEnglish = "wineryNameEnglish",
-            nameKorean = "wineryNameKorean",
-            region = region
-        )
 
         val updateWineryRequest = UpdateWineryRequest(
             regionId = 2L,
@@ -109,6 +110,23 @@ class WineryServiceTest {
         // then
         assertEquals(winery.nameKorean,updateWineryRequest.wineryNameKorean)
         assertEquals(winery.nameEnglish,updateWineryRequest.wineryNameEnglish)
+
+    }
+
+    @Test
+    @DisplayName("와이너리 삭제 성공 테스트")
+    fun deleteWinery_Success_Test() {
+        // given
+        val wineryId = 1L
+
+        // when
+        `when`(wineryRepository.findByIdAndDeletedFalse(wineryId)).thenReturn(Optional.of(winery))
+
+        wineryService.deleteWinery(wineryId)
+
+        // then
+        verify(wineryRepository, times(1)).findByIdAndDeletedFalse(wineryId)
+        assertTrue(winery.deleted)
 
     }
 }

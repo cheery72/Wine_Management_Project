@@ -40,4 +40,8 @@ class Winery(
         this.nameKorean = updateWineryRequest.wineryNameKorean
         this.region = region
     }
+
+    fun setDeleted() {
+        this.deleted = true
+    }
 }

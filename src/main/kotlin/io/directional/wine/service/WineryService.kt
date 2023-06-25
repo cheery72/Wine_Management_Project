@@ -35,6 +35,13 @@ class WineryService(
         winery.setWineryInfo(updateWineryRequest, region)
     }
 
+    @Transactional
+    fun deleteWinery(wineryId: Long) {
+        val winery: Winery = findWinery(wineryId)
+
+        winery.setDeleted()
+    }
+
     private fun findRegion(regionId: Long): Region {
         return regionRepository.findByIdAndDeletedFalse(regionId)
             .orElseThrow { ClientException(ErrorCode.NOT_FOUND_REGION) }

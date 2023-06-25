@@ -1,9 +1,6 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.CreateWineRequest
-import io.directional.wine.dto.RecursiveRegionDto
-import io.directional.wine.dto.UpdateWineRequest
-import io.directional.wine.dto.WineDetailsResponse
+import io.directional.wine.dto.*
 import io.directional.wine.entity.Importer
 import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
@@ -60,6 +57,41 @@ class WineService(
         val recursiveRegionDTO = findRegionList(wineDetailsDto!!.regionId)
 
         return WineDetailsResponse.fromWineDetailsResponse(wineDetailsDto, recursiveRegionDTO)
+    }
+
+    fun findWineWithTopRegion(
+        wineType: String, alcoholMin: Double, alcoholMax: Double,
+        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String)
+    : List<WineWithTopRegionResponse> {
+
+        val wineWithTopRegionDtoList: List<WineWithTopRegionDto?> = wineRepository.findWineWithTopRegion(
+            wineType, alcoholMin, alcoholMax, priceMin, priceMax,
+            wineStyle, wineGrade, wineRegion)
+
+        val topRegions: HashMap<Long,List<String>>  = findTopRegions(wineWithTopRegionDtoList)
+
+        return WineWithTopRegionResponse.fromWineWithTopRegionResponse(wineWithTopRegionDtoList, topRegions)
+    }
+
+    private fun findTopRegions(wineWithTopRegionDtoList: List<WineWithTopRegionDto?>): HashMap<Long,List<String>>{
+        var topRegionName: MutableList<String> = mutableListOf()
+        val regionMap: HashMap<Long,List<String>> = HashMap()
+
+        for (wineWithTopRegionDto in wineWithTopRegionDtoList){
+            if(wineWithTopRegionDto != null && !regionMap.containsKey(wineWithTopRegionDto.regionId)){
+                val findRegionList = findRegionList(wineWithTopRegionDto.regionId)
+                val regionListSize = findRegionList.size-1
+
+                if(-1 < regionListSize) {
+                    topRegionName.add(findRegionList.get(regionListSize).nameEnglish)
+                    topRegionName.add(findRegionList.get(regionListSize).nameKorean)
+                    regionMap.putIfAbsent(findRegionList.get(0).regionId, topRegionName)
+                    topRegionName = mutableListOf()
+                }
+            }
+        }
+
+        return regionMap
     }
 
     private fun findRegionList(regionId: Long): List<RecursiveRegionDto> {

@@ -38,7 +38,7 @@ class GrapeService(
         grape.setDeleted()
     }
 
-    fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameDto {
+    fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameDto? {
         return grapeRepository.findGrapeDetailsWithWineName(gradeName,gradeRegion)
     }
 

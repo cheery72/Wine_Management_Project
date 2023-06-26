@@ -29,6 +29,13 @@ class GrapeService(
         grape.setGrapeInfo(createGrapeRequest)
     }
 
+    @Transactional
+    fun deleteGrape(grapeId: Long) {
+        val grape: Grape = findGrape(grapeId)
+
+        grape.setDeleted()
+    }
+
     private fun findGrape(grapeId: Long): Grape {
         return grapeRepository.findByIdAndDeletedFalse(grapeId)
             .orElseThrow { ClientException(ErrorCode.NOT_FOUND_GRAPE) }

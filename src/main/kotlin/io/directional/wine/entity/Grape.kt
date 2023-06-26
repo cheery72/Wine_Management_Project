@@ -54,4 +54,7 @@ class Grape(
         this.tannin = createGrapeRequest.grapeTannin
         this.sweetness = createGrapeRequest.grapeSweetness
     }
+    fun setDeleted() {
+        this.deleted = true
+    }
 }

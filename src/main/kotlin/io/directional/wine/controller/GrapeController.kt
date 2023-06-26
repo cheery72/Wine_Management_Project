@@ -36,4 +36,16 @@ class GrapeController(
             .status(HttpStatus.NO_CONTENT)
             .build()
     }
+
+    @DeleteMapping("/{grapeId}/grapes")
+    fun deleteGrape(
+        @PathVariable grapeId: Long
+    ): ResponseEntity<Unit> {
+
+        grapeService.deleteGrape(grapeId)
+
+        return ResponseEntity
+            .status(HttpStatus.NO_CONTENT)
+            .build()
+    }
 }

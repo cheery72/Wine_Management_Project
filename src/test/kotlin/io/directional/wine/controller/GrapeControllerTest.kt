@@ -83,4 +83,19 @@ class GrapeControllerTest {
 
         Mockito.verify(grapeService).updateGrape(grapeId, createGrapeRequest)
     }
+
+    @Test
+    @DisplayName("포도 품종 삭제 성공 테스트")
+    fun deleteGrape_Success_Test() {
+        val grapeId = 1L
+
+        Mockito.doNothing().`when`(grapeService).deleteGrape(grapeId)
+        mockMvc.perform(
+            MockMvcRequestBuilders.delete("$BASE_URL/{grapeId}/grapes", grapeId)
+        )
+            .andExpect(MockMvcResultMatchers.status().isNoContent)
+
+        Mockito.verify(grapeService).deleteGrape(grapeId)
+    }
+
 }

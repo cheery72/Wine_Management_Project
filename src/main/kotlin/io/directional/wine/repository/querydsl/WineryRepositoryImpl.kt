@@ -2,7 +2,9 @@ package io.directional.wine.repository.querydsl
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.directional.wine.dto.QWineryWithRegionDto
+import io.directional.wine.dto.QWineryWithRegionWithWineNameDto
 import io.directional.wine.dto.WineryWithRegionDto
+import io.directional.wine.dto.WineryWithRegionWithWineNameDto
 import io.directional.wine.entity.QRegion
 import io.directional.wine.entity.QWine
 import io.directional.wine.entity.QWinery
@@ -14,10 +16,10 @@ class WineryRepositoryImpl(
     private val qWine: QWine = QWine.wine
 ) : WineryRepositoryCustom {
 
-    override fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionDto? {
+    override fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameDto? {
         return jpaQueryFactory
             .select(
-                QWineryWithRegionDto(
+                QWineryWithRegionWithWineNameDto(
                     qWinery.nameEnglish,
                     qWinery.nameKorean,
                     qRegion.nameEnglish,
@@ -28,9 +30,29 @@ class WineryRepositoryImpl(
             ).from(qWinery)
             .join(qWinery.region,qRegion)
             .join(qWinery.wine,qWine)
-            .where(qWinery.nameEnglish.eq(wineryName).or(qWinery.nameKorean.eq(wineryName)).and(qWinery.region.nameEnglish.eq(wineryRegion).or(qWinery.region.nameKorean.eq(wineryRegion))))
+            .where(qWinery.deleted.isFalse.and(qRegion.deleted.isFalse.and(qWine.deleted.isFalse
+                .and(qWinery.nameEnglish.eq(wineryName).or(qWinery.nameKorean.eq(wineryName))
+                .and(qWinery.region.nameEnglish.eq(wineryRegion).or(qWinery.region.nameKorean.eq(wineryRegion)))))))
             .orderBy(qWinery.nameEnglish.asc())
             .fetchFirst()
+    }
+
+    override fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionDto> {
+        return jpaQueryFactory
+            .select(
+                QWineryWithRegionDto(
+                    qWinery.nameEnglish,
+                    qWinery.nameKorean,
+                    qRegion.nameEnglish,
+                    qRegion.nameKorean,
+                )
+            ).from(qWinery)
+            .join(qWinery.region,qRegion)
+            .where(qWinery.deleted.isFalse.and(qRegion.deleted.isFalse
+                .and(qWinery.nameEnglish.eq(wineryName).or(qWinery.nameKorean.eq(wineryName))
+                .and(qWinery.region.nameEnglish.eq(wineryRegion).or(qWinery.region.nameKorean.eq(wineryRegion))))))
+            .orderBy(qWinery.nameEnglish.asc())
+            .fetch()
     }
 
 }

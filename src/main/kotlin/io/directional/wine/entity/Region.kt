@@ -40,4 +40,8 @@ class Region(
         this.nameEnglish = createRegionRequest.regionNameEnglish
         this.parent = parentRegion
     }
+
+    fun setDeleted() {
+        this.deleted = true
+    }
 }

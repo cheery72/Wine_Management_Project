@@ -77,4 +77,20 @@ class RegionServiceTest {
         assertEquals(region.nameKorean,createRegionRequest.regionNameKorean)
         assertEquals(region.nameEnglish,createRegionRequest.regionNameEnglish)
     }
+
+    @Test
+    @DisplayName("지역 삭제 성공 테스트")
+    fun deleteRegion_Success_Test() {
+        // given
+        val regionId = 1L
+
+        // when
+        Mockito.`when`(regionRepository.findByIdAndDeletedFalse(regionId)).thenReturn(Optional.of(region))
+
+        regionService.deleteRegion(regionId)
+
+        // then
+        Mockito.verify(regionRepository, Mockito.times(1)).findByIdAndDeletedFalse(regionId)
+        assertTrue(region.deleted)
+    }
 }

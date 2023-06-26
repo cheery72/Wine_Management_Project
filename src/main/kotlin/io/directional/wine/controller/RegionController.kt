@@ -38,4 +38,16 @@ class RegionController(
             .build()
     }
 
+    @DeleteMapping("/{regionId}/regions")
+    fun deleteRegion(
+        @PathVariable regionId: Long
+    ): ResponseEntity<Unit> {
+
+        regionService.deleteRegion(regionId)
+
+        return ResponseEntity
+            .status(HttpStatus.NO_CONTENT)
+            .build()
+    }
+
 }

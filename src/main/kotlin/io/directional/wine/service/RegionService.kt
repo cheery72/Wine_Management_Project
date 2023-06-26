@@ -32,6 +32,13 @@ class RegionService(
         region.setRegionInfo(createRegionRequest,parentRegion)
     }
 
+    @Transactional
+    fun deleteRegion(regionId: Long) {
+        val region: Region = findRegion(regionId)
+
+        region.setDeleted()
+    }
+
     private fun findRegion(regionId: Long): Region {
         return regionRepository.findByIdAndDeletedFalse(regionId)
             .orElseThrow { ClientException(ErrorCode.NOT_FOUND_REGION) }

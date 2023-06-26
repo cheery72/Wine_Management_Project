@@ -90,4 +90,18 @@ class RegionControllerTest{
         Mockito.verify(regionService).updateRegion(regionId,createRegionRequest)
     }
 
+    @Test
+    @DisplayName("지역 삭제 성공 테스트")
+    fun deleteRegion_Success_Test() {
+        val regionId = 1L
+
+        Mockito.doNothing().`when`(regionService).deleteRegion(regionId)
+        mockMvc.perform(
+            MockMvcRequestBuilders.delete("$BASE_URL/{regionId}/regions", regionId)
+        )
+            .andExpect(MockMvcResultMatchers.status().isNoContent)
+
+        Mockito.verify(regionService).deleteRegion(regionId)
+    }
+
 }

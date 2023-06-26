@@ -1,6 +1,7 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateGrapeRequest
+import io.directional.wine.dto.GrapeDetailsWithWineNameDto
 import io.directional.wine.entity.Grape
 import io.directional.wine.repository.GrapeRepository
 import org.junit.jupiter.api.Assertions.*
@@ -98,5 +99,43 @@ class GrapeServiceTest{
         Mockito.verify(grapeRepository, Mockito.times(1)).findByIdAndDeletedFalse(grapeId)
         assertTrue(grape.deleted)
 
+    }
+
+    @Test
+    @DisplayName("포도 품종 단일 조회 성공 테스트")
+    fun findGrapeDetailsWithWineName_Success_Test() {
+        // given
+        val grapeName = "grapeName"
+        val grapeRegion = "grapeRegion"
+        val grapeDetailsWithWineNameDto = GrapeDetailsWithWineNameDto(
+            grapeNameKorean= "grapeNameKorean",
+            grapeNameEnglish= "grapeNameEnglish",
+            grapeAcidity= 1,
+            grapeBody= 2,
+            grapeSweetness= 3,
+            grapeTannin= 4,
+            grapeRegionNameKorean= "grapeRegionNameKorean",
+            grapeRegionNameEnglish= "grapeRegionNameEnglish",
+            grapeWineNameKorean= "grapeWineNameKorean",
+            grapeWineNameEnglish= "grapeWineNameEnglish"
+        )
+
+        // when
+        Mockito.`when`(grapeRepository.findGrapeDetailsWithWineName(grapeName,grapeRegion)).thenReturn(grapeDetailsWithWineNameDto)
+
+        val result = grapeService.findGrapeDetailsWithWineName(grapeName, grapeRegion)
+
+        // then
+        Mockito.verify(grapeRepository, Mockito.times(1)).findGrapeDetailsWithWineName(grapeName,grapeRegion)
+        assertEquals(grapeDetailsWithWineNameDto.grapeNameEnglish,result.grapeNameEnglish)
+        assertEquals(grapeDetailsWithWineNameDto.grapeNameKorean,result.grapeNameKorean)
+        assertEquals(grapeDetailsWithWineNameDto.grapeAcidity,result.grapeAcidity)
+        assertEquals(grapeDetailsWithWineNameDto.grapeBody,result.grapeBody)
+        assertEquals(grapeDetailsWithWineNameDto.grapeSweetness,result.grapeSweetness)
+        assertEquals(grapeDetailsWithWineNameDto.grapeTannin,result.grapeTannin)
+        assertEquals(grapeDetailsWithWineNameDto.grapeRegionNameKorean,result.grapeRegionNameKorean)
+        assertEquals(grapeDetailsWithWineNameDto.grapeRegionNameEnglish,result.grapeRegionNameEnglish)
+        assertEquals(grapeDetailsWithWineNameDto.grapeWineNameKorean,result.grapeWineNameKorean)
+        assertEquals(grapeDetailsWithWineNameDto.grapeWineNameEnglish,result.grapeWineNameEnglish)
     }
 }

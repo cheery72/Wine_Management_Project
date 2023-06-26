@@ -1,6 +1,7 @@
 package io.directional.wine.controller
 
 import io.directional.wine.dto.CreateGrapeRequest
+import io.directional.wine.dto.GrapeDetailsWithWineNameDto
 import io.directional.wine.service.GrapeService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -47,5 +48,15 @@ class GrapeController(
         return ResponseEntity
             .status(HttpStatus.NO_CONTENT)
             .build()
+    }
+
+    @GetMapping("/grapes")
+    fun findGrapeDetailsWithWineName(
+        @RequestParam grapeName: String,
+        @RequestParam grapeRegion: String,
+    ): ResponseEntity<GrapeDetailsWithWineNameDto> {
+
+        return ResponseEntity
+                .ok(grapeService.findGrapeDetailsWithWineName(grapeName,grapeRegion))
     }
 }

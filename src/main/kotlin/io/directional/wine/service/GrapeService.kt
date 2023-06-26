@@ -1,6 +1,7 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateGrapeRequest
+import io.directional.wine.dto.GrapeDetailsWithWineNameDto
 import io.directional.wine.entity.Grape
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
@@ -34,6 +35,10 @@ class GrapeService(
         val grape: Grape = findGrape(grapeId)
 
         grape.setDeleted()
+    }
+
+    fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameDto {
+        return grapeRepository.findGrapeDetailsWithWineName(gradeName,gradeRegion)
     }
 
     private fun findGrape(grapeId: Long): Grape {

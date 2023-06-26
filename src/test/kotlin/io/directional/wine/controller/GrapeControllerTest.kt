@@ -2,11 +2,13 @@ package io.directional.wine.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateGrapeRequest
+import io.directional.wine.dto.GrapeDetailsWithWineNameDto
 import io.directional.wine.service.GrapeService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -98,4 +100,25 @@ class GrapeControllerTest {
         Mockito.verify(grapeService).deleteGrape(grapeId)
     }
 
+    @Test
+    @DisplayName("포도 품종 단일 조회 성공 테스트")
+    fun findGrapeDetailsWithWineName_Success_Test() {
+        val grapeName = "grapeName"
+        val grapeRegion = "grapeRegion"
+
+        Mockito.`when`(grapeService.findGrapeDetailsWithWineName(
+            ArgumentMatchers.anyString(),
+            ArgumentMatchers.anyString(),
+        ))
+            .thenReturn(Mockito.mock(GrapeDetailsWithWineNameDto::class.java))
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("$BASE_URL/grapes")
+                .param("grapeName",grapeName)
+                .param("grapeRegion", grapeRegion)
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+        Mockito.verify(grapeService).findGrapeDetailsWithWineName(grapeName, grapeRegion)
+    }
 }

@@ -1,14 +1,13 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.CreateWineryRequest
-import io.directional.wine.dto.UpdateWineryRequest
-import io.directional.wine.dto.WineryWithRegionDto
+import io.directional.wine.dto.*
 import io.directional.wine.entity.Region
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
 import io.directional.wine.repository.RegionRepository
 import io.directional.wine.repository.WineryRepository
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -138,7 +137,7 @@ class WineryServiceTest {
         // given
         val wineryName = "name"
         val wineryRegion = "region"
-        val wineryWithRegionDto = WineryWithRegionDto(
+        val wineryWithRegionDto = WineryWithRegionWithWineNameDto(
             wineryNameEnglish =  "wineryNameEnglish",
             wineryNameKorean = "wineryNameKorean",
             wineryRegionNameEnglish = "wineryRegionNameEnglish",
@@ -150,7 +149,7 @@ class WineryServiceTest {
         // when
         `when`(wineryRepository.findWineryWithRegion(wineryName,wineryRegion)).thenReturn(wineryWithRegionDto)
 
-        val result: WineryWithRegionDto? = wineryService.findWineryWithRegion(wineryName, wineryRegion)
+        val result: WineryWithRegionWithWineNameDto? = wineryService.findWineryWithRegion(wineryName, wineryRegion)
 
         // then
         verify(wineryRepository, times(1)).findWineryWithRegion(wineryName, wineryRegion)
@@ -160,5 +159,32 @@ class WineryServiceTest {
         assertEquals(result.wineryRegionNameEnglish,wineryWithRegionDto.wineryRegionNameEnglish)
         assertEquals(result.wineryWineNameEnglish,wineryWithRegionDto.wineryWineNameEnglish)
         assertEquals(result.wineryWineNameKorean,wineryWithRegionDto.wineryWineNameKorean)
+    }
+
+    @Test
+    @DisplayName("와이너리 다수 조회 테스트")
+    fun findWineryWithRegionAll_Success_Test() {
+        // given
+        val wineryName = "name"
+        val wineryRegion = "region"
+        val wineryWithRegionDto = listOf(WineryWithRegionDto(
+            wineryNameEnglish =  "wineryNameEnglish",
+            wineryNameKorean = "wineryNameKorean",
+            wineryRegionNameEnglish = "wineryRegionNameEnglish",
+            wineryRegionNameKorean = "wineryRegionNameKorean",
+        ))
+
+        // when
+        `when`(wineryRepository.findWineryWithRegionAll(wineryName,wineryRegion)).thenReturn(wineryWithRegionDto)
+
+        val result: List<WineryWithRegionDto>
+                = wineryService.findWineryWithRegionAll(wineryName,wineryRegion)
+
+        // then
+        verify(wineryRepository, times(1)).findWineryWithRegionAll(wineryName,wineryRegion)
+        Assertions.assertThat(result.get(0).wineryNameEnglish).isEqualTo(wineryWithRegionDto.get(0).wineryNameEnglish)
+        Assertions.assertThat(result.get(0).wineryNameKorean).isEqualTo(wineryWithRegionDto.get(0).wineryNameKorean)
+        Assertions.assertThat(result.get(0).wineryRegionNameEnglish).isEqualTo(wineryWithRegionDto.get(0).wineryRegionNameEnglish)
+        Assertions.assertThat(result.get(0).wineryRegionNameKorean).isEqualTo(wineryWithRegionDto.get(0).wineryRegionNameKorean)
     }
 }

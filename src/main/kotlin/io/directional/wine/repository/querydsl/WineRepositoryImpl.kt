@@ -66,12 +66,14 @@ class WineRepositoryImpl(
             .join(qWine.winery, qWinery)
             .join(qWine.wineGrape,qWineGrape)
             .join(qWineGrape.grape,qGrape)
-            .where(qWine.nameEnglish.eq(wineName).or(qWine.nameKorean.eq(wineName)).and(
+            .where(qWine.deleted.isFalse.and(qImporter.deleted.isFalse.and(qGrape.deleted.isFalse
+                .and(qRegion.deleted.isFalse.and(qWinery.deleted.isFalse.and(
+                qWine.nameEnglish.eq(wineName).or(qWine.nameKorean.eq(wineName)).and(
                 qWine.type.eq(wineType)
                     .and(qWine.alcohol.between(alcoholMin, alcoholMax))
                     .and(qWine.price.between(priceMin, priceMax))
                     .and(qWine.style.eq(wineStyle))
-                    .and(booleanBuilder))
+                    .and(booleanBuilder)))))))
             )
             .groupBy(qWine.nameEnglish,
                 qWine.nameKorean,
@@ -124,13 +126,13 @@ class WineRepositoryImpl(
                 )
             ).from(qWine)
             .leftJoin(qWine.winery, qWinery)
-            .where(
+            .where(qWine.deleted.isFalse.and(qRegion.deleted.isFalse.and(
                 qWine.nameEnglish.eq(wineName).or(qWine.nameKorean.eq(wineName)).and(
                 qWine.type.eq(wineType)
                     .and(qWine.alcohol.between(alcoholMin, alcoholMax))
                     .and(qWine.price.between(priceMin, priceMax))
                     .and(qWine.style.eq(wineStyle))
-                    .and(booleanBuilder))
+                    .and(booleanBuilder))))
             )
             .groupBy(qWine.nameEnglish,qWine.nameKorean,qWine.type,qRegion.id,
                 qWine.alcohol,qWine.acidity,qWine.body,qWine.sweetness,qWine.tannin,

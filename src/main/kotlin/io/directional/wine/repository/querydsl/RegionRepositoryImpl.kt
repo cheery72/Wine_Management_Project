@@ -15,7 +15,7 @@ class RegionRepositoryImpl (
     override fun findByIdRecursiveRegions(regionId: Long): List<RecursiveRegionDto> {
         val nativeQuery = """
                 WITH RECURSIVE RecursiveRegion (region_id, created_at, modified_at, deleted, name_english, name_korean, parent_id) AS (
-                    SELECT * FROM region WHERE region_id = :regionId
+                    SELECT * FROM region WHERE region_id = :regionId AND deleted = false
                     UNION ALL
                     SELECT R.region_id, R.created_at, R.modified_at, R.deleted, R.name_english, R.name_korean, R.parent_id
                     FROM RecursiveRegion RR

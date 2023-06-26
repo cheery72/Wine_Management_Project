@@ -3,6 +3,7 @@ package io.directional.wine.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateGrapeRequest
 import io.directional.wine.dto.GrapeDetailsWithWineNameDto
+import io.directional.wine.dto.GrapeNamesWithRegions
 import io.directional.wine.service.GrapeService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -120,5 +121,27 @@ class GrapeControllerTest {
             .andExpect(MockMvcResultMatchers.status().isOk)
 
         Mockito.verify(grapeService).findGrapeDetailsWithWineName(grapeName, grapeRegion)
+    }
+
+    @Test
+    @DisplayName("포도 품종 다수 조회 성공 테스트")
+    fun findGrapeNamesWithRegions_Success_Test() {
+        val grapeName = "grapeName"
+        val grapeRegion = "grapeRegion"
+
+        Mockito.`when`(grapeService.findGrapeNamesWithRegions(
+            ArgumentMatchers.anyString(),
+            ArgumentMatchers.anyString(),
+        ))
+            .thenReturn(listOf(Mockito.mock(GrapeNamesWithRegions::class.java)))
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("$BASE_URL/grapes/all")
+                .param("grapeName",grapeName)
+                .param("grapeRegion", grapeRegion)
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+        Mockito.verify(grapeService).findGrapeNamesWithRegions(grapeName, grapeRegion)
     }
 }

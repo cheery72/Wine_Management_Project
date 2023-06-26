@@ -2,7 +2,9 @@ package io.directional.wine.repository.querydsl
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.directional.wine.dto.GrapeDetailsWithWineNameDto
+import io.directional.wine.dto.GrapeNamesWithRegions
 import io.directional.wine.dto.QGrapeDetailsWithWineNameDto
+import io.directional.wine.dto.QGrapeNamesWithRegions
 import io.directional.wine.entity.*
 
 class GrapeRepositoryImpl(
@@ -41,5 +43,25 @@ class GrapeRepositoryImpl(
             .orderBy(qRegion.nameEnglish.asc())
             .fetchFirst()
 
+    }
+
+    override fun findGrapeNamesWithRegions(gradeName: String, gradeRegion: String): List<GrapeNamesWithRegions> {
+        return jpaQueryFactory
+            .select(
+                QGrapeNamesWithRegions
+                    (
+                    qGrape.nameEnglish,
+                    qGrape.nameKorean,
+                    qRegion.nameEnglish,
+                    qRegion.nameKorean
+                )
+            ).from(qGrape)
+            .join(qGrape.grapeShare,qGrapeShare)
+            .join(qGrapeShare.region,qRegion)
+            .where(qGrape.deleted.isFalse.and(qRegion.deleted.isFalse
+                .and(qGrape.nameEnglish.eq(gradeName).or(qGrape.nameKorean.eq(gradeName)))
+                .and(qRegion.nameEnglish.eq(gradeRegion).or(qRegion.nameKorean.eq(gradeRegion)))))
+            .orderBy(qRegion.nameEnglish.asc())
+            .fetch()
     }
 }

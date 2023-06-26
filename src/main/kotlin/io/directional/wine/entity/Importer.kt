@@ -11,7 +11,7 @@ class Importer(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    val name: String,
+    var name: String,
 
     var deleted: Boolean = false,
 
@@ -25,5 +25,9 @@ class Importer(
                     name = createImporterRequest.importerName
                 )
             }
+        }
+
+        fun setImporterInfo(createImporterRequest: CreateImporterRequest){
+            this.name = createImporterRequest.importerName
         }
     }

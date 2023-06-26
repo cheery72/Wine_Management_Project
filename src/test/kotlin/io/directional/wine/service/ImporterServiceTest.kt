@@ -13,6 +13,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.test.context.junit.jupiter.SpringExtension
+import java.util.*
 
 @ExtendWith(MockitoExtension::class, SpringExtension::class)
 class ImporterServiceTest{
@@ -22,6 +23,14 @@ class ImporterServiceTest{
 
     private lateinit var importerService: ImporterService
 
+    private val importer = Importer(
+        name = "수입사"
+    )
+
+    private val createImporterRequest = CreateImporterRequest(
+        importerName = "importerName"
+    )
+
     @BeforeEach
     fun setup() {
         importerService = ImporterService(importerRepository)
@@ -30,11 +39,6 @@ class ImporterServiceTest{
     @Test
     @DisplayName("수입사 생성 성공 테스트")
     fun createImporter_Success_Test() {
-        // given
-        val createImporterRequest = CreateImporterRequest(
-            importerName = "importerName"
-        )
-
         // when
         importerService.createImporter(createImporterRequest)
 
@@ -45,5 +49,20 @@ class ImporterServiceTest{
         assertEquals(savedImporter.name,createImporterRequest.importerName)
         assertEquals(savedImporter.deleted,false)
         Mockito.verify(importerRepository).save(Mockito.any(Importer::class.java))
+    }
+
+    @Test
+    @DisplayName("수입사 수정 성공 테스트")
+    fun updateImporter_Success_Test() {
+        // given
+        val importerId = 1L
+
+        // when
+        Mockito.`when`(importerRepository.findByIdAndDeletedFalse(importerId)).thenReturn(Optional.of(importer))
+
+        importerService.updateImporter(importerId,createImporterRequest)
+
+        // then
+        assertEquals(importer.name,createImporterRequest.importerName)
     }
 }

@@ -30,4 +30,7 @@ class Importer(
         fun setImporterInfo(createImporterRequest: CreateImporterRequest){
             this.name = createImporterRequest.importerName
         }
+        fun setDeleted() {
+            this.deleted = true
+        }
     }

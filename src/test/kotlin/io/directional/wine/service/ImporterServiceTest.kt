@@ -65,4 +65,20 @@ class ImporterServiceTest{
         // then
         assertEquals(importer.name,createImporterRequest.importerName)
     }
+
+    @Test
+    @DisplayName("수입사 삭제 성공 테스트")
+    fun deleteImporterId_Success_Test() {
+        // given
+        val importerId = 1L
+
+        // when
+        Mockito.`when`(importerRepository.findByIdAndDeletedFalse(importerId)).thenReturn(Optional.of(importer))
+
+        importerService.deleteImporter(importerId)
+
+        // then
+        Mockito.verify(importerRepository, Mockito.times(1)).findByIdAndDeletedFalse(importerId)
+        assertTrue(importer.deleted)
+    }
 }

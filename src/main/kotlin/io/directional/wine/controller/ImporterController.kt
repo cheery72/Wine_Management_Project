@@ -1,6 +1,7 @@
 package io.directional.wine.controller
 
 import io.directional.wine.dto.CreateImporterRequest
+import io.directional.wine.dto.ImporterWithWineDto
 import io.directional.wine.service.ImporterService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -47,5 +48,14 @@ class ImporterController(
         return ResponseEntity
             .status(HttpStatus.NO_CONTENT)
             .build()
+    }
+
+    @GetMapping("/importers")
+    fun findImporterNameWithWine(
+        @RequestParam importerName: String,
+    ): ResponseEntity<ImporterWithWineDto> {
+
+        return ResponseEntity
+                .ok(importerService.findImporterNameWithWine(importerName))
     }
 }

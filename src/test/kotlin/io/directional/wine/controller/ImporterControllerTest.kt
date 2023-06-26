@@ -2,11 +2,13 @@ package io.directional.wine.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateImporterRequest
+import io.directional.wine.dto.ImporterWithWineDto
 import io.directional.wine.service.ImporterService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -96,5 +98,24 @@ class ImporterControllerTest{
             .andExpect(MockMvcResultMatchers.status().isNoContent)
 
         Mockito.verify(importerService).deleteImporter(importerId)
+    }
+
+    @Test
+    @DisplayName("수입사 단일 조회 성공 테스트")
+    fun findImporterNameWithWine_Success_Test() {
+        val importerName = "importerName"
+
+        Mockito.`when`(importerService.findImporterNameWithWine(
+            ArgumentMatchers.anyString(),
+        ))
+            .thenReturn(Mockito.mock(ImporterWithWineDto::class.java))
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("$BASE_URL/importers")
+                .param("importerName",importerName)
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+        Mockito.verify(importerService).findImporterNameWithWine(importerName)
     }
 }

@@ -2,8 +2,10 @@ package io.directional.wine.service
 
 import io.directional.wine.dto.CreateGrapeRequest
 import io.directional.wine.dto.GrapeDetailsWithWineNameDto
+import io.directional.wine.dto.GrapeNamesWithRegions
 import io.directional.wine.entity.Grape
 import io.directional.wine.repository.GrapeRepository
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -137,5 +139,34 @@ class GrapeServiceTest{
         assertEquals(grapeDetailsWithWineNameDto.grapeRegionNameEnglish,result.grapeRegionNameEnglish)
         assertEquals(grapeDetailsWithWineNameDto.grapeWineNameKorean,result.grapeWineNameKorean)
         assertEquals(grapeDetailsWithWineNameDto.grapeWineNameEnglish,result.grapeWineNameEnglish)
+    }
+
+    @Test
+    @DisplayName("포도 품종 다수 조회 테스트")
+    fun findGrapeNamesWithRegions_Success_Test() {
+        // given
+        val grapeName = "grapeName"
+        val grapeRegion = "grapeRegion"
+        val grapeNamesWithRegions = listOf(
+            GrapeNamesWithRegions(
+            grapeNameEnglish =  "grapeNameEnglish",
+            grapeNameKorean = "grapeNameKorean",
+            grapeRegionNameEnglish = "grapeRegionNameEnglish",
+            grapeRegionNameKorean = "grapeRegionNameKorean",
+        )
+        )
+
+        // when
+        Mockito.`when`(grapeRepository.findGrapeNamesWithRegions(grapeName, grapeRegion)).thenReturn(grapeNamesWithRegions)
+
+        val result: List<GrapeNamesWithRegions>
+                = grapeService.findGrapeNamesWithRegions(grapeName, grapeRegion)
+
+        // then
+        Mockito.verify(grapeRepository, Mockito.times(1)).findGrapeNamesWithRegions(grapeName, grapeRegion)
+        Assertions.assertThat(result.get(0).grapeNameEnglish).isEqualTo(grapeNamesWithRegions.get(0).grapeNameEnglish)
+        Assertions.assertThat(result.get(0).grapeNameKorean).isEqualTo(grapeNamesWithRegions.get(0).grapeNameKorean)
+        Assertions.assertThat(result.get(0).grapeRegionNameEnglish).isEqualTo(grapeNamesWithRegions.get(0).grapeRegionNameEnglish)
+        Assertions.assertThat(result.get(0).grapeRegionNameKorean).isEqualTo(grapeNamesWithRegions.get(0).grapeRegionNameKorean)
     }
 }

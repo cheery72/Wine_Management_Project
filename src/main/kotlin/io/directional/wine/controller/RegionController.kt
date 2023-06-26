@@ -2,6 +2,7 @@ package io.directional.wine.controller
 
 import io.directional.wine.dto.CreateRegionRequest
 import io.directional.wine.dto.RegionDetailsResponse
+import io.directional.wine.dto.RegionNamesDto
 import io.directional.wine.service.RegionService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -59,5 +60,15 @@ class RegionController(
 
         return ResponseEntity
             .ok(regionService.findRegionDetails(regionName, parentRegion))
+    }
+
+    @GetMapping("/regions/all")
+    fun findRegionsName(
+        @RequestParam regionName: String,
+        @RequestParam parentRegion: String,
+    ): ResponseEntity<List<RegionNamesDto>> {
+
+        return ResponseEntity
+                .ok(regionService.findRegionsName(regionName,parentRegion))
     }
 }

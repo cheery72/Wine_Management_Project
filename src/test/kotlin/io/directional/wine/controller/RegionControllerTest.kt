@@ -3,6 +3,7 @@ package io.directional.wine.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateRegionRequest
 import io.directional.wine.dto.RegionDetailsResponse
+import io.directional.wine.dto.RegionNamesDto
 import io.directional.wine.service.RegionService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -126,6 +127,28 @@ class RegionControllerTest{
             .andExpect(MockMvcResultMatchers.status().isOk)
 
         Mockito.verify(regionService).findRegionDetails(regionName,parentRegion)
+    }
+
+    @Test
+    @DisplayName("지역 다수 조회 성공 테스트")
+    fun findRegionNames_Success_Test() {
+        val regionName = "regionName"
+        val parentRegion = "parentRegion"
+
+        Mockito.`when`(regionService.findRegionsName(
+            ArgumentMatchers.anyString(),
+            ArgumentMatchers.anyString(),
+            ))
+            .thenReturn(listOf(Mockito.mock(RegionNamesDto::class.java)))
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("$BASE_URL/regions/all")
+                .param("regionName",regionName)
+                .param("parentRegion",parentRegion)
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+        Mockito.verify(regionService).findRegionsName(regionName,parentRegion)
     }
 
 }

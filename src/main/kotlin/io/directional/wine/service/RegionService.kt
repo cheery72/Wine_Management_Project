@@ -1,9 +1,6 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.CreateRegionRequest
-import io.directional.wine.dto.RecursiveRegionDto
-import io.directional.wine.dto.RegionDetailsDto
-import io.directional.wine.dto.RegionDetailsResponse
+import io.directional.wine.dto.*
 import io.directional.wine.entity.Region
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
@@ -48,6 +45,10 @@ class RegionService(
         val regions: List<RecursiveRegionDto>? = regionDetails?.let { regionRepository.findByIdRecursiveRegions(it.regionId) }
 
         return regions?.let { RegionDetailsResponse.fromRegionDetailResponse(regionDetails, it) }
+    }
+
+    fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesDto>{
+        return regionRepository.findRegionsName(regionName, parentRegion)
     }
 
     private fun findRegion(regionId: Long): Region {

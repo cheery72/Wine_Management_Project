@@ -28,6 +28,13 @@ class ImporterService(
         importer.setImporterInfo(createImporterRequest)
     }
 
+    @Transactional
+    fun deleteImporter(importerId: Long) {
+        val importer: Importer = findImporter(importerId)
+
+        importer.setDeleted()
+    }
+
     private fun findImporter(importerId: Long): Importer {
         return importerRepository.findByIdAndDeletedFalse(importerId)
             .orElseThrow { ClientException(ErrorCode.NOT_FOUND_IMPORTER) }

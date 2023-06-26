@@ -36,4 +36,16 @@ class ImporterController(
             .status(HttpStatus.NO_CONTENT)
             .build()
     }
+
+    @DeleteMapping("/{importerId}/importers")
+    fun deleteImporter(
+        @PathVariable importerId: Long
+    ): ResponseEntity<Unit> {
+
+        importerService.deleteImporter(importerId)
+
+        return ResponseEntity
+            .status(HttpStatus.NO_CONTENT)
+            .build()
+    }
 }

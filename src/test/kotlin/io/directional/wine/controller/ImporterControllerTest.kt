@@ -83,4 +83,18 @@ class ImporterControllerTest{
 
         Mockito.verify(importerService).updateImporter(importerId,createImporterRequest)
     }
+
+    @Test
+    @DisplayName("수입사 삭제 성공 테스트")
+    fun deleteImporter_Success_Test() {
+        val importerId = 1L
+
+        Mockito.doNothing().`when`(importerService).deleteImporter(importerId)
+        mockMvc.perform(
+            MockMvcRequestBuilders.delete("$BASE_URL/{importerId}/importers", importerId)
+        )
+            .andExpect(MockMvcResultMatchers.status().isNoContent)
+
+        Mockito.verify(importerService).deleteImporter(importerId)
+    }
 }

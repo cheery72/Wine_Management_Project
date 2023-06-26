@@ -2,6 +2,7 @@ package io.directional.wine.service
 
 import io.directional.wine.dto.*
 import io.directional.wine.entity.Importer
+import io.directional.wine.entity.Region
 import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
@@ -47,70 +48,73 @@ class WineService(
 
         wine.setDeleted()
     }
+
     fun findWineDetails(
         wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double,
-        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String)
-    : WineDetailsResponse?{
-        val wineDetailsDto = wineRepository.findWineDetails(wineName ,wineType, alcoholMin, alcoholMax, priceMin,
-                                                            priceMax, wineStyle, wineGrade, wineRegion)
+        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String
+    )
+            : WineDetailsResponse? {
+        val wineDetailsDto: WineDetailsDto? = wineRepository.findWineDetails(
+            wineName, wineType, alcoholMin, alcoholMax, priceMin,
+            priceMax, wineStyle, wineGrade, wineRegion
+        )
 
-        val recursiveRegionDTO = findRegionList(wineDetailsDto!!.regionId)
+        val regionTopList = wineDetailsDto?.let { findRegionList(it.regionId) }
 
-        return WineDetailsResponse.fromWineDetailsResponse(wineDetailsDto, recursiveRegionDTO)
+        return wineDetailsDto?.let { WineDetailsResponse.fromWineDetailsResponse(it, regionTopList) }
     }
 
     fun findWineWithTopRegion(
         wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double,
-        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String)
-    : List<WineWithTopRegionResponse> {
+        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String
+    )
+            : List<WineWithTopRegionResponse> {
 
         val wineWithTopRegionDtoList: List<WineWithTopRegionDto> = wineRepository.findWineWithTopRegion(
             wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
-            wineStyle, wineGrade, wineRegion)
+            wineStyle, wineGrade, wineRegion
+        )
 
-        val topRegions: HashMap<Long,List<String>>  = findTopRegions(wineWithTopRegionDtoList)
+        val topRegions: HashMap<Long, List<String>> = findTopRegions(wineWithTopRegionDtoList)
 
         return WineWithTopRegionResponse.fromWineWithTopRegionResponse(wineWithTopRegionDtoList, topRegions)
     }
 
-    private fun findTopRegions(wineWithTopRegionDtoList: List<WineWithTopRegionDto>): HashMap<Long,List<String>>{
-        var topRegionName: MutableList<String> = mutableListOf()
-        val regionMap: HashMap<Long,List<String>> = HashMap()
+    private fun findTopRegions(wineWithTopRegionDtoList: List<WineWithTopRegionDto>): HashMap<Long, List<String>> {
+        val regionTopMap: HashMap<Long, List<String>> = HashMap()
 
-        for (wineWithTopRegionDto in wineWithTopRegionDtoList){
-            if(!regionMap.containsKey(wineWithTopRegionDto.regionId)){
+        wineWithTopRegionDtoList.forEach { wineWithTopRegionDto ->
+            if (!regionTopMap.containsKey(wineWithTopRegionDto.regionId)) {
                 val findRegionList = findRegionList(wineWithTopRegionDto.regionId)
-                val regionListSize = findRegionList.size-1
+                val regionListSize = findRegionList.size - 1
 
-                if(-1 < regionListSize) {
-                    topRegionName.add(findRegionList.get(regionListSize).nameEnglish)
-                    topRegionName.add(findRegionList.get(regionListSize).nameKorean)
-                    regionMap.putIfAbsent(findRegionList.get(0).regionId, topRegionName)
-                    topRegionName = mutableListOf()
+                if (regionListSize >= 0 && !regionTopMap.containsKey(findRegionList[0].id)) {
+                    val topRegionName = listOf(findRegionList[0].nameEnglish, findRegionList[0].nameKorean)
+                    findRegionList[regionListSize].id?.let { regionTopMap.putIfAbsent(it, topRegionName) }
                 }
             }
         }
 
-        return regionMap
+        return regionTopMap
     }
 
-    private fun findRegionList(regionId: Long): List<RecursiveRegionDto> {
-        return regionRepository.findByIdRecursiveRegions(regionId)
+    private fun findRegionList(regionId: Long): List<Region> {
+        return regionRepository.findByRegionTopList(regionId)
     }
 
     private fun findWine(wineId: Long): Wine {
         return wineRepository.findByIdAndDeletedFalse(wineId)
-            .orElseThrow{ ClientException(ErrorCode.NOT_FOUND_WINE)}
+            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINE) }
     }
 
     private fun findImporter(importerId: Long): Importer {
         return importerRepository.findByIdAndDeletedFalse(importerId)
-            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_IMPORTER)}
+            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_IMPORTER) }
     }
 
     private fun findWinery(wineryId: Long): Winery {
         return wineryRepository.findByIdAndDeletedFalse(wineryId)
-            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINERY)}
+            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINERY) }
     }
 
 }

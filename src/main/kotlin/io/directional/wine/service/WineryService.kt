@@ -30,7 +30,7 @@ class WineryService(
     }
 
     @Transactional
-    fun updateWinery(wineryId: Long, updateWineryRequest: UpdateWineryRequest){
+    fun updateWinery(wineryId: Long, updateWineryRequest: UpdateWineryRequest) {
         val winery: Winery = findWinery(wineryId)
         val region: Region = findRegion(updateWineryRequest.regionId)
 
@@ -45,11 +45,11 @@ class WineryService(
     }
 
     fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameDto? {
-        return wineryRepository.findWineryWithRegion(wineryName,wineryRegion)
+        return wineryRepository.findWineryWithRegion(wineryName, wineryRegion)
     }
 
     fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionDto> {
-        return wineryRepository.findWineryWithRegionAll(wineryName,wineryRegion)
+        return wineryRepository.findWineryWithRegionAll(wineryName, wineryRegion)
     }
 
     private fun findRegion(regionId: Long): Region {
@@ -59,6 +59,6 @@ class WineryService(
 
     private fun findWinery(wineryId: Long): Winery {
         return wineryRepository.findByIdAndDeletedFalse(wineryId)
-            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINERY)}
+            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINERY) }
     }
 }

@@ -1,5 +1,7 @@
 package io.directional.wine.dto
 
+import io.directional.wine.entity.Region
+
 data class RegionDetailsResponse(
 
     val regionNameEnglish: String,
@@ -15,17 +17,17 @@ data class RegionDetailsResponse(
 ) {
 
     companion object {
-        fun fromRegionDetailResponse(regionDetails:RegionDetailsDto,recursiveRegions: List<RecursiveRegionDto>): RegionDetailsResponse{
+        fun fromRegionDetailResponse(regionDetails:RegionDetailsDto?, regionTopList: List<Region>?): RegionDetailsResponse{
             val regionEnglishList: MutableList<String> = mutableListOf()
             val regionKoreanList: MutableList<String> = mutableListOf()
 
-            recursiveRegions.forEach { r ->
+            regionTopList?.forEach { r ->
                 regionEnglishList.add(r.nameEnglish)
                 regionKoreanList.add(r.nameKorean)
             }
 
             return RegionDetailsResponse(
-                regionNameEnglish = regionDetails.regionNameEnglish,
+                regionNameEnglish = regionDetails!!.regionNameEnglish,
                 regionNameKorean = regionDetails.regionNameKorean,
                 regionGrapeNameEnglish = regionDetails.regionGrapeNameEnglish,
                 regionGrapeNameKorean = regionDetails.regionGrapeNameKorean,

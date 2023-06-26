@@ -8,9 +8,11 @@ interface WineRepositoryCustom {
 
     fun findWineDetails(
         wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double, priceMin: Int, priceMax: Int,
-        wineStyle: String?, wineGrade: String?, wineRegion: String): WineDetailsDto?
+        wineStyle: String?, wineGrade: String?, wineRegion: String
+    ): WineDetailsDto?
 
     fun findWineWithTopRegion(
         wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double,
-        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String): List<WineWithTopRegionDto>
+        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String
+    ): List<WineWithTopRegionDto>
 }

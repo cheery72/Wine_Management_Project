@@ -63,44 +63,45 @@ class WineRepositoryImpl(
                 )
             ).from(qWine)
             .join(qWine.aroma, qWineAroma)
-            .join(qWine.pairing,qWinePairing)
+            .join(qWine.pairing, qWinePairing)
             .join(qWine.importer, qImporter)
             .join(qWine.winery, qWinery)
-            .join(qWine.wineGrape,qWineGrape)
-            .join(qWineGrape.grape,qGrape)
-            .where(qWine.deleted.isFalse.and(qImporter.deleted.isFalse.and(qGrape.deleted.isFalse
-                .and(qRegion.deleted.isFalse.and(qWinery.deleted.isFalse.and(
-                qWine.nameEnglish.eq(wineName).or(qWine.nameKorean.eq(wineName)).and(
-                qWine.type.eq(wineType)
-                    .and(qWine.alcohol.between(alcoholMin, alcoholMax))
-                    .and(qWine.price.between(priceMin, priceMax))
-                    .and(qWine.style.eq(wineStyle))
-                    .and(booleanBuilder)))))))
+            .join(qWine.wineGrape, qWineGrape)
+            .join(qWineGrape.grape, qGrape)
+            .where(
+                qWine.deleted.isFalse.and(
+                    qImporter.deleted.isFalse.and(
+                        qGrape.deleted.isFalse.and(
+                            qRegion.deleted.isFalse.and(
+                                qWinery.deleted.isFalse.and(
+                                    qWine.nameEnglish.eq(wineName).or(
+                                        qWine.nameKorean.eq(wineName)
+                                    ).and(
+                                        qWine.type.eq(wineType).and(
+                                            qWine.alcohol.between(alcoholMin, alcoholMax)
+                                        ).and(
+                                            qWine.price.between(priceMin, priceMax)
+                                        ).and(
+                                            qWine.style.eq(wineStyle)
+                                        )
+                                            .and(booleanBuilder)
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
             )
-            .groupBy(qWine.nameEnglish,
-                qWine.nameKorean,
-                qWine.type,
-                qWine.alcohol,
-                qWine.acidity,
-                qWine.body,
-                qWine.sweetness,
-                qWine.tannin,
-                qWine.score,
-                qWine.price,
-                qWine.style,
-                qWine.grade,
-                qImporter.name,
-                qWineAroma.aroma,
-                qWinePairing.pairing,
-                qGrape.nameKorean,
-                qGrape.nameEnglish,
-                qRegion.nameKorean,
-                qRegion.nameEnglish,
-                qWinery.id,
-                qRegion.id)
-            .orderBy(qWine.nameEnglish.asc(),qWine.alcohol.asc(),qWine.acidity.asc(),
-                    qWine.body.asc(),qWine.sweetness.asc(),qWine.tannin.asc(),
-                    qWine.score.asc(),qWine.price.asc())
+            .orderBy(
+                qWine.nameEnglish.asc(),
+                qWine.alcohol.asc(),
+                qWine.acidity.asc(),
+                qWine.body.asc(),
+                qWine.sweetness.asc(),
+                qWine.tannin.asc(),
+                qWine.score.asc(),
+                qWine.price.asc()
+            )
             .fetchFirst()
 
     }
@@ -129,20 +130,30 @@ class WineRepositoryImpl(
                 )
             ).from(qWine)
             .join(qWinery.region, qRegion)
-            .where(qWine.deleted.isFalse.and(qRegion.deleted.isFalse.and(
-                qWine.nameEnglish.like(wineNameExpressionLike).or(qWine.nameKorean.like(wineNameExpressionLike))
-                .and(qWine.type.eq(wineType)
-                    .and(qWine.alcohol.between(alcoholMin, alcoholMax))
-                    .and(qWine.price.between(priceMin, priceMax))
-                    .and(qWine.style.eq(wineStyle))
-                    .and(booleanBuilder))))
+            .where(
+                qWine.deleted.isFalse.and(
+                    qRegion.deleted.isFalse.and(
+                        qWine.nameEnglish.like(wineNameExpressionLike).or(qWine.nameKorean.like(wineNameExpressionLike))
+                            .and(
+                                qWine.type.eq(wineType)
+                                    .and(qWine.alcohol.between(alcoholMin, alcoholMax))
+                                    .and(qWine.price.between(priceMin, priceMax))
+                                    .and(qWine.style.eq(wineStyle))
+                                    .and(booleanBuilder)
+                            )
+                    )
+                )
             )
-            .groupBy(qWine.nameEnglish,qWine.nameKorean,qWine.type,qRegion.id,
-                qWine.alcohol,qWine.acidity,qWine.body,qWine.sweetness,qWine.tannin,
-                qWine.score,qWine.price)
-            .orderBy(qWine.nameEnglish.asc(),qWine.alcohol.asc(),qWine.acidity.asc(),
-                qWine.body.asc(),qWine.sweetness.asc(),qWine.tannin.asc(),
-                qWine.score.asc(),qWine.price.asc())
+            .groupBy(
+                qWine.nameEnglish, qWine.nameKorean, qWine.type, qRegion.id,
+                qWine.alcohol, qWine.acidity, qWine.body, qWine.sweetness, qWine.tannin,
+                qWine.score, qWine.price
+            )
+            .orderBy(
+                qWine.nameEnglish.asc(), qWine.alcohol.asc(), qWine.acidity.asc(),
+                qWine.body.asc(), qWine.sweetness.asc(), qWine.tannin.asc(),
+                qWine.score.asc(), qWine.price.asc()
+            )
             .fetch()
 
     }
@@ -151,16 +162,16 @@ class WineRepositoryImpl(
         return Expressions.asString("$search%")
     }
 
-    private fun getBooleanBuilder(wineGrade: String?, wineStyle: String?): BooleanBuilder{
+    private fun getBooleanBuilder(wineGrade: String?, wineStyle: String?): BooleanBuilder {
         val booleanBuilder = BooleanBuilder()
 
-        if(wineGrade.isNullOrBlank()){
+        if (wineGrade.isNullOrBlank()) {
             booleanBuilder.and(qWine.grade.isNull)
         } else {
             booleanBuilder.and(qWine.grade.eq(wineGrade))
         }
 
-        if(wineStyle.isNullOrBlank()){
+        if (wineStyle.isNullOrBlank()) {
             booleanBuilder.and(qWine.style.isNull)
         } else {
             booleanBuilder.and(qWine.style.eq(wineStyle))

@@ -24,12 +24,12 @@ class RegionService(
     }
 
     @Transactional
-    fun updateRegion(regionId: Long, createRegionRequest: CreateRegionRequest){
+    fun updateRegion(regionId: Long, createRegionRequest: CreateRegionRequest) {
         val region: Region = findRegion(regionId)
 
         val parentRegion: Region? = findParentRegion(createRegionRequest.regionParentId)
 
-        region.setRegionInfo(createRegionRequest,parentRegion)
+        region.setRegionInfo(createRegionRequest, parentRegion)
     }
 
     @Transactional
@@ -39,15 +39,15 @@ class RegionService(
         region.setDeleted()
     }
 
-    fun findRegionDetails(regionName: String, parentRegion: String): RegionDetailsResponse?{
+    fun findRegionDetails(regionName: String, parentRegion: String): RegionDetailsResponse? {
         val regionDetails: RegionDetailsDto? = regionRepository.findRegionDetails(regionName, parentRegion)
 
-        val regions: List<RecursiveRegionDto>? = regionDetails?.let { regionRepository.findByIdRecursiveRegions(it.regionId) }
+        val regions: List<Region>? = regionDetails?.let { regionRepository.findByRegionTopList(it.regionId) }
 
-        return regions?.let { RegionDetailsResponse.fromRegionDetailResponse(regionDetails, it) }
+        return RegionDetailsResponse.fromRegionDetailResponse(regionDetails, regions)
     }
 
-    fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesDto>{
+    fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesDto> {
         return regionRepository.findRegionsName(regionName, parentRegion)
     }
 
@@ -56,7 +56,7 @@ class RegionService(
             .orElseThrow { ClientException(ErrorCode.NOT_FOUND_REGION) }
     }
 
-    private fun findParentRegion(parentId: Long?): Region?{
+    private fun findParentRegion(parentId: Long?): Region? {
         return parentId?.let { regionRepository.findById(it).orElse(null) }
     }
 }

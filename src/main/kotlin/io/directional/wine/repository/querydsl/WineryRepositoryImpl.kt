@@ -31,11 +31,22 @@ class WineryRepositoryImpl(
                     qWine.nameKorean
                 )
             ).from(qWinery)
-            .join(qWinery.region,qRegion)
-            .join(qWinery.wine,qWine)
-            .where(qWinery.deleted.isFalse.and(qRegion.deleted.isFalse.and(qWine.deleted.isFalse
-                .and(qWinery.nameEnglish.eq(wineryName).or(qWinery.nameKorean.eq(wineryName))
-                .and(qWinery.region.nameEnglish.eq(wineryRegion).or(qWinery.region.nameKorean.eq(wineryRegion)))))))
+            .join(qWinery.region, qRegion)
+            .join(qWinery.wine, qWine)
+            .where(
+                qWinery.deleted.isFalse.and(
+                    qRegion.deleted.isFalse.and(
+                        qWine.deleted.isFalse
+                            .and(
+                                qWinery.nameEnglish.eq(wineryName).or(qWinery.nameKorean.eq(wineryName))
+                                    .and(
+                                        qWinery.region.nameEnglish.eq(wineryRegion)
+                                            .or(qWinery.region.nameKorean.eq(wineryRegion))
+                                    )
+                            )
+                    )
+                )
+            )
             .orderBy(qWinery.nameEnglish.asc())
             .fetchFirst()
     }
@@ -53,10 +64,20 @@ class WineryRepositoryImpl(
                     qRegion.nameKorean,
                 )
             ).from(qWinery)
-            .join(qWinery.region,qRegion)
-            .where(qWinery.deleted.isFalse.and(qRegion.deleted.isFalse
-                .and(qWinery.nameEnglish.like(wineryNameExpression).or(qWinery.nameKorean.like(wineryNameExpression))
-                .and(qWinery.region.nameEnglish.like(wineryRegionExpression).or(qWinery.region.nameKorean.like(wineryRegionExpression))))))
+            .join(qWinery.region, qRegion)
+            .where(
+                qWinery.deleted.isFalse.and(
+                    qRegion.deleted.isFalse
+                        .and(
+                            qWinery.nameEnglish.like(wineryNameExpression)
+                                .or(qWinery.nameKorean.like(wineryNameExpression))
+                                .and(
+                                    qWinery.region.nameEnglish.like(wineryRegionExpression)
+                                        .or(qWinery.region.nameKorean.like(wineryRegionExpression))
+                                )
+                        )
+                )
+            )
             .orderBy(qWinery.nameEnglish.asc())
             .fetch()
     }

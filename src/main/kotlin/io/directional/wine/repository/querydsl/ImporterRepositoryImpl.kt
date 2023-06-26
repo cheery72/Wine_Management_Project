@@ -18,14 +18,16 @@ class ImporterRepositoryImpl(
             .select(
                 QImporterWithWineDto
                     (
-                        qImporter.name,
-                        qWine.nameEnglish,
-                        qWine.nameKorean
-                    )
+                    qImporter.name,
+                    qWine.nameEnglish,
+                    qWine.nameKorean
+                )
             ).from(qImporter)
-            .join(qImporter.wines,qWine)
-            .where(qImporter.deleted.isFalse.and(qWine.deleted.isFalse)
-                .and(qImporter.name.eq(importerName)))
+            .join(qImporter.wines, qWine)
+            .where(
+                qImporter.deleted.isFalse.and(qWine.deleted.isFalse)
+                    .and(qImporter.name.eq(importerName))
+            )
             .orderBy(qImporter.name.asc())
             .fetchFirst()
     }

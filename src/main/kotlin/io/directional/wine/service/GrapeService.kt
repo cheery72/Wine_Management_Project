@@ -25,7 +25,7 @@ class GrapeService(
     }
 
     @Transactional
-    fun updateGrape(grapeId: Long, createGrapeRequest: CreateGrapeRequest){
+    fun updateGrape(grapeId: Long, createGrapeRequest: CreateGrapeRequest) {
         val grape: Grape = findGrape(grapeId)
 
         grape.setGrapeInfo(createGrapeRequest)
@@ -39,11 +39,11 @@ class GrapeService(
     }
 
     fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameDto? {
-        return grapeRepository.findGrapeDetailsWithWineName(gradeName,gradeRegion)
+        return grapeRepository.findGrapeDetailsWithWineName(gradeName, gradeRegion)
     }
 
     fun findGrapeNamesWithRegions(grapeName: String, gradeRegion: String): List<GrapeNamesWithRegions> {
-        return grapeRepository.findGrapeNamesWithRegions(grapeName,gradeRegion)
+        return grapeRepository.findGrapeNamesWithRegions(grapeName, gradeRegion)
     }
 
     private fun findGrape(grapeId: Long): Grape {

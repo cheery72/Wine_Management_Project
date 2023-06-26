@@ -2,39 +2,44 @@ package io.directional.wine.repository.querydsl
 
 import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.jpa.impl.JPAQueryFactory
-import io.directional.wine.dto.*
+import io.directional.wine.dto.QRegionDetailsDto
+import io.directional.wine.dto.QRegionNamesDto
+import io.directional.wine.dto.RegionDetailsDto
+import io.directional.wine.dto.RegionNamesDto
 import io.directional.wine.entity.*
-import jakarta.persistence.EntityManager
 
-class RegionRepositoryImpl (
+class RegionRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory,
     private val qRegion: QRegion = QRegion.region,
     private val qWinery: QWinery = QWinery.winery,
     private val qGrapeShare: QGrapeShare = QGrapeShare.grapeShare,
     private val qGrape: QGrape = QGrape.grape,
     private val qWine: QWine = QWine.wine,
-    private val entityManager: EntityManager,
 
-) : RegionRepositoryCustom {
+    ) : RegionRepositoryCustom {
+    override fun findByRegionTopList(regionId: Long): List<Region> {
 
-    override fun findByIdRecursiveRegions(regionId: Long): List<RecursiveRegionDto> {
-        val nativeQuery = """
-                WITH RECURSIVE RecursiveRegion (region_id, created_at, modified_at, deleted, name_english, name_korean, parent_id) AS (
-                    SELECT * FROM region WHERE region_id = :regionId AND deleted = false
-                    UNION ALL
-                    SELECT R.region_id, R.created_at, R.modified_at, R.deleted, R.name_english, R.name_korean, R.parent_id
-                    FROM RecursiveRegion RR
-                    JOIN region R ON R.region_id = RR.parent_id
-                )
-                SELECT * FROM RecursiveRegion
-            """
+        val subQuery = jpaQueryFactory
+            .select(qRegion)
+            .from(qRegion)
+            .where(qRegion.id.eq(regionId))
+            .fetchFirst()
 
-        val query = entityManager.createNativeQuery(nativeQuery)
-        query.setParameter("regionId", regionId)
+        val regions = mutableListOf<Region>()
 
-        val resultList = query.resultList
-        return RecursiveRegionDto.fromRecursiveRegionDTO(resultList)
+        if (subQuery != null) {
+            addParentRegions(subQuery, regions)
+            regions.reverse()
+        }
 
+        return regions
+    }
+
+    private fun addParentRegions(region: Region?, regions: MutableList<Region>) {
+        if (region != null) {
+            regions.add(region)
+            addParentRegions(region.parent, regions)
+        }
     }
 
     override fun findRegionDetails(regionName: String, parentRegion: String): RegionDetailsDto? {
@@ -53,15 +58,18 @@ class RegionRepositoryImpl (
                     qRegion.id
                 )
             ).from(qRegion)
-            .join(qRegion.grapeShare,qGrapeShare)
-            .join(qGrapeShare.grape,qGrape)
-            .join(qRegion.winery,qWinery)
-            .join(qWinery.wine,qWine)
+            .join(qRegion.grapeShare, qGrapeShare)
+            .join(qGrapeShare.grape, qGrape)
+            .join(qRegion.winery, qWinery)
+            .join(qWinery.wine, qWine)
             .where(
-                qRegion.deleted.isFalse.and(qGrape.deleted.isFalse
-                .and(qWinery.deleted.isFalse.and(qWine.deleted.isFalse)))
-                .and(qRegion.nameEnglish.eq(regionName).or(qRegion.nameKorean.eq(regionName)))
-                .and(qRegion.parent.nameEnglish.eq(parentRegion).or(qRegion.parent.nameKorean.eq(parentRegion))))
+                qRegion.deleted.isFalse.and(
+                    qGrape.deleted.isFalse
+                        .and(qWinery.deleted.isFalse.and(qWine.deleted.isFalse))
+                )
+                    .and(qRegion.nameEnglish.eq(regionName).or(qRegion.nameKorean.eq(regionName)))
+                    .and(qRegion.parent.nameEnglish.eq(parentRegion).or(qRegion.parent.nameKorean.eq(parentRegion)))
+            )
             .orderBy(qRegion.nameEnglish.asc())
             .fetchFirst()
     }
@@ -77,10 +85,17 @@ class RegionRepositoryImpl (
                     qRegion.nameKorean
                 )
             ).from(qRegion)
-            .where(qRegion.deleted.isFalse
-            .and(qRegion.nameEnglish.like(regionNameExpression)
-            .or(qRegion.nameKorean.like(regionNameExpression))
-            .and(qRegion.parent.nameEnglish.eq(parentRegion).or(qRegion.parent.nameKorean.eq(parentRegion)))))
+            .where(
+                qRegion.deleted.isFalse
+                    .and(
+                        qRegion.nameEnglish.like(regionNameExpression)
+                            .or(qRegion.nameKorean.like(regionNameExpression))
+                            .and(
+                                qRegion.parent.nameEnglish.eq(parentRegion)
+                                    .or(qRegion.parent.nameKorean.eq(parentRegion))
+                            )
+                    )
+            )
             .orderBy(qRegion.nameEnglish.asc())
             .fetch()
     }

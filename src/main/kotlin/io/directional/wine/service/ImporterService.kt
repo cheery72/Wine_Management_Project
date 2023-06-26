@@ -24,7 +24,7 @@ class ImporterService(
     }
 
     @Transactional
-    fun updateImporter(importerId: Long, createImporterRequest: CreateImporterRequest){
+    fun updateImporter(importerId: Long, createImporterRequest: CreateImporterRequest) {
         val importer: Importer = findImporter(importerId)
 
         importer.setImporterInfo(createImporterRequest)
@@ -43,7 +43,7 @@ class ImporterService(
 
     fun findImporterNames(importerName: String): List<ImporterNamesDto> {
         val importerList: List<Importer> = importerRepository
-                                        .findAllByNameLikeAndDeletedFalseOrderByNameAsc("%$importerName%")
+            .findAllByNameLikeAndDeletedFalseOrderByNameAsc("%$importerName%")
 
         return ImporterNamesDto.fromImporterNameDto(importerList)
     }

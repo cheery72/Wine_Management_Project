@@ -16,7 +16,7 @@ class GrapeRepositoryImpl(
     private val qWineGrape: QWineGrape = QWineGrape.wineGrape,
     private val qGrapeShare: QGrapeShare = QGrapeShare.grapeShare,
     private val qRegion: QRegion = QRegion.region
-): GrapeRepositoryCustom {
+) : GrapeRepositoryCustom {
 
     override fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameDto? {
 
@@ -24,25 +24,29 @@ class GrapeRepositoryImpl(
             .select(
                 QGrapeDetailsWithWineNameDto
                     (
-                        qGrape.nameKorean,
-                        qGrape.nameEnglish,
-                        qGrape.acidity,
-                        qGrape.body,
-                        qGrape.sweetness,
-                        qGrape.tannin,
-                        qRegion.nameKorean,
-                        qRegion.nameEnglish,
-                        qWine.nameKorean,
-                        qWine.nameEnglish
-                    )
+                    qGrape.nameKorean,
+                    qGrape.nameEnglish,
+                    qGrape.acidity,
+                    qGrape.body,
+                    qGrape.sweetness,
+                    qGrape.tannin,
+                    qRegion.nameKorean,
+                    qRegion.nameEnglish,
+                    qWine.nameKorean,
+                    qWine.nameEnglish
+                )
             ).from(qGrape)
-            .join(qGrape.grapeShare,qGrapeShare)
-            .join(qGrapeShare.region,qRegion)
-            .join(qGrape.wineGrape,qWineGrape)
-            .join(qWineGrape.wine,qWine)
-            .where(qGrape.deleted.isFalse.and(qRegion.deleted.isFalse.and(qWine.deleted.isFalse)
-                .and(qGrape.nameEnglish.eq(gradeName).or(qGrape.nameKorean.eq(gradeName)))
-                .and(qRegion.nameEnglish.eq(gradeRegion).or(qRegion.nameKorean.eq(gradeRegion)))))
+            .join(qGrape.grapeShare, qGrapeShare)
+            .join(qGrapeShare.region, qRegion)
+            .join(qGrape.wineGrape, qWineGrape)
+            .join(qWineGrape.wine, qWine)
+            .where(
+                qGrape.deleted.isFalse.and(
+                    qRegion.deleted.isFalse.and(qWine.deleted.isFalse)
+                        .and(qGrape.nameEnglish.eq(gradeName).or(qGrape.nameKorean.eq(gradeName)))
+                        .and(qRegion.nameEnglish.eq(gradeRegion).or(qRegion.nameKorean.eq(gradeRegion)))
+                )
+            )
             .orderBy(qRegion.nameEnglish.asc())
             .fetchFirst()
 
@@ -63,11 +67,20 @@ class GrapeRepositoryImpl(
                     qRegion.nameKorean
                 )
             ).from(qGrape)
-            .join(qGrape.grapeShare,qGrapeShare)
-            .join(qGrapeShare.region,qRegion)
-            .where(qGrape.deleted.isFalse.and(qRegion.deleted.isFalse
-                .and(qGrape.nameEnglish.like(gradeNameExpression).or(qGrape.nameKorean.like(gradeNameExpression)))
-                .and(qRegion.nameEnglish.like(gradeRegionExpression).or(qRegion.nameKorean.like(gradeRegionExpression)))))
+            .join(qGrape.grapeShare, qGrapeShare)
+            .join(qGrapeShare.region, qRegion)
+            .where(
+                qGrape.deleted.isFalse.and(
+                    qRegion.deleted.isFalse
+                        .and(
+                            qGrape.nameEnglish.like(gradeNameExpression).or(qGrape.nameKorean.like(gradeNameExpression))
+                        )
+                        .and(
+                            qRegion.nameEnglish.like(gradeRegionExpression)
+                                .or(qRegion.nameKorean.like(gradeRegionExpression))
+                        )
+                )
+            )
             .orderBy(qRegion.nameEnglish.asc())
             .fetch()
     }

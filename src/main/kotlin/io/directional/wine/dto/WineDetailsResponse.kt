@@ -1,5 +1,7 @@
 package io.directional.wine.dto
 
+import io.directional.wine.entity.Region as Region
+
 data class WineDetailsResponse (
 
     val wineType: String,
@@ -23,22 +25,26 @@ data class WineDetailsResponse (
     val wineRegionEnglishName: HashMap<String,List<String>>,
 ) {
     companion object {
-        fun fromWineDetailsResponse(wineDetailsDto: WineDetailsDto
-                                    ,recursiveRegionDto: List<RecursiveRegionDto>): WineDetailsResponse?{
+        fun fromWineDetailsResponse(
+            wineDetailsDto: WineDetailsDto
+            , regionTopList: List<Region>?
+        ): WineDetailsResponse {
 
-            val regionKoreanNameMap: HashMap<String,List<String>> = HashMap()
-            val regionEnglishNameMap: HashMap<String,List<String>> = HashMap()
-            val regionKoreanNameList: MutableList<String> = mutableListOf()
-            val regionEnglishNameList: MutableList<String> = mutableListOf()
-            val recursiveRegionDtoLen = recursiveRegionDto.size
+            val regionKoreanNameMap = hashMapOf<String, List<String>>()
+            val regionEnglishNameMap = hashMapOf<String, List<String>>()
 
-            for (i in 1 until recursiveRegionDtoLen){
-                regionKoreanNameList.add(recursiveRegionDto[i].nameKorean)
-                regionEnglishNameList.add(recursiveRegionDto[i].nameEnglish)
-            }
+            val regionKoreanNameList = regionTopList
+                ?.subList(1, regionTopList.size)
+                ?.map { it.nameKorean }
+                ?: emptyList()
 
-            regionEnglishNameMap.putIfAbsent(wineDetailsDto.wineRegionEnglishName,regionEnglishNameList)
-            regionKoreanNameMap.putIfAbsent(wineDetailsDto.wineRegionKoreanName,regionKoreanNameList)
+            val regionEnglishNameList = regionTopList
+                ?.subList(1, regionTopList.size)
+                ?.map { it.nameEnglish }
+                ?: emptyList()
+
+            regionEnglishNameMap[wineDetailsDto.wineRegionEnglishName] = regionEnglishNameList
+            regionKoreanNameMap[wineDetailsDto.wineRegionKoreanName] = regionKoreanNameList
 
 
             return WineDetailsResponse(

@@ -19,8 +19,6 @@ class WineryRepositoryImpl(
 ) : WineryRepositoryCustom {
 
     override fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameDto? {
-        val wineryNameExpression = getExpressionLike(wineryName)
-        val wineryRegionExpression = getExpressionLike(wineryRegion)
 
         return jpaQueryFactory
             .select(
@@ -36,8 +34,8 @@ class WineryRepositoryImpl(
             .join(qWinery.region,qRegion)
             .join(qWinery.wine,qWine)
             .where(qWinery.deleted.isFalse.and(qRegion.deleted.isFalse.and(qWine.deleted.isFalse
-                .and(qWinery.nameEnglish.like(wineryNameExpression).or(qWinery.nameKorean.like(wineryNameExpression))
-                .and(qWinery.region.nameEnglish.like(wineryRegionExpression).or(qWinery.region.nameKorean.like(wineryRegionExpression)))))))
+                .and(qWinery.nameEnglish.eq(wineryName).or(qWinery.nameKorean.eq(wineryName))
+                .and(qWinery.region.nameEnglish.eq(wineryRegion).or(qWinery.region.nameKorean.eq(wineryRegion)))))))
             .orderBy(qWinery.nameEnglish.asc())
             .fetchFirst()
     }
@@ -64,6 +62,6 @@ class WineryRepositoryImpl(
     }
 
     private fun getExpressionLike(search: String): StringExpression? {
-        return Expressions.asString("%$search%")
+        return Expressions.asString("$search%")
     }
 }

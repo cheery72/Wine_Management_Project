@@ -1,6 +1,5 @@
 package io.directional.wine.repository.querydsl
 
-import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.directional.wine.dto.ImporterWithWineDto
 import io.directional.wine.dto.QImporterWithWineDto
@@ -15,8 +14,6 @@ class ImporterRepositoryImpl(
 
     override fun findImporterNameWithWine(importerName: String): ImporterWithWineDto? {
 
-        val importerNameExpression = Expressions.asString("%$importerName%")
-
         return jpaQueryFactory
             .select(
                 QImporterWithWineDto
@@ -28,7 +25,7 @@ class ImporterRepositoryImpl(
             ).from(qImporter)
             .join(qImporter.wines,qWine)
             .where(qImporter.deleted.isFalse.and(qWine.deleted.isFalse)
-                .and(qImporter.name.like(importerNameExpression)))
+                .and(qImporter.name.eq(importerName)))
             .orderBy(qImporter.name.asc())
             .fetchFirst()
     }

@@ -35,7 +35,6 @@ class WineRepositoryImpl(
         wineRegion: String
     ): WineDetailsDto? {
         val booleanBuilder = getBooleanBuilder(wineGrade, wineStyle)
-        val wineNameExpressionLike = getExpressionLike(wineName)
 
         return jpaQueryFactory
             .select(
@@ -71,7 +70,7 @@ class WineRepositoryImpl(
             .join(qWineGrape.grape,qGrape)
             .where(qWine.deleted.isFalse.and(qImporter.deleted.isFalse.and(qGrape.deleted.isFalse
                 .and(qRegion.deleted.isFalse.and(qWinery.deleted.isFalse.and(
-                qWine.nameEnglish.like(wineNameExpressionLike).or(qWine.nameKorean.like(wineNameExpressionLike)).and(
+                qWine.nameEnglish.eq(wineName).or(qWine.nameKorean.eq(wineName)).and(
                 qWine.type.eq(wineType)
                     .and(qWine.alcohol.between(alcoholMin, alcoholMax))
                     .and(qWine.price.between(priceMin, priceMax))
@@ -149,7 +148,7 @@ class WineRepositoryImpl(
     }
 
     private fun getExpressionLike(search: String): StringExpression? {
-        return Expressions.asString("%$search%")
+        return Expressions.asString("$search%")
     }
 
     private fun getBooleanBuilder(wineGrade: String?, wineStyle: String?): BooleanBuilder{

@@ -11,27 +11,33 @@ class Region(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    val nameKorean: String,
+    var nameKorean: String,
 
-    val nameEnglish: String,
+    var nameEnglish: String,
 
     var deleted: Boolean = false,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    val parent: Region?,
+    var parent: Region?,
 
     @OneToMany(mappedBy = "parent")
     val children: List<Region> = emptyList(),
 
 ) : BaseTime() {
-        companion object {
-            fun toEntity(createRegionRequest: CreateRegionRequest, region: Region?): Region{
-                return Region(
-                    nameEnglish = createRegionRequest.regionNameEnglish,
-                    nameKorean = createRegionRequest.regionNameKorean,
-                    parent = region
-                )
-            }
+    companion object {
+        fun toEntity(createRegionRequest: CreateRegionRequest, region: Region?): Region{
+            return Region(
+                nameEnglish = createRegionRequest.regionNameEnglish,
+                nameKorean = createRegionRequest.regionNameKorean,
+                parent = region
+            )
         }
+    }
+
+    fun setRegionInfo(createRegionRequest: CreateRegionRequest,parentRegion: Region?){
+        this.nameKorean = createRegionRequest.regionNameKorean
+        this.nameEnglish = createRegionRequest.regionNameEnglish
+        this.parent = parentRegion
+    }
 }

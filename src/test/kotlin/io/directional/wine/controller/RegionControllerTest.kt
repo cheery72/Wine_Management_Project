@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers.*
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -65,6 +66,28 @@ class RegionControllerTest{
             .andExpect(MockMvcResultMatchers.status().isCreated)
 
         Mockito.verify(regionService).createRegion(createRegionRequest)
+    }
+
+    @Test
+    @DisplayName("지역 수정 성공 테스트")
+    fun updateRegion_Success_Test() {
+        val regionId = 1L
+
+        val createRegionRequest = CreateRegionRequest(
+            regionNameKorean = "korea",
+            regionNameEnglish = "english",
+            regionParentId = 1L
+        )
+
+        Mockito.doNothing().`when`(regionService).updateRegion(regionId,Mockito.mock(CreateRegionRequest::class.java))
+        mockMvc.perform(
+            MockMvcRequestBuilders.put("$BASE_URL/{regionId}/regions", regionId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(createRegionRequest.toJsonString())
+        )
+            .andExpect(MockMvcResultMatchers.status().isNoContent)
+
+        Mockito.verify(regionService).updateRegion(regionId,createRegionRequest)
     }
 
 }

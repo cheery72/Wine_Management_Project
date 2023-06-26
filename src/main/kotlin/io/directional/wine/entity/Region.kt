@@ -1,14 +1,7 @@
 package io.directional.wine.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.FetchType
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.OneToMany
+import io.directional.wine.dto.CreateRegionRequest
+import jakarta.persistence.*
 
 @Entity
 class Region(
@@ -31,4 +24,14 @@ class Region(
     @OneToMany(mappedBy = "parent")
     val children: List<Region> = emptyList(),
 
-) : BaseTime()
+) : BaseTime() {
+        companion object {
+            fun toEntity(createRegionRequest: CreateRegionRequest, region: Region?): Region{
+                return Region(
+                    nameEnglish = createRegionRequest.regionNameEnglish,
+                    nameKorean = createRegionRequest.regionNameKorean,
+                    parent = region
+                )
+            }
+        }
+}

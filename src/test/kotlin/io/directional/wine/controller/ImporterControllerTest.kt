@@ -2,6 +2,7 @@ package io.directional.wine.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateImporterRequest
+import io.directional.wine.dto.ImporterNamesDto
 import io.directional.wine.dto.ImporterWithWineDto
 import io.directional.wine.service.ImporterService
 import org.junit.jupiter.api.Assertions.*
@@ -117,5 +118,24 @@ class ImporterControllerTest{
             .andExpect(MockMvcResultMatchers.status().isOk)
 
         Mockito.verify(importerService).findImporterNameWithWine(importerName)
+    }
+
+    @Test
+    @DisplayName("수입사 다수 조회 성공 테스트")
+    fun findImporterNames_Success_Test() {
+        val importerName = "importerName"
+
+        Mockito.`when`(importerService.findImporterNames(
+            ArgumentMatchers.anyString(),
+        ))
+            .thenReturn(listOf(Mockito.mock(ImporterNamesDto::class.java)))
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("$BASE_URL/importers/all")
+                .param("importerName",importerName)
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+        Mockito.verify(importerService).findImporterNames(importerName)
     }
 }

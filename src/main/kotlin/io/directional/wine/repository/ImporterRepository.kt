@@ -9,4 +9,5 @@ interface ImporterRepository : JpaRepository<Importer, Long>, ImporterRepository
 
     fun findByIdAndDeletedFalse(importerId: Long): Optional<Importer>
 
+    fun findAllByNameLikeAndDeletedFalseOrderByNameAsc(importerName: String): List<Importer>
 }

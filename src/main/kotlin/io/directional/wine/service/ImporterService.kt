@@ -1,6 +1,7 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateImporterRequest
+import io.directional.wine.dto.ImporterNamesDto
 import io.directional.wine.dto.ImporterWithWineDto
 import io.directional.wine.entity.Importer
 import io.directional.wine.exception.ClientException
@@ -38,6 +39,13 @@ class ImporterService(
 
     fun findImporterNameWithWine(importerName: String): ImporterWithWineDto? {
         return importerRepository.findImporterNameWithWine(importerName)
+    }
+
+    fun findImporterNames(importerName: String): List<ImporterNamesDto> {
+        val importerList: List<Importer> = importerRepository
+                                        .findAllByNameLikeAndDeletedFalseOrderByNameAsc("%$importerName%")
+
+        return ImporterNamesDto.fromImporterNameDto(importerList)
     }
 
     private fun findImporter(importerId: Long): Importer {

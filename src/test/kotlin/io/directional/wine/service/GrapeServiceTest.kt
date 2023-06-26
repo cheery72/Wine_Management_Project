@@ -32,6 +32,15 @@ class GrapeServiceTest{
             grapeTannin = 4,
     )
 
+    private val grape = Grape(
+        nameKorean = "알리아니코0",
+        nameEnglish = "Aglianico0",
+        acidity = 1,
+        body = 2,
+        sweetness = 3,
+        tannin = 5,
+    )
+
     @BeforeEach
     fun setup() {
         grapeService = GrapeService(grapeRepository)
@@ -59,14 +68,6 @@ class GrapeServiceTest{
     fun updateGrape_Success_Test() {
         // given
         val grapeId = 1L
-        val grape = Grape(
-            nameKorean = "알리아니코0",
-            nameEnglish = "Aglianico0",
-            acidity = 1,
-            body = 2,
-            sweetness = 3,
-            tannin = 5,
-        )
 
         // when
         Mockito.`when`(grapeRepository.findByIdAndDeletedFalse(grapeId)).thenReturn(Optional.of(grape))
@@ -80,5 +81,22 @@ class GrapeServiceTest{
         assertEquals(grape.body,createGrapeRequest.grapeBody)
         assertEquals(grape.sweetness,createGrapeRequest.grapeSweetness)
         assertEquals(grape.tannin,createGrapeRequest.grapeTannin)
+    }
+
+    @Test
+    @DisplayName("포도 품종 삭제 성공 테스트")
+    fun deleteGrape_Success_Test() {
+        // given
+        val grapeId = 1L
+
+        // when
+        Mockito.`when`(grapeRepository.findByIdAndDeletedFalse(grapeId)).thenReturn(Optional.of(grape))
+
+        grapeService.deleteGrape(grapeId)
+
+        // then
+        Mockito.verify(grapeRepository, Mockito.times(1)).findByIdAndDeletedFalse(grapeId)
+        assertTrue(grape.deleted)
+
     }
 }

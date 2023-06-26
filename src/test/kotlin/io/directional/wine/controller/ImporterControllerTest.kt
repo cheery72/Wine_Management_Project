@@ -63,4 +63,24 @@ class ImporterControllerTest{
 
         Mockito.verify(importerService).createImporter(createImporterRequest)
     }
+
+    @Test
+    @DisplayName("수입사 수정 성공 테스트")
+    fun updateImporter_Success_Test() {
+        val importerId = 1L
+
+        val createImporterRequest = CreateImporterRequest(
+            importerName = "importerName"
+        )
+
+        Mockito.doNothing().`when`(importerService).updateImporter(importerId,createImporterRequest)
+        mockMvc.perform(
+            MockMvcRequestBuilders.put("$BASE_URL/{importerId}/importers", importerId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(createImporterRequest.toJsonString())
+        )
+            .andExpect(MockMvcResultMatchers.status().isNoContent)
+
+        Mockito.verify(importerService).updateImporter(importerId,createImporterRequest)
+    }
 }

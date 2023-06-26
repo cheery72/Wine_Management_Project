@@ -129,7 +129,7 @@ class GrapeServiceTest{
 
         // then
         Mockito.verify(grapeRepository, Mockito.times(1)).findGrapeDetailsWithWineName(grapeName,grapeRegion)
-        assertEquals(grapeDetailsWithWineNameDto.grapeNameEnglish,result.grapeNameEnglish)
+        assertEquals(grapeDetailsWithWineNameDto.grapeNameEnglish,result!!.grapeNameEnglish)
         assertEquals(grapeDetailsWithWineNameDto.grapeNameKorean,result.grapeNameKorean)
         assertEquals(grapeDetailsWithWineNameDto.grapeAcidity,result.grapeAcidity)
         assertEquals(grapeDetailsWithWineNameDto.grapeBody,result.grapeBody)

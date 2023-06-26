@@ -1,6 +1,8 @@
 package io.directional.wine.repository.querydsl
 
 import com.querydsl.core.BooleanBuilder
+import com.querydsl.core.types.dsl.Expressions
+import com.querydsl.core.types.dsl.StringExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.directional.wine.dto.QWineDetailsDto
 import io.directional.wine.dto.QWineWithTopRegionDto
@@ -33,6 +35,7 @@ class WineRepositoryImpl(
         wineRegion: String
     ): WineDetailsDto? {
         val booleanBuilder = getBooleanBuilder(wineGrade, wineStyle)
+        val wineNameExpressionLike = getExpressionLike(wineName)
 
         return jpaQueryFactory
             .select(
@@ -68,7 +71,7 @@ class WineRepositoryImpl(
             .join(qWineGrape.grape,qGrape)
             .where(qWine.deleted.isFalse.and(qImporter.deleted.isFalse.and(qGrape.deleted.isFalse
                 .and(qRegion.deleted.isFalse.and(qWinery.deleted.isFalse.and(
-                qWine.nameEnglish.eq(wineName).or(qWine.nameKorean.eq(wineName)).and(
+                qWine.nameEnglish.like(wineNameExpressionLike).or(qWine.nameKorean.like(wineNameExpressionLike)).and(
                 qWine.type.eq(wineType)
                     .and(qWine.alcohol.between(alcoholMin, alcoholMax))
                     .and(qWine.price.between(priceMin, priceMax))
@@ -113,8 +116,9 @@ class WineRepositoryImpl(
         wineStyle: String?,
         wineGrade: String?,
         wineRegion: String
-    ): List<WineWithTopRegionDto?> {
+    ): List<WineWithTopRegionDto> {
         val booleanBuilder = getBooleanBuilder(wineGrade, wineStyle)
+        val wineNameExpressionLike = getExpressionLike(wineName)
 
         return jpaQueryFactory
             .select(
@@ -125,10 +129,10 @@ class WineRepositoryImpl(
                     qRegion.id,
                 )
             ).from(qWine)
-            .leftJoin(qWine.winery, qWinery)
+            .join(qWinery.region, qRegion)
             .where(qWine.deleted.isFalse.and(qRegion.deleted.isFalse.and(
-                qWine.nameEnglish.eq(wineName).or(qWine.nameKorean.eq(wineName)).and(
-                qWine.type.eq(wineType)
+                qWine.nameEnglish.like(wineNameExpressionLike).or(qWine.nameKorean.like(wineNameExpressionLike))
+                .and(qWine.type.eq(wineType)
                     .and(qWine.alcohol.between(alcoholMin, alcoholMax))
                     .and(qWine.price.between(priceMin, priceMax))
                     .and(qWine.style.eq(wineStyle))
@@ -142,6 +146,10 @@ class WineRepositoryImpl(
                 qWine.score.asc(),qWine.price.asc())
             .fetch()
 
+    }
+
+    private fun getExpressionLike(search: String): StringExpression? {
+        return Expressions.asString("%$search%")
     }
 
     private fun getBooleanBuilder(wineGrade: String?, wineStyle: String?): BooleanBuilder{

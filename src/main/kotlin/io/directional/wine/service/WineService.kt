@@ -64,7 +64,7 @@ class WineService(
         priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String)
     : List<WineWithTopRegionResponse> {
 
-        val wineWithTopRegionDtoList: List<WineWithTopRegionDto?> = wineRepository.findWineWithTopRegion(
+        val wineWithTopRegionDtoList: List<WineWithTopRegionDto> = wineRepository.findWineWithTopRegion(
             wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion)
 
@@ -73,12 +73,12 @@ class WineService(
         return WineWithTopRegionResponse.fromWineWithTopRegionResponse(wineWithTopRegionDtoList, topRegions)
     }
 
-    private fun findTopRegions(wineWithTopRegionDtoList: List<WineWithTopRegionDto?>): HashMap<Long,List<String>>{
+    private fun findTopRegions(wineWithTopRegionDtoList: List<WineWithTopRegionDto>): HashMap<Long,List<String>>{
         var topRegionName: MutableList<String> = mutableListOf()
         val regionMap: HashMap<Long,List<String>> = HashMap()
 
         for (wineWithTopRegionDto in wineWithTopRegionDtoList){
-            if(wineWithTopRegionDto != null && !regionMap.containsKey(wineWithTopRegionDto.regionId)){
+            if(!regionMap.containsKey(wineWithTopRegionDto.regionId)){
                 val findRegionList = findRegionList(wineWithTopRegionDto.regionId)
                 val regionListSize = findRegionList.size-1
 

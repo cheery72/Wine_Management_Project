@@ -1,6 +1,7 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateImporterRequest
+import io.directional.wine.dto.ImporterWithWineDto
 import io.directional.wine.entity.Importer
 import io.directional.wine.repository.ImporterRepository
 import org.junit.jupiter.api.Assertions.*
@@ -80,5 +81,28 @@ class ImporterServiceTest{
         // then
         Mockito.verify(importerRepository, Mockito.times(1)).findByIdAndDeletedFalse(importerId)
         assertTrue(importer.deleted)
+    }
+
+    @Test
+    @DisplayName("수입 단일 조회 성공 테스트")
+    fun findImporterNameWithWine_Success_Test() {
+        // given
+        val importerName = "importerName"
+        val importerWithWineDto = ImporterWithWineDto(
+            importerName = "importer",
+            importerWineNameEnglish = "importerEnglish",
+            importerWineNameKorean = "importerKorean"
+        )
+
+        // when
+        Mockito.`when`(importerRepository.findImporterNameWithWine(importerName)).thenReturn(importerWithWineDto)
+
+        val result = importerService.findImporterNameWithWine(importerName)
+
+        // then
+        Mockito.verify(importerRepository, Mockito.times(1)).findImporterNameWithWine(importerName)
+        assertEquals(importerWithWineDto.importerName,result?.importerName)
+        assertEquals(importerWithWineDto.importerWineNameEnglish,result?.importerWineNameEnglish)
+        assertEquals(importerWithWineDto.importerWineNameKorean,result?.importerWineNameKorean)
     }
 }

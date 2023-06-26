@@ -16,7 +16,7 @@ class Importer(
     var deleted: Boolean = false,
 
     @OneToMany(mappedBy = "importer")
-    val wineGrape: List<Wine> = emptyList(),
+    val wines: List<Wine> = emptyList(),
 
     ) : BaseTime() {
         companion object {

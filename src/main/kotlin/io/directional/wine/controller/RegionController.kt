@@ -1,6 +1,7 @@
 package io.directional.wine.controller
 
 import io.directional.wine.dto.CreateRegionRequest
+import io.directional.wine.dto.RegionDetailsResponse
 import io.directional.wine.service.RegionService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -50,4 +51,13 @@ class RegionController(
             .build()
     }
 
+    @GetMapping("/regions")
+    fun findRegionDetails(
+        @RequestParam regionName: String,
+        @RequestParam parentRegion: String,
+    ): ResponseEntity<RegionDetailsResponse> {
+
+        return ResponseEntity
+            .ok(regionService.findRegionDetails(regionName, parentRegion))
+    }
 }

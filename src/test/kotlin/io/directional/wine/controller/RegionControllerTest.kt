@@ -2,11 +2,13 @@ package io.directional.wine.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.directional.wine.dto.CreateRegionRequest
+import io.directional.wine.dto.RegionDetailsResponse
 import io.directional.wine.service.RegionService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers
 import org.mockito.ArgumentMatchers.*
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
@@ -102,6 +104,28 @@ class RegionControllerTest{
             .andExpect(MockMvcResultMatchers.status().isNoContent)
 
         Mockito.verify(regionService).deleteRegion(regionId)
+    }
+
+    @Test
+    @DisplayName("지역 단일 조회 성공 테스트")
+    fun findRegionDetails_Success_Test() {
+        val regionName = "regionName"
+        val parentRegion = "parentRegion"
+
+        Mockito.`when`(regionService.findRegionDetails(
+            ArgumentMatchers.anyString(),
+            ArgumentMatchers.anyString(),
+        ))
+            .thenReturn(Mockito.mock(RegionDetailsResponse::class.java))
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.get("$BASE_URL/regions")
+                .param("regionName",regionName)
+                .param("parentRegion",parentRegion)
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+        Mockito.verify(regionService).findRegionDetails(regionName,parentRegion)
     }
 
 }

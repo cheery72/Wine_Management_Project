@@ -24,6 +24,12 @@ class Region(
     @OneToMany(mappedBy = "parent")
     val children: List<Region> = emptyList(),
 
+    @OneToMany(mappedBy = "region")
+    val winery: List<Winery> = emptyList(),
+
+    @OneToMany(mappedBy = "region")
+    val grapeShare: List<GrapeShare> = emptyList(),
+
 ) : BaseTime() {
     companion object {
         fun toEntity(createRegionRequest: CreateRegionRequest, region: Region?): Region{

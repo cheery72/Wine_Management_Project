@@ -1,6 +1,7 @@
 package io.directional.wine.service
 
 import io.directional.wine.dto.CreateRegionRequest
+import io.directional.wine.dto.RegionDetailsDto
 import io.directional.wine.entity.Region
 import io.directional.wine.repository.RegionRepository
 import org.junit.jupiter.api.Assertions.*
@@ -92,5 +93,40 @@ class RegionServiceTest {
         // then
         Mockito.verify(regionRepository, Mockito.times(1)).findByIdAndDeletedFalse(regionId)
         assertTrue(region.deleted)
+    }
+
+    @Test
+    @DisplayName("지역 단일 조회 성공 테스트")
+    fun findRegionDetails_Success_Test() {
+        // given
+        val regionName = "regionName"
+        val parentRegion = "parentRegion"
+        val regionDetails = RegionDetailsDto(
+            regionNameEnglish = "regionNameEnglish",
+            regionNameKorean = "regionNameKorean",
+            regionGrapeNameKorean = "regionGrapeNameKorean",
+            regionGrapeNameEnglish = "regionGrapeNameEnglish",
+            regionWineNameEnglish = "regionWineNameEnglish",
+            regionWineNameKorean = "regionWineNameKorean",
+            regionWineryNameEnglish = "regionWineryNameEnglish",
+            regionWineryNameKorean = "regionWineryNameKorean",
+            regionId = 1L
+        )
+
+        // when
+        Mockito.`when`(regionRepository.findRegionDetails(regionName,parentRegion)).thenReturn(regionDetails)
+
+        val result = regionRepository.findRegionDetails(regionName,parentRegion)
+
+        // then
+        Mockito.verify(regionRepository, Mockito.times(1)).findRegionDetails(regionName,parentRegion)
+        assertEquals(regionDetails.regionNameEnglish,result!!.regionNameEnglish)
+        assertEquals(regionDetails.regionNameKorean,result.regionNameKorean)
+        assertEquals(regionDetails.regionGrapeNameKorean,result.regionGrapeNameKorean)
+        assertEquals(regionDetails.regionGrapeNameEnglish,result.regionGrapeNameEnglish)
+        assertEquals(regionDetails.regionWineNameEnglish,result.regionWineNameEnglish)
+        assertEquals(regionDetails.regionWineNameKorean,result.regionWineNameKorean)
+        assertEquals(regionDetails.regionWineryNameEnglish,result.regionWineryNameEnglish)
+        assertEquals(regionDetails.regionWineryNameKorean,result.regionWineryNameKorean)
     }
 }

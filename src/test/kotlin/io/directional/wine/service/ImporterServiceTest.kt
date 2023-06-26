@@ -1,7 +1,7 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.CreateImporterRequest
-import io.directional.wine.dto.ImporterWithWineDto
+import io.directional.wine.payload.request.CreateImporterRequest
+import io.directional.wine.payload.response.ImporterWithWineResponse
 import io.directional.wine.entity.Importer
 import io.directional.wine.repository.ImporterRepository
 import org.junit.jupiter.api.Assertions.*
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.*
 
 @ExtendWith(MockitoExtension::class, SpringExtension::class)
-class ImporterServiceTest{
+class ImporterServiceTest {
 
     @Mock
     private lateinit var importerRepository: ImporterRepository
@@ -47,8 +47,8 @@ class ImporterServiceTest{
         val importerCaptor: ArgumentCaptor<Importer> = ArgumentCaptor.forClass(Importer::class.java)
         Mockito.verify(importerRepository).save(importerCaptor.capture())
         val savedImporter: Importer = importerCaptor.value
-        assertEquals(savedImporter.name,createImporterRequest.importerName)
-        assertEquals(savedImporter.deleted,false)
+        assertEquals(savedImporter.name, createImporterRequest.importerName)
+        assertEquals(savedImporter.deleted, false)
         Mockito.verify(importerRepository).save(Mockito.any(Importer::class.java))
     }
 
@@ -61,10 +61,10 @@ class ImporterServiceTest{
         // when
         Mockito.`when`(importerRepository.findByIdAndDeletedFalse(importerId)).thenReturn(Optional.of(importer))
 
-        importerService.updateImporter(importerId,createImporterRequest)
+        importerService.updateImporter(importerId, createImporterRequest)
 
         // then
-        assertEquals(importer.name,createImporterRequest.importerName)
+        assertEquals(importer.name, createImporterRequest.importerName)
     }
 
     @Test
@@ -88,21 +88,21 @@ class ImporterServiceTest{
     fun findImporterNameWithWine_Success_Test() {
         // given
         val importerName = "importerName"
-        val importerWithWineDto = ImporterWithWineDto(
+        val importerWithWineResponse = ImporterWithWineResponse(
             importerName = "importer",
             importerWineNameEnglish = "importerEnglish",
             importerWineNameKorean = "importerKorean"
         )
 
         // when
-        Mockito.`when`(importerRepository.findImporterNameWithWine(importerName)).thenReturn(importerWithWineDto)
+        Mockito.`when`(importerRepository.findImporterNameWithWine(importerName)).thenReturn(importerWithWineResponse)
 
         val result = importerService.findImporterNameWithWine(importerName)
 
         // then
         Mockito.verify(importerRepository, Mockito.times(1)).findImporterNameWithWine(importerName)
-        assertEquals(importerWithWineDto.importerName,result?.importerName)
-        assertEquals(importerWithWineDto.importerWineNameEnglish,result?.importerWineNameEnglish)
-        assertEquals(importerWithWineDto.importerWineNameKorean,result?.importerWineNameKorean)
+        assertEquals(importerWithWineResponse.importerName, result?.importerName)
+        assertEquals(importerWithWineResponse.importerWineNameEnglish, result?.importerWineNameEnglish)
+        assertEquals(importerWithWineResponse.importerWineNameKorean, result?.importerWineNameKorean)
     }
 }

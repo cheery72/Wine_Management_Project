@@ -1,9 +1,9 @@
 package io.directional.wine.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.directional.wine.dto.CreateImporterRequest
-import io.directional.wine.dto.ImporterNamesDto
-import io.directional.wine.dto.ImporterWithWineDto
+import io.directional.wine.payload.request.CreateImporterRequest
+import io.directional.wine.payload.response.ImporterNamesResponse
+import io.directional.wine.payload.response.ImporterWithWineResponse
 import io.directional.wine.service.ImporterService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -25,7 +25,7 @@ import org.springframework.web.context.WebApplicationContext
 import org.springframework.web.filter.CharacterEncodingFilter
 
 @WebMvcTest(ImporterController::class)
-class ImporterControllerTest{
+class ImporterControllerTest {
 
     @MockBean
     private lateinit var importerService: ImporterService
@@ -42,8 +42,7 @@ class ImporterControllerTest{
     fun setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx!!)
             .addFilters<DefaultMockMvcBuilder>(CharacterEncodingFilter("UTF-8", true))
-            .alwaysDo<DefaultMockMvcBuilder>(MockMvcResultHandlers.print())
-            .build()
+            .alwaysDo<DefaultMockMvcBuilder>(MockMvcResultHandlers.print()).build()
     }
 
     private fun Any.toJsonString(): String = ObjectMapper().writeValueAsString(this)
@@ -58,11 +57,9 @@ class ImporterControllerTest{
         Mockito.doNothing().`when`(importerService).createImporter(Mockito.mock(CreateImporterRequest::class.java))
 
         mockMvc.perform(
-            MockMvcRequestBuilders.post("$BASE_URL/importers")
-                .contentType(MediaType.APPLICATION_JSON)
+            MockMvcRequestBuilders.post("$BASE_URL/importers").contentType(MediaType.APPLICATION_JSON)
                 .content(createImporterRequest.toJsonString())
-        )
-            .andExpect(MockMvcResultMatchers.status().isCreated)
+        ).andExpect(MockMvcResultMatchers.status().isCreated)
 
         Mockito.verify(importerService).createImporter(createImporterRequest)
     }
@@ -76,15 +73,13 @@ class ImporterControllerTest{
             importerName = "importerName"
         )
 
-        Mockito.doNothing().`when`(importerService).updateImporter(importerId,createImporterRequest)
+        Mockito.doNothing().`when`(importerService).updateImporter(importerId, createImporterRequest)
         mockMvc.perform(
             MockMvcRequestBuilders.put("$BASE_URL/{importerId}/importers", importerId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(createImporterRequest.toJsonString())
-        )
-            .andExpect(MockMvcResultMatchers.status().isNoContent)
+                .contentType(MediaType.APPLICATION_JSON).content(createImporterRequest.toJsonString())
+        ).andExpect(MockMvcResultMatchers.status().isNoContent)
 
-        Mockito.verify(importerService).updateImporter(importerId,createImporterRequest)
+        Mockito.verify(importerService).updateImporter(importerId, createImporterRequest)
     }
 
     @Test
@@ -95,8 +90,7 @@ class ImporterControllerTest{
         Mockito.doNothing().`when`(importerService).deleteImporter(importerId)
         mockMvc.perform(
             MockMvcRequestBuilders.delete("$BASE_URL/{importerId}/importers", importerId)
-        )
-            .andExpect(MockMvcResultMatchers.status().isNoContent)
+        ).andExpect(MockMvcResultMatchers.status().isNoContent)
 
         Mockito.verify(importerService).deleteImporter(importerId)
     }
@@ -106,16 +100,15 @@ class ImporterControllerTest{
     fun findImporterNameWithWine_Success_Test() {
         val importerName = "importerName"
 
-        Mockito.`when`(importerService.findImporterNameWithWine(
-            ArgumentMatchers.anyString(),
-        ))
-            .thenReturn(Mockito.mock(ImporterWithWineDto::class.java))
+        Mockito.`when`(
+            importerService.findImporterNameWithWine(
+                ArgumentMatchers.anyString(),
+            )
+        ).thenReturn(Mockito.mock(ImporterWithWineResponse::class.java))
 
         mockMvc.perform(
-            MockMvcRequestBuilders.get("$BASE_URL/importers")
-                .param("importerName",importerName)
-        )
-            .andExpect(MockMvcResultMatchers.status().isOk)
+            MockMvcRequestBuilders.get("$BASE_URL/importers").param("importerName", importerName)
+        ).andExpect(MockMvcResultMatchers.status().isOk)
 
         Mockito.verify(importerService).findImporterNameWithWine(importerName)
     }
@@ -125,16 +118,15 @@ class ImporterControllerTest{
     fun findImporterNames_Success_Test() {
         val importerName = "importerName"
 
-        Mockito.`when`(importerService.findImporterNames(
-            ArgumentMatchers.anyString(),
-        ))
-            .thenReturn(listOf(Mockito.mock(ImporterNamesDto::class.java)))
+        Mockito.`when`(
+            importerService.findImporterNames(
+                ArgumentMatchers.anyString(),
+            )
+        ).thenReturn(listOf(Mockito.mock(ImporterNamesResponse::class.java)))
 
         mockMvc.perform(
-            MockMvcRequestBuilders.get("$BASE_URL/importers/all")
-                .param("importerName",importerName)
-        )
-            .andExpect(MockMvcResultMatchers.status().isOk)
+            MockMvcRequestBuilders.get("$BASE_URL/importers/all").param("importerName", importerName)
+        ).andExpect(MockMvcResultMatchers.status().isOk)
 
         Mockito.verify(importerService).findImporterNames(importerName)
     }

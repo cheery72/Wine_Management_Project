@@ -1,12 +1,17 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.*
+import io.directional.wine.payload.request.CreateWineRequest
+import io.directional.wine.payload.request.UpdateWineRequest
+import io.directional.wine.payload.response.WineDetailsResponse
+import io.directional.wine.payload.response.WineWithTopRegionResponse
 import io.directional.wine.entity.Importer
 import io.directional.wine.entity.Region
 import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
+import io.directional.wine.payload.dto.WineDetailsDto
+import io.directional.wine.payload.dto.WineWithTopRegionDto
 import io.directional.wine.repository.ImporterRepository
 import io.directional.wine.repository.RegionRepository
 import io.directional.wine.repository.WineRepository

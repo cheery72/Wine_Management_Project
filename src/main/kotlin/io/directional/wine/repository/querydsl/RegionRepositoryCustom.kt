@@ -1,7 +1,7 @@
 package io.directional.wine.repository.querydsl
 
-import io.directional.wine.dto.RegionDetailsDto
-import io.directional.wine.dto.RegionNamesDto
+import io.directional.wine.payload.dto.RegionDetailsDto
+import io.directional.wine.payload.response.RegionNamesResponse
 import io.directional.wine.entity.Region
 
 interface RegionRepositoryCustom {
@@ -9,5 +9,5 @@ interface RegionRepositoryCustom {
 
     fun findRegionDetails(regionName: String, parentRegion: String): RegionDetailsDto?
 
-    fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesDto>
+    fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesResponse>
 }

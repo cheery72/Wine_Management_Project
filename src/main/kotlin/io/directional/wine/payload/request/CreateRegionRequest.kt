@@ -1,4 +1,4 @@
-package io.directional.wine.dto
+package io.directional.wine.payload.request
 
 data class CreateRegionRequest(
     val regionNameKorean: String,

@@ -1,8 +1,8 @@
 package io.directional.wine.controller
 
-import io.directional.wine.dto.CreateImporterRequest
-import io.directional.wine.dto.ImporterNamesDto
-import io.directional.wine.dto.ImporterWithWineDto
+import io.directional.wine.payload.request.CreateImporterRequest
+import io.directional.wine.payload.response.ImporterNamesResponse
+import io.directional.wine.payload.response.ImporterWithWineResponse
 import io.directional.wine.service.ImporterService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -32,7 +32,7 @@ class ImporterController(
         @RequestBody createImporterRequest: CreateImporterRequest
     ): ResponseEntity<Unit> {
 
-        importerService.updateImporter(importerId,createImporterRequest)
+        importerService.updateImporter(importerId, createImporterRequest)
 
         return ResponseEntity
             .status(HttpStatus.NO_CONTENT)
@@ -54,18 +54,18 @@ class ImporterController(
     @GetMapping("/importers")
     fun findImporterNameWithWine(
         @RequestParam importerName: String,
-    ): ResponseEntity<ImporterWithWineDto> {
+    ): ResponseEntity<ImporterWithWineResponse> {
 
         return ResponseEntity
-                .ok(importerService.findImporterNameWithWine(importerName))
+            .ok(importerService.findImporterNameWithWine(importerName))
     }
 
     @GetMapping("/importers/all")
     fun findImporterNames(
         @RequestParam importerName: String
-    ): ResponseEntity<List<ImporterNamesDto>> {
+    ): ResponseEntity<List<ImporterNamesResponse>> {
 
         return ResponseEntity
-                .ok(importerService.findImporterNames(importerName))
+            .ok(importerService.findImporterNames(importerName))
     }
 }

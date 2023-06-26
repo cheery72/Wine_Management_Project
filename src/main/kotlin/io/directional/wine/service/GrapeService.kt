@@ -1,11 +1,11 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.CreateGrapeRequest
-import io.directional.wine.dto.GrapeDetailsWithWineNameDto
-import io.directional.wine.dto.GrapeNamesWithRegions
+import io.directional.wine.payload.response.GrapeDetailsWithWineNameResponse
+import io.directional.wine.payload.request.CreateGrapeRequest
 import io.directional.wine.entity.Grape
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
+import io.directional.wine.payload.response.GrapeNamesWithRegionsResponse
 import io.directional.wine.repository.GrapeRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -38,11 +38,11 @@ class GrapeService(
         grape.setDeleted()
     }
 
-    fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameDto? {
+    fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameResponse? {
         return grapeRepository.findGrapeDetailsWithWineName(gradeName, gradeRegion)
     }
 
-    fun findGrapeNamesWithRegions(grapeName: String, gradeRegion: String): List<GrapeNamesWithRegions> {
+    fun findGrapeNamesWithRegions(grapeName: String, gradeRegion: String): List<GrapeNamesWithRegionsResponse> {
         return grapeRepository.findGrapeNamesWithRegions(grapeName, gradeRegion)
     }
 

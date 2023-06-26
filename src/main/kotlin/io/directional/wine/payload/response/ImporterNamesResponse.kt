@@ -1,16 +1,16 @@
-package io.directional.wine.dto
+package io.directional.wine.payload.response
 
 import io.directional.wine.entity.Importer
 
 
-data class ImporterNamesDto(
+data class ImporterNamesResponse(
     val importerName: String
 ) {
     companion object {
-        fun fromImporterNameDto(importerList: List<Importer>): List<ImporterNamesDto>{
+        fun fromImporterNameDto(importerList: List<Importer>): List<ImporterNamesResponse> {
             return importerList.stream()
                 .map { importer ->
-                    ImporterNamesDto(
+                    ImporterNamesResponse(
                         importerName = importer.name
                     )
                 }

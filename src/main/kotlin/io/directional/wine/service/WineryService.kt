@@ -1,9 +1,9 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.CreateWineryRequest
-import io.directional.wine.dto.UpdateWineryRequest
-import io.directional.wine.dto.WineryWithRegionDto
-import io.directional.wine.dto.WineryWithRegionWithWineNameDto
+import io.directional.wine.payload.request.CreateWineryRequest
+import io.directional.wine.payload.request.UpdateWineryRequest
+import io.directional.wine.payload.response.WineryWithRegionResponse
+import io.directional.wine.payload.response.WineryWithRegionWithWineNameResponse
 import io.directional.wine.entity.Region
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
@@ -44,11 +44,11 @@ class WineryService(
         winery.setDeleted()
     }
 
-    fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameDto? {
+    fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameResponse? {
         return wineryRepository.findWineryWithRegion(wineryName, wineryRegion)
     }
 
-    fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionDto> {
+    fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionResponse> {
         return wineryRepository.findWineryWithRegionAll(wineryName, wineryRegion)
     }
 

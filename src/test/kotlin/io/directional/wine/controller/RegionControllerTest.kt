@@ -1,9 +1,9 @@
 package io.directional.wine.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.directional.wine.dto.CreateRegionRequest
-import io.directional.wine.dto.RegionDetailsResponse
-import io.directional.wine.dto.RegionNamesDto
+import io.directional.wine.payload.request.CreateRegionRequest
+import io.directional.wine.payload.response.RegionDetailsResponse
+import io.directional.wine.payload.response.RegionNamesResponse
 import io.directional.wine.service.RegionService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -26,7 +26,7 @@ import org.springframework.web.context.WebApplicationContext
 import org.springframework.web.filter.CharacterEncodingFilter
 
 @WebMvcTest(RegionController::class)
-class RegionControllerTest{
+class RegionControllerTest {
 
     @MockBean
     private lateinit var regionService: RegionService
@@ -82,7 +82,7 @@ class RegionControllerTest{
             regionParentId = 1L
         )
 
-        Mockito.doNothing().`when`(regionService).updateRegion(regionId,Mockito.mock(CreateRegionRequest::class.java))
+        Mockito.doNothing().`when`(regionService).updateRegion(regionId, Mockito.mock(CreateRegionRequest::class.java))
         mockMvc.perform(
             MockMvcRequestBuilders.put("$BASE_URL/{regionId}/regions", regionId)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -90,7 +90,7 @@ class RegionControllerTest{
         )
             .andExpect(MockMvcResultMatchers.status().isNoContent)
 
-        Mockito.verify(regionService).updateRegion(regionId,createRegionRequest)
+        Mockito.verify(regionService).updateRegion(regionId, createRegionRequest)
     }
 
     @Test
@@ -113,20 +113,22 @@ class RegionControllerTest{
         val regionName = "regionName"
         val parentRegion = "parentRegion"
 
-        Mockito.`when`(regionService.findRegionDetails(
-            ArgumentMatchers.anyString(),
-            ArgumentMatchers.anyString(),
-        ))
+        Mockito.`when`(
+            regionService.findRegionDetails(
+                ArgumentMatchers.anyString(),
+                ArgumentMatchers.anyString(),
+            )
+        )
             .thenReturn(Mockito.mock(RegionDetailsResponse::class.java))
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("$BASE_URL/regions")
-                .param("regionName",regionName)
-                .param("parentRegion",parentRegion)
+                .param("regionName", regionName)
+                .param("parentRegion", parentRegion)
         )
             .andExpect(MockMvcResultMatchers.status().isOk)
 
-        Mockito.verify(regionService).findRegionDetails(regionName,parentRegion)
+        Mockito.verify(regionService).findRegionDetails(regionName, parentRegion)
     }
 
     @Test
@@ -135,20 +137,22 @@ class RegionControllerTest{
         val regionName = "regionName"
         val parentRegion = "parentRegion"
 
-        Mockito.`when`(regionService.findRegionsName(
-            ArgumentMatchers.anyString(),
-            ArgumentMatchers.anyString(),
-            ))
-            .thenReturn(listOf(Mockito.mock(RegionNamesDto::class.java)))
+        Mockito.`when`(
+            regionService.findRegionsName(
+                ArgumentMatchers.anyString(),
+                ArgumentMatchers.anyString(),
+            )
+        )
+            .thenReturn(listOf(Mockito.mock(RegionNamesResponse::class.java)))
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("$BASE_URL/regions/all")
-                .param("regionName",regionName)
-                .param("parentRegion",parentRegion)
+                .param("regionName", regionName)
+                .param("parentRegion", parentRegion)
         )
             .andExpect(MockMvcResultMatchers.status().isOk)
 
-        Mockito.verify(regionService).findRegionsName(regionName,parentRegion)
+        Mockito.verify(regionService).findRegionsName(regionName, parentRegion)
     }
 
 }

@@ -1,9 +1,9 @@
 package io.directional.wine.controller
 
-import io.directional.wine.dto.CreateWineryRequest
-import io.directional.wine.dto.UpdateWineryRequest
-import io.directional.wine.dto.WineryWithRegionDto
-import io.directional.wine.dto.WineryWithRegionWithWineNameDto
+import io.directional.wine.payload.request.CreateWineryRequest
+import io.directional.wine.payload.request.UpdateWineryRequest
+import io.directional.wine.payload.response.WineryWithRegionResponse
+import io.directional.wine.payload.response.WineryWithRegionWithWineNameResponse
 import io.directional.wine.service.WineryService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -23,8 +23,8 @@ class WineryController(
         wineryService.createWinery(regionId, createWineryRequest)
 
         return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .build()
+            .status(HttpStatus.CREATED)
+            .build()
     }
 
     @PutMapping("/{wineryId}/winerys")
@@ -35,8 +35,8 @@ class WineryController(
         wineryService.updateWinery(wineryId, updateWineryRequest)
 
         return ResponseEntity
-                .status(HttpStatus.NO_CONTENT)
-                .build()
+            .status(HttpStatus.NO_CONTENT)
+            .build()
     }
 
     @DeleteMapping("/{wineryId}/winerys")
@@ -46,27 +46,27 @@ class WineryController(
         wineryService.deleteWinery(wineryId)
 
         return ResponseEntity
-                .status(HttpStatus.NO_CONTENT)
-                .build()
+            .status(HttpStatus.NO_CONTENT)
+            .build()
     }
 
     @GetMapping("/winerys")
     fun findWineryWithRegion(
         @RequestParam wineryName: String,
         @RequestParam wineryRegion: String
-    ): ResponseEntity<WineryWithRegionWithWineNameDto> {
+    ): ResponseEntity<WineryWithRegionWithWineNameResponse> {
 
         return ResponseEntity
-                .ok(wineryService.findWineryWithRegion(wineryName,wineryRegion))
+            .ok(wineryService.findWineryWithRegion(wineryName, wineryRegion))
     }
 
     @GetMapping("/winerys/all")
     fun findWineryWithRegionAll(
         @RequestParam wineryName: String,
         @RequestParam wineryRegion: String
-    ): ResponseEntity<List<WineryWithRegionDto>> {
+    ): ResponseEntity<List<WineryWithRegionResponse>> {
 
         return ResponseEntity
-            .ok(wineryService.findWineryWithRegionAll(wineryName,wineryRegion))
+            .ok(wineryService.findWineryWithRegionAll(wineryName, wineryRegion))
     }
 }

@@ -3,11 +3,12 @@ package io.directional.wine.repository.querydsl
 import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.core.types.dsl.StringExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
-import io.directional.wine.dto.GrapeDetailsWithWineNameDto
-import io.directional.wine.dto.GrapeNamesWithRegions
-import io.directional.wine.dto.QGrapeDetailsWithWineNameDto
-import io.directional.wine.dto.QGrapeNamesWithRegions
+import io.directional.wine.payload.*
+import io.directional.wine.payload.response.GrapeDetailsWithWineNameResponse
+import io.directional.wine.payload.response.GrapeNamesWithRegionsResponse
 import io.directional.wine.entity.*
+import io.directional.wine.payload.response.QGrapeDetailsWithWineNameResponse
+import io.directional.wine.payload.response.QGrapeNamesWithRegionsResponse
 
 class GrapeRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory,
@@ -18,11 +19,11 @@ class GrapeRepositoryImpl(
     private val qRegion: QRegion = QRegion.region
 ) : GrapeRepositoryCustom {
 
-    override fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameDto? {
+    override fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameResponse? {
 
         return jpaQueryFactory
             .select(
-                QGrapeDetailsWithWineNameDto
+                QGrapeDetailsWithWineNameResponse
                     (
                     qGrape.nameKorean,
                     qGrape.nameEnglish,
@@ -52,14 +53,14 @@ class GrapeRepositoryImpl(
 
     }
 
-    override fun findGrapeNamesWithRegions(gradeName: String, gradeRegion: String): List<GrapeNamesWithRegions> {
+    override fun findGrapeNamesWithRegions(gradeName: String, gradeRegion: String): List<GrapeNamesWithRegionsResponse> {
 
         val gradeNameExpression = getExpressionLike(gradeName)
         val gradeRegionExpression = getExpressionLike(gradeRegion)
 
         return jpaQueryFactory
             .select(
-                QGrapeNamesWithRegions
+                QGrapeNamesWithRegionsResponse
                     (
                     qGrape.nameEnglish,
                     qGrape.nameKorean,

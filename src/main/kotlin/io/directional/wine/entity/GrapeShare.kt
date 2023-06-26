@@ -20,4 +20,4 @@ class GrapeShare(
     @JoinColumn(name = "region_id")
     val region: Region,
 
-)
+    )

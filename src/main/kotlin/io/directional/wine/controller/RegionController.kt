@@ -1,8 +1,8 @@
 package io.directional.wine.controller
 
-import io.directional.wine.dto.CreateRegionRequest
-import io.directional.wine.dto.RegionDetailsResponse
-import io.directional.wine.dto.RegionNamesDto
+import io.directional.wine.payload.request.CreateRegionRequest
+import io.directional.wine.payload.response.RegionDetailsResponse
+import io.directional.wine.payload.response.RegionNamesResponse
 import io.directional.wine.service.RegionService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -33,7 +33,7 @@ class RegionController(
         @RequestBody createRegionRequest: CreateRegionRequest
     ): ResponseEntity<Unit> {
 
-        regionService.updateRegion(regionId,createRegionRequest)
+        regionService.updateRegion(regionId, createRegionRequest)
 
         return ResponseEntity
             .status(HttpStatus.NO_CONTENT)
@@ -66,9 +66,9 @@ class RegionController(
     fun findRegionsName(
         @RequestParam regionName: String,
         @RequestParam parentRegion: String,
-    ): ResponseEntity<List<RegionNamesDto>> {
+    ): ResponseEntity<List<RegionNamesResponse>> {
 
         return ResponseEntity
-                .ok(regionService.findRegionsName(regionName,parentRegion))
+            .ok(regionService.findRegionsName(regionName, parentRegion))
     }
 }

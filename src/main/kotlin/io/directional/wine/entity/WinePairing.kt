@@ -16,4 +16,4 @@ class WinePairing(
     @JoinColumn(name = "wine_id")
     val wine: Wine,
 
-)
+    )

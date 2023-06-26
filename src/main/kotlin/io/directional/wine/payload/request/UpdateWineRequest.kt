@@ -1,7 +1,7 @@
-package io.directional.wine.dto
+package io.directional.wine.payload.request
 
 
-data class UpdateWineRequest (
+data class UpdateWineRequest(
     val type: String,
     val nameKorean: String,
     val nameEnglish: String,

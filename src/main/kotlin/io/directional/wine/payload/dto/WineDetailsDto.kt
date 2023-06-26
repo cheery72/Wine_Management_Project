@@ -1,4 +1,4 @@
-package io.directional.wine.dto
+package io.directional.wine.payload.dto
 
 import com.querydsl.core.annotations.QueryProjection
 
@@ -24,4 +24,4 @@ data class WineDetailsDto @QueryProjection constructor(
     val wineRegionEnglishName: String,
     val wineryId: Long,
     val regionId: Long,
-    )
+)

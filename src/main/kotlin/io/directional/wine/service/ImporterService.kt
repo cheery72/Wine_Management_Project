@@ -1,8 +1,8 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.CreateImporterRequest
-import io.directional.wine.dto.ImporterNamesDto
-import io.directional.wine.dto.ImporterWithWineDto
+import io.directional.wine.payload.request.CreateImporterRequest
+import io.directional.wine.payload.response.ImporterNamesResponse
+import io.directional.wine.payload.response.ImporterWithWineResponse
 import io.directional.wine.entity.Importer
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
@@ -37,15 +37,15 @@ class ImporterService(
         importer.setDeleted()
     }
 
-    fun findImporterNameWithWine(importerName: String): ImporterWithWineDto? {
+    fun findImporterNameWithWine(importerName: String): ImporterWithWineResponse? {
         return importerRepository.findImporterNameWithWine(importerName)
     }
 
-    fun findImporterNames(importerName: String): List<ImporterNamesDto> {
+    fun findImporterNames(importerName: String): List<ImporterNamesResponse> {
         val importerList: List<Importer> = importerRepository
             .findAllByNameLikeAndDeletedFalseOrderByNameAsc("%$importerName%")
 
-        return ImporterNamesDto.fromImporterNameDto(importerList)
+        return ImporterNamesResponse.fromImporterNameDto(importerList)
     }
 
     private fun findImporter(importerId: Long): Importer {

@@ -1,8 +1,9 @@
 package io.directional.wine.entity
 
-import io.directional.wine.dto.CreateWineRequest
-import io.directional.wine.dto.UpdateWineRequest
+import io.directional.wine.payload.request.CreateWineRequest
+import io.directional.wine.payload.request.UpdateWineRequest
 import jakarta.persistence.*
+
 @Entity
 class Wine(
 
@@ -56,7 +57,7 @@ class Wine(
     @JoinColumn(name = "importer_id")
     var importer: Importer,
 
-) : BaseTime() {
+    ) : BaseTime() {
     companion object {
         fun toEntity(createWineRequest: CreateWineRequest, winery: Winery, importer: Importer): Wine {
             // Wine 엔티티로 변환하는 로직 작성

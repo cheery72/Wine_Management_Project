@@ -1,4 +1,4 @@
-package io.directional.wine.dto
+package io.directional.wine.payload.dto
 
 import com.querydsl.core.annotations.QueryProjection
 

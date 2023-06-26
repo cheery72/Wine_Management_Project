@@ -1,9 +1,12 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.*
+import io.directional.wine.payload.request.CreateRegionRequest
+import io.directional.wine.payload.response.RegionDetailsResponse
+import io.directional.wine.payload.response.RegionNamesResponse
 import io.directional.wine.entity.Region
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
+import io.directional.wine.payload.dto.RegionDetailsDto
 import io.directional.wine.repository.RegionRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -47,7 +50,7 @@ class RegionService(
         return RegionDetailsResponse.fromRegionDetailResponse(regionDetails, regions)
     }
 
-    fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesDto> {
+    fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesResponse> {
         return regionRepository.findRegionsName(regionName, parentRegion)
     }
 

@@ -1,4 +1,6 @@
-package io.directional.wine.dto
+package io.directional.wine.payload.response
+
+import io.directional.wine.payload.dto.WineWithTopRegionDto
 
 data class WineWithTopRegionResponse(
     val wineType: String,
@@ -7,8 +9,10 @@ data class WineWithTopRegionResponse(
     val wineTopRegion: List<String>,
 ) {
     companion object {
-        fun fromWineWithTopRegionResponse(wineWithTopRegionDtoList: List<WineWithTopRegionDto?>,
-                                          topRegions: HashMap<Long,List<String>>): List<WineWithTopRegionResponse>{
+        fun fromWineWithTopRegionResponse(
+            wineWithTopRegionDtoList: List<WineWithTopRegionDto?>,
+            topRegions: HashMap<Long, List<String>>
+        ): List<WineWithTopRegionResponse> {
             return wineWithTopRegionDtoList.stream()
                 .map { w ->
                     WineWithTopRegionResponse(

@@ -1,6 +1,6 @@
 package io.directional.wine.entity
 
-import io.directional.wine.dto.CreateGrapeRequest
+import io.directional.wine.payload.request.CreateGrapeRequest
 import jakarta.persistence.*
 
 @Entity
@@ -31,10 +31,10 @@ class Grape(
     @OneToMany(mappedBy = "grape")
     val grapeShare: List<GrapeShare> = emptyList(),
 
-) : BaseTime() {
+    ) : BaseTime() {
 
     companion object {
-        fun toEntity(createGrapeRequest: CreateGrapeRequest): Grape{
+        fun toEntity(createGrapeRequest: CreateGrapeRequest): Grape {
             return Grape(
                 nameKorean = createGrapeRequest.grapeNameKorean,
                 nameEnglish = createGrapeRequest.grapeNameEnglish,
@@ -46,7 +46,7 @@ class Grape(
         }
     }
 
-    fun setGrapeInfo(createGrapeRequest: CreateGrapeRequest){
+    fun setGrapeInfo(createGrapeRequest: CreateGrapeRequest) {
         this.nameEnglish = createGrapeRequest.grapeNameEnglish
         this.nameKorean = createGrapeRequest.grapeNameKorean
         this.body = createGrapeRequest.grapeBody
@@ -54,6 +54,7 @@ class Grape(
         this.tannin = createGrapeRequest.grapeTannin
         this.sweetness = createGrapeRequest.grapeSweetness
     }
+
     fun setDeleted() {
         this.deleted = true
     }

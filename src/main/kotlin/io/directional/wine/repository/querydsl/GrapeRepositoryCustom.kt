@@ -1,11 +1,11 @@
 package io.directional.wine.repository.querydsl
 
-import io.directional.wine.dto.GrapeDetailsWithWineNameDto
-import io.directional.wine.dto.GrapeNamesWithRegions
+import io.directional.wine.payload.response.GrapeDetailsWithWineNameResponse
+import io.directional.wine.payload.response.GrapeNamesWithRegionsResponse
 
 interface GrapeRepositoryCustom {
 
-    fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameDto?
+    fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameResponse?
 
-    fun findGrapeNamesWithRegions(gradeName: String, gradeRegion: String): List<GrapeNamesWithRegions>
+    fun findGrapeNamesWithRegions(gradeName: String, gradeRegion: String): List<GrapeNamesWithRegionsResponse>
 }

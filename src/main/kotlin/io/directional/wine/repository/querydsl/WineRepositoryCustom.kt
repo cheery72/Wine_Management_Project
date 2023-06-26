@@ -1,7 +1,7 @@
 package io.directional.wine.repository.querydsl
 
-import io.directional.wine.dto.WineDetailsDto
-import io.directional.wine.dto.WineWithTopRegionDto
+import io.directional.wine.payload.dto.WineDetailsDto
+import io.directional.wine.payload.dto.WineWithTopRegionDto
 
 
 interface WineRepositoryCustom {

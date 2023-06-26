@@ -16,4 +16,4 @@ class WineAroma(
     @JoinColumn(name = "wine_id")
     val wine: Wine,
 
-)
+    )

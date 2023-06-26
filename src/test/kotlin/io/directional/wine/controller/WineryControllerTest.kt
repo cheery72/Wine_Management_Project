@@ -1,10 +1,10 @@
 package io.directional.wine.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.directional.wine.dto.CreateWineryRequest
-import io.directional.wine.dto.UpdateWineryRequest
-import io.directional.wine.dto.WineryWithRegionDto
-import io.directional.wine.dto.WineryWithRegionWithWineNameDto
+import io.directional.wine.payload.request.CreateWineryRequest
+import io.directional.wine.payload.request.UpdateWineryRequest
+import io.directional.wine.payload.response.WineryWithRegionResponse
+import io.directional.wine.payload.response.WineryWithRegionWithWineNameResponse
 import io.directional.wine.service.WineryService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -82,7 +82,7 @@ class WineryControllerTest {
             wineryNameKorean = "wineryNameKorean",
         )
 
-        Mockito.doNothing().`when`(wineryService).updateWinery(wineryId,updateWineryRequest)
+        Mockito.doNothing().`when`(wineryService).updateWinery(wineryId, updateWineryRequest)
         mockMvc.perform(
             MockMvcRequestBuilders.put("$BASE_URL/{wineryId}/winerys", wineryId)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -113,15 +113,17 @@ class WineryControllerTest {
         val wineryName = "wineryName"
         val wineryRegion = "wineryRegion"
 
-        Mockito.`when`(wineryService.findWineryWithRegion(
-            ArgumentMatchers.anyString(),
-            ArgumentMatchers.anyString(),
-        ))
-            .thenReturn(Mockito.mock(WineryWithRegionWithWineNameDto::class.java))
+        Mockito.`when`(
+            wineryService.findWineryWithRegion(
+                ArgumentMatchers.anyString(),
+                ArgumentMatchers.anyString(),
+            )
+        )
+            .thenReturn(Mockito.mock(WineryWithRegionWithWineNameResponse::class.java))
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("$BASE_URL/winerys")
-                .param("wineryName",wineryName)
+                .param("wineryName", wineryName)
                 .param("wineryRegion", wineryRegion)
         )
             .andExpect(MockMvcResultMatchers.status().isOk)
@@ -135,15 +137,17 @@ class WineryControllerTest {
         val wineryName = "wineryName"
         val wineryRegion = "wineryRegion"
 
-        Mockito.`when`(wineryService.findWineryWithRegionAll(
-            ArgumentMatchers.anyString(),
-            ArgumentMatchers.anyString(),
-        ))
-            .thenReturn(listOf(Mockito.mock(WineryWithRegionDto::class.java)))
+        Mockito.`when`(
+            wineryService.findWineryWithRegionAll(
+                ArgumentMatchers.anyString(),
+                ArgumentMatchers.anyString(),
+            )
+        )
+            .thenReturn(listOf(Mockito.mock(WineryWithRegionResponse::class.java)))
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("$BASE_URL/winerys/all")
-                .param("wineryName",wineryName)
+                .param("wineryName", wineryName)
                 .param("wineryRegion", wineryRegion)
         )
             .andExpect(MockMvcResultMatchers.status().isOk)

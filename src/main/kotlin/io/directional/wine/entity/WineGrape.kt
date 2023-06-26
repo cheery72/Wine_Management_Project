@@ -18,4 +18,4 @@ class WineGrape(
     @JoinColumn(name = "grape_id")
     val grape: Grape,
 
-)
+    )

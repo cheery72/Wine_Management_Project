@@ -1,7 +1,7 @@
 package io.directional.wine.entity
 
-import io.directional.wine.dto.CreateWineryRequest
-import io.directional.wine.dto.UpdateWineryRequest
+import io.directional.wine.payload.request.CreateWineryRequest
+import io.directional.wine.payload.request.UpdateWineryRequest
 import jakarta.persistence.*
 
 
@@ -26,7 +26,7 @@ class Winery(
     @JoinColumn(name = "region_id")
     var region: Region,
 
-) : BaseTime() {
+    ) : BaseTime() {
 
     companion object {
         fun toEntity(createWineryRequest: CreateWineryRequest, region: Region): Winery {

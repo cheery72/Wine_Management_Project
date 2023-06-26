@@ -1,11 +1,18 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.*
+import io.directional.wine.payload.*
+import io.directional.wine.payload.request.CreateWineRequest
+import io.directional.wine.payload.request.UpdateWineRequest
+import io.directional.wine.payload.response.WineDetailsResponse
+import io.directional.wine.payload.response.WineWithTopRegionResponse
 import io.directional.wine.entity.Importer
+import io.directional.wine.entity.Region
 import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
+import io.directional.wine.payload.dto.WineDetailsDto
+import io.directional.wine.payload.dto.WineWithTopRegionDto
 import io.directional.wine.repository.ImporterRepository
 import io.directional.wine.repository.RegionRepository
 import io.directional.wine.repository.WineRepository
@@ -244,7 +251,7 @@ class WineServiceTest {
         val wineStyle = "Californian Cabernet Sauvignon"
         val wineGrade = null
         val wineRegion = "나파 밸리"
-        val recursiveRegionDto = mock(RecursiveRegionDto::class.java)
+        val region = mock(Region::class.java)
         val wineDetailsDto = WineDetailsDto(
             wineType = "", wineKoreanName = "", wineEnglishName = "", wineAlcohol = 0.0,
             wineAcidity = 0, wineBody = 0, wineSweetness = 0, wineTannin = 0, wineScore = 0.0,
@@ -255,7 +262,7 @@ class WineServiceTest {
         // when
         `when`(wineRepository.findWineDetails(wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion)).thenReturn(wineDetailsDto)
-        `when`(regionRepository.findByIdRecursiveRegions(wineDetailsDto.regionId)).thenReturn(listOf(recursiveRegionDto))
+        `when`(regionRepository.findByRegionTopList(wineDetailsDto.regionId)).thenReturn(listOf(region))
 
         val wineDetailsResponse: WineDetailsResponse? = wineService.findWineDetails(
             wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
@@ -265,7 +272,7 @@ class WineServiceTest {
         // then
         verify(wineRepository, times(1)).findWineDetails(wineName, wineType, alcoholMin, alcoholMax,
             priceMin, priceMax, wineStyle, wineGrade, wineRegion)
-        verify(regionRepository, times(1)).findByIdRecursiveRegions(wineDetailsDto.regionId)
+        verify(regionRepository, times(1)).findByRegionTopList(wineDetailsDto.regionId)
         assertThat(wineDetailsResponse!!.wineType).isEqualTo(wineDetailsDto.wineType)
         assertThat(wineDetailsResponse.wineKoreanName).isEqualTo(wineDetailsDto.wineKoreanName)
         assertThat(wineDetailsResponse.wineEnglishName).isEqualTo(wineDetailsDto.wineEnglishName)

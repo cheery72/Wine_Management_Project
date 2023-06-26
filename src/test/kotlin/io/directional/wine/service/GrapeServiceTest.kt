@@ -1,9 +1,9 @@
 package io.directional.wine.service
 
-import io.directional.wine.dto.CreateGrapeRequest
-import io.directional.wine.dto.GrapeDetailsWithWineNameDto
-import io.directional.wine.dto.GrapeNamesWithRegions
+import io.directional.wine.payload.response.GrapeDetailsWithWineNameResponse
+import io.directional.wine.payload.request.CreateGrapeRequest
 import io.directional.wine.entity.Grape
+import io.directional.wine.payload.response.GrapeNamesWithRegionsResponse
 import io.directional.wine.repository.GrapeRepository
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.*
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.*
 
 @ExtendWith(MockitoExtension::class, SpringExtension::class)
-class GrapeServiceTest{
+class GrapeServiceTest {
 
     @Mock
     private lateinit var grapeRepository: GrapeRepository
@@ -27,12 +27,12 @@ class GrapeServiceTest{
     private lateinit var grapeService: GrapeService
 
     private val createGrapeRequest = CreateGrapeRequest(
-            grapeNameKorean = "알리아니코",
-            grapeNameEnglish = "Aglianico",
-            grapeAcidity = 4,
-            grapeBody = 5,
-            grapeSweetness = 1,
-            grapeTannin = 4,
+        grapeNameKorean = "알리아니코",
+        grapeNameEnglish = "Aglianico",
+        grapeAcidity = 4,
+        grapeBody = 5,
+        grapeSweetness = 1,
+        grapeTannin = 4,
     )
 
     private val grape = Grape(
@@ -59,9 +59,9 @@ class GrapeServiceTest{
         val grapeCaptor: ArgumentCaptor<Grape> = ArgumentCaptor.forClass(Grape::class.java)
         Mockito.verify(grapeRepository).save(grapeCaptor.capture())
         val savedGrape: Grape = grapeCaptor.value
-        assertEquals(savedGrape.nameEnglish,createGrapeRequest.grapeNameEnglish)
-        assertEquals(savedGrape.nameKorean,createGrapeRequest.grapeNameKorean)
-        assertEquals(savedGrape.deleted,false)
+        assertEquals(savedGrape.nameEnglish, createGrapeRequest.grapeNameEnglish)
+        assertEquals(savedGrape.nameKorean, createGrapeRequest.grapeNameKorean)
+        assertEquals(savedGrape.deleted, false)
         Mockito.verify(grapeRepository).save(Mockito.any(Grape::class.java))
     }
 
@@ -78,12 +78,12 @@ class GrapeServiceTest{
         grapeService.updateGrape(grapeId, createGrapeRequest)
 
         // then
-        assertEquals(grape.nameKorean,createGrapeRequest.grapeNameKorean)
-        assertEquals(grape.nameEnglish,createGrapeRequest.grapeNameEnglish)
-        assertEquals(grape.acidity,createGrapeRequest.grapeAcidity)
-        assertEquals(grape.body,createGrapeRequest.grapeBody)
-        assertEquals(grape.sweetness,createGrapeRequest.grapeSweetness)
-        assertEquals(grape.tannin,createGrapeRequest.grapeTannin)
+        assertEquals(grape.nameKorean, createGrapeRequest.grapeNameKorean)
+        assertEquals(grape.nameEnglish, createGrapeRequest.grapeNameEnglish)
+        assertEquals(grape.acidity, createGrapeRequest.grapeAcidity)
+        assertEquals(grape.body, createGrapeRequest.grapeBody)
+        assertEquals(grape.sweetness, createGrapeRequest.grapeSweetness)
+        assertEquals(grape.tannin, createGrapeRequest.grapeTannin)
     }
 
     @Test
@@ -109,36 +109,37 @@ class GrapeServiceTest{
         // given
         val grapeName = "grapeName"
         val grapeRegion = "grapeRegion"
-        val grapeDetailsWithWineNameDto = GrapeDetailsWithWineNameDto(
-            grapeNameKorean= "grapeNameKorean",
-            grapeNameEnglish= "grapeNameEnglish",
-            grapeAcidity= 1,
-            grapeBody= 2,
-            grapeSweetness= 3,
-            grapeTannin= 4,
-            grapeRegionNameKorean= "grapeRegionNameKorean",
-            grapeRegionNameEnglish= "grapeRegionNameEnglish",
-            grapeWineNameKorean= "grapeWineNameKorean",
-            grapeWineNameEnglish= "grapeWineNameEnglish"
+        val grapeDetailsWithWineNameResponse = GrapeDetailsWithWineNameResponse(
+            grapeNameKorean = "grapeNameKorean",
+            grapeNameEnglish = "grapeNameEnglish",
+            grapeAcidity = 1,
+            grapeBody = 2,
+            grapeSweetness = 3,
+            grapeTannin = 4,
+            grapeRegionNameKorean = "grapeRegionNameKorean",
+            grapeRegionNameEnglish = "grapeRegionNameEnglish",
+            grapeWineNameKorean = "grapeWineNameKorean",
+            grapeWineNameEnglish = "grapeWineNameEnglish"
         )
 
         // when
-        Mockito.`when`(grapeRepository.findGrapeDetailsWithWineName(grapeName,grapeRegion)).thenReturn(grapeDetailsWithWineNameDto)
+        Mockito.`when`(grapeRepository.findGrapeDetailsWithWineName(grapeName, grapeRegion))
+            .thenReturn(grapeDetailsWithWineNameResponse)
 
         val result = grapeService.findGrapeDetailsWithWineName(grapeName, grapeRegion)
 
         // then
-        Mockito.verify(grapeRepository, Mockito.times(1)).findGrapeDetailsWithWineName(grapeName,grapeRegion)
-        assertEquals(grapeDetailsWithWineNameDto.grapeNameEnglish,result!!.grapeNameEnglish)
-        assertEquals(grapeDetailsWithWineNameDto.grapeNameKorean,result.grapeNameKorean)
-        assertEquals(grapeDetailsWithWineNameDto.grapeAcidity,result.grapeAcidity)
-        assertEquals(grapeDetailsWithWineNameDto.grapeBody,result.grapeBody)
-        assertEquals(grapeDetailsWithWineNameDto.grapeSweetness,result.grapeSweetness)
-        assertEquals(grapeDetailsWithWineNameDto.grapeTannin,result.grapeTannin)
-        assertEquals(grapeDetailsWithWineNameDto.grapeRegionNameKorean,result.grapeRegionNameKorean)
-        assertEquals(grapeDetailsWithWineNameDto.grapeRegionNameEnglish,result.grapeRegionNameEnglish)
-        assertEquals(grapeDetailsWithWineNameDto.grapeWineNameKorean,result.grapeWineNameKorean)
-        assertEquals(grapeDetailsWithWineNameDto.grapeWineNameEnglish,result.grapeWineNameEnglish)
+        Mockito.verify(grapeRepository, Mockito.times(1)).findGrapeDetailsWithWineName(grapeName, grapeRegion)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeNameEnglish, result!!.grapeNameEnglish)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeNameKorean, result.grapeNameKorean)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeAcidity, result.grapeAcidity)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeBody, result.grapeBody)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeSweetness, result.grapeSweetness)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeTannin, result.grapeTannin)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeRegionNameKorean, result.grapeRegionNameKorean)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeRegionNameEnglish, result.grapeRegionNameEnglish)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeWineNameKorean, result.grapeWineNameKorean)
+        assertEquals(grapeDetailsWithWineNameResponse.grapeWineNameEnglish, result.grapeWineNameEnglish)
     }
 
     @Test
@@ -147,26 +148,28 @@ class GrapeServiceTest{
         // given
         val grapeName = "grapeName"
         val grapeRegion = "grapeRegion"
-        val grapeNamesWithRegions = listOf(
-            GrapeNamesWithRegions(
-            grapeNameEnglish =  "grapeNameEnglish",
-            grapeNameKorean = "grapeNameKorean",
-            grapeRegionNameEnglish = "grapeRegionNameEnglish",
-            grapeRegionNameKorean = "grapeRegionNameKorean",
-        )
+        val grapeNamesWithRegionDtos = listOf(
+            GrapeNamesWithRegionsResponse(
+                grapeNameEnglish = "grapeNameEnglish",
+                grapeNameKorean = "grapeNameKorean",
+                grapeRegionNameEnglish = "grapeRegionNameEnglish",
+                grapeRegionNameKorean = "grapeRegionNameKorean",
+            )
         )
 
         // when
-        Mockito.`when`(grapeRepository.findGrapeNamesWithRegions(grapeName, grapeRegion)).thenReturn(grapeNamesWithRegions)
+        Mockito.`when`(grapeRepository.findGrapeNamesWithRegions(grapeName, grapeRegion))
+            .thenReturn(grapeNamesWithRegionDtos)
 
-        val result: List<GrapeNamesWithRegions>
-                = grapeService.findGrapeNamesWithRegions(grapeName, grapeRegion)
+        val result: List<GrapeNamesWithRegionsResponse> = grapeService.findGrapeNamesWithRegions(grapeName, grapeRegion)
 
         // then
         Mockito.verify(grapeRepository, Mockito.times(1)).findGrapeNamesWithRegions(grapeName, grapeRegion)
-        Assertions.assertThat(result.get(0).grapeNameEnglish).isEqualTo(grapeNamesWithRegions.get(0).grapeNameEnglish)
-        Assertions.assertThat(result.get(0).grapeNameKorean).isEqualTo(grapeNamesWithRegions.get(0).grapeNameKorean)
-        Assertions.assertThat(result.get(0).grapeRegionNameEnglish).isEqualTo(grapeNamesWithRegions.get(0).grapeRegionNameEnglish)
-        Assertions.assertThat(result.get(0).grapeRegionNameKorean).isEqualTo(grapeNamesWithRegions.get(0).grapeRegionNameKorean)
+        Assertions.assertThat(result.get(0).grapeNameEnglish).isEqualTo(grapeNamesWithRegionDtos.get(0).grapeNameEnglish)
+        Assertions.assertThat(result.get(0).grapeNameKorean).isEqualTo(grapeNamesWithRegionDtos.get(0).grapeNameKorean)
+        Assertions.assertThat(result.get(0).grapeRegionNameEnglish)
+            .isEqualTo(grapeNamesWithRegionDtos.get(0).grapeRegionNameEnglish)
+        Assertions.assertThat(result.get(0).grapeRegionNameKorean)
+            .isEqualTo(grapeNamesWithRegionDtos.get(0).grapeRegionNameKorean)
     }
 }

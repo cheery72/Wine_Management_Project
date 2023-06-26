@@ -1,6 +1,6 @@
 package io.directional.wine.entity
 
-import io.directional.wine.dto.CreateImporterRequest
+import io.directional.wine.payload.request.CreateImporterRequest
 import jakarta.persistence.*
 
 @Entity
@@ -19,18 +19,19 @@ class Importer(
     val wines: List<Wine> = emptyList(),
 
     ) : BaseTime() {
-        companion object {
-            fun toEntity(createImporterRequest: CreateImporterRequest): Importer{
-                return Importer(
-                    name = createImporterRequest.importerName
-                )
-            }
-        }
-
-        fun setImporterInfo(createImporterRequest: CreateImporterRequest){
-            this.name = createImporterRequest.importerName
-        }
-        fun setDeleted() {
-            this.deleted = true
+    companion object {
+        fun toEntity(createImporterRequest: CreateImporterRequest): Importer {
+            return Importer(
+                name = createImporterRequest.importerName
+            )
         }
     }
+
+    fun setImporterInfo(createImporterRequest: CreateImporterRequest) {
+        this.name = createImporterRequest.importerName
+    }
+
+    fun setDeleted() {
+        this.deleted = true
+    }
+}

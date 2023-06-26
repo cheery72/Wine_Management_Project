@@ -1,6 +1,6 @@
 package io.directional.wine.entity
 
-import io.directional.wine.dto.CreateRegionRequest
+import io.directional.wine.payload.request.CreateRegionRequest
 import jakarta.persistence.*
 
 @Entity
@@ -30,9 +30,9 @@ class Region(
     @OneToMany(mappedBy = "region")
     val grapeShare: List<GrapeShare> = emptyList(),
 
-) : BaseTime() {
+    ) : BaseTime() {
     companion object {
-        fun toEntity(createRegionRequest: CreateRegionRequest, region: Region?): Region{
+        fun toEntity(createRegionRequest: CreateRegionRequest, region: Region?): Region {
             return Region(
                 nameEnglish = createRegionRequest.regionNameEnglish,
                 nameKorean = createRegionRequest.regionNameKorean,
@@ -41,7 +41,7 @@ class Region(
         }
     }
 
-    fun setRegionInfo(createRegionRequest: CreateRegionRequest,parentRegion: Region?){
+    fun setRegionInfo(createRegionRequest: CreateRegionRequest, parentRegion: Region?) {
         this.nameKorean = createRegionRequest.regionNameKorean
         this.nameEnglish = createRegionRequest.regionNameEnglish
         this.parent = parentRegion

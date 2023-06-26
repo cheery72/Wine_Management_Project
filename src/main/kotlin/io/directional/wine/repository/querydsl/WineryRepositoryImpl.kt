@@ -3,13 +3,13 @@ package io.directional.wine.repository.querydsl
 import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.core.types.dsl.StringExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
-import io.directional.wine.dto.QWineryWithRegionDto
-import io.directional.wine.dto.QWineryWithRegionWithWineNameDto
-import io.directional.wine.dto.WineryWithRegionDto
-import io.directional.wine.dto.WineryWithRegionWithWineNameDto
 import io.directional.wine.entity.QRegion
 import io.directional.wine.entity.QWine
 import io.directional.wine.entity.QWinery
+import io.directional.wine.payload.response.QWineryWithRegionResponse
+import io.directional.wine.payload.response.QWineryWithRegionWithWineNameResponse
+import io.directional.wine.payload.response.WineryWithRegionResponse
+import io.directional.wine.payload.response.WineryWithRegionWithWineNameResponse
 
 class WineryRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory,
@@ -18,11 +18,11 @@ class WineryRepositoryImpl(
     private val qWine: QWine = QWine.wine
 ) : WineryRepositoryCustom {
 
-    override fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameDto? {
+    override fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameResponse? {
 
         return jpaQueryFactory
             .select(
-                QWineryWithRegionWithWineNameDto(
+                QWineryWithRegionWithWineNameResponse(
                     qWinery.nameEnglish,
                     qWinery.nameKorean,
                     qRegion.nameEnglish,
@@ -51,13 +51,13 @@ class WineryRepositoryImpl(
             .fetchFirst()
     }
 
-    override fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionDto> {
+    override fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionResponse> {
         val wineryNameExpression = getExpressionLike(wineryName)
         val wineryRegionExpression = getExpressionLike(wineryRegion)
 
         return jpaQueryFactory
             .select(
-                QWineryWithRegionDto(
+                QWineryWithRegionResponse(
                     qWinery.nameEnglish,
                     qWinery.nameKorean,
                     qRegion.nameEnglish,

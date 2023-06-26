@@ -4,11 +4,11 @@ import com.querydsl.core.BooleanBuilder
 import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.core.types.dsl.StringExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
-import io.directional.wine.dto.QWineDetailsDto
-import io.directional.wine.dto.QWineWithTopRegionDto
-import io.directional.wine.dto.WineDetailsDto
-import io.directional.wine.dto.WineWithTopRegionDto
 import io.directional.wine.entity.*
+import io.directional.wine.payload.dto.QWineDetailsDto
+import io.directional.wine.payload.dto.QWineWithTopRegionDto
+import io.directional.wine.payload.dto.WineDetailsDto
+import io.directional.wine.payload.dto.WineWithTopRegionDto
 
 
 class WineRepositoryImpl(

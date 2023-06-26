@@ -1,8 +1,8 @@
-package io.directional.wine.dto
+package io.directional.wine.payload.response
 
 import com.querydsl.core.annotations.QueryProjection
 
-data class GrapeNamesWithRegions @QueryProjection constructor(
+data class GrapeNamesWithRegionsResponse @QueryProjection constructor(
     val grapeNameEnglish: String,
     val grapeNameKorean: String,
     val grapeRegionNameEnglish: String,

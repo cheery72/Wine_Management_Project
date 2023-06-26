@@ -1,9 +1,9 @@
 package io.directional.wine.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.directional.wine.dto.CreateGrapeRequest
-import io.directional.wine.dto.GrapeDetailsWithWineNameDto
-import io.directional.wine.dto.GrapeNamesWithRegions
+import io.directional.wine.payload.response.GrapeDetailsWithWineNameResponse
+import io.directional.wine.payload.response.GrapeNamesWithRegionsResponse
+import io.directional.wine.payload.request.CreateGrapeRequest
 import io.directional.wine.service.GrapeService
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -54,6 +54,7 @@ class GrapeControllerTest {
             .alwaysDo<DefaultMockMvcBuilder>(MockMvcResultHandlers.print())
             .build()
     }
+
     private fun Any.toJsonString(): String = ObjectMapper().writeValueAsString(this)
 
     @Test
@@ -76,7 +77,7 @@ class GrapeControllerTest {
     fun updateGrape_Success_Test() {
         val grapeId = 1L
 
-        Mockito.doNothing().`when`(grapeService).updateGrape(grapeId,createGrapeRequest)
+        Mockito.doNothing().`when`(grapeService).updateGrape(grapeId, createGrapeRequest)
         mockMvc.perform(
             MockMvcRequestBuilders.put("$BASE_URL/{grapeId}/grapes", grapeId)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -107,15 +108,17 @@ class GrapeControllerTest {
         val grapeName = "grapeName"
         val grapeRegion = "grapeRegion"
 
-        Mockito.`when`(grapeService.findGrapeDetailsWithWineName(
-            ArgumentMatchers.anyString(),
-            ArgumentMatchers.anyString(),
-        ))
-            .thenReturn(Mockito.mock(GrapeDetailsWithWineNameDto::class.java))
+        Mockito.`when`(
+            grapeService.findGrapeDetailsWithWineName(
+                ArgumentMatchers.anyString(),
+                ArgumentMatchers.anyString(),
+            )
+        )
+            .thenReturn(Mockito.mock(GrapeDetailsWithWineNameResponse::class.java))
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("$BASE_URL/grapes")
-                .param("grapeName",grapeName)
+                .param("grapeName", grapeName)
                 .param("grapeRegion", grapeRegion)
         )
             .andExpect(MockMvcResultMatchers.status().isOk)
@@ -129,15 +132,17 @@ class GrapeControllerTest {
         val grapeName = "grapeName"
         val grapeRegion = "grapeRegion"
 
-        Mockito.`when`(grapeService.findGrapeNamesWithRegions(
-            ArgumentMatchers.anyString(),
-            ArgumentMatchers.anyString(),
-        ))
-            .thenReturn(listOf(Mockito.mock(GrapeNamesWithRegions::class.java)))
+        Mockito.`when`(
+            grapeService.findGrapeNamesWithRegions(
+                ArgumentMatchers.anyString(),
+                ArgumentMatchers.anyString(),
+            )
+        )
+            .thenReturn(listOf(Mockito.mock(GrapeNamesWithRegionsResponse::class.java)))
 
         mockMvc.perform(
             MockMvcRequestBuilders.get("$BASE_URL/grapes/all")
-                .param("grapeName",grapeName)
+                .param("grapeName", grapeName)
                 .param("grapeRegion", grapeRegion)
         )
             .andExpect(MockMvcResultMatchers.status().isOk)

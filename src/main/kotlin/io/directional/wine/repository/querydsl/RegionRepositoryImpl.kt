@@ -2,11 +2,11 @@ package io.directional.wine.repository.querydsl
 
 import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.jpa.impl.JPAQueryFactory
-import io.directional.wine.dto.QRegionDetailsDto
-import io.directional.wine.dto.QRegionNamesDto
-import io.directional.wine.dto.RegionDetailsDto
-import io.directional.wine.dto.RegionNamesDto
 import io.directional.wine.entity.*
+import io.directional.wine.payload.dto.QRegionDetailsDto
+import io.directional.wine.payload.dto.RegionDetailsDto
+import io.directional.wine.payload.response.QRegionNamesResponse
+import io.directional.wine.payload.response.RegionNamesResponse
 
 class RegionRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory,
@@ -74,13 +74,13 @@ class RegionRepositoryImpl(
             .fetchFirst()
     }
 
-    override fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesDto> {
+    override fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesResponse> {
 
         val regionNameExpression = Expressions.asString("$regionName%")
 
         return jpaQueryFactory
             .select(
-                QRegionNamesDto(
+                QRegionNamesResponse(
                     qRegion.nameEnglish,
                     qRegion.nameKorean
                 )

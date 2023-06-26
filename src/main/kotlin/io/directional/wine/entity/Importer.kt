@@ -1,5 +1,6 @@
 package io.directional.wine.entity
 
+import io.directional.wine.dto.CreateImporterRequest
 import jakarta.persistence.*
 
 @Entity
@@ -12,6 +13,17 @@ class Importer(
 
     val name: String,
 
-    var deleted: Boolean,
+    var deleted: Boolean = false,
 
-) : BaseTime()
+    @OneToMany(mappedBy = "importer")
+    val wineGrape: List<Wine> = emptyList(),
+
+    ) : BaseTime() {
+        companion object {
+            fun toEntity(createImporterRequest: CreateImporterRequest): Importer{
+                return Importer(
+                    name = createImporterRequest.importerName
+                )
+            }
+        }
+    }

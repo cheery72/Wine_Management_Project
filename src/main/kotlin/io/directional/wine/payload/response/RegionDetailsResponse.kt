@@ -21,7 +21,7 @@ data class RegionDetailsResponse(
         fun fromRegionDetailResponse(
             regionDetails: RegionDetailsDto?,
             regionTopList: List<Region>?
-        ): RegionDetailsResponse {
+        ): RegionDetailsResponse? {
             val regionEnglishList: MutableList<String> = mutableListOf()
             val regionKoreanList: MutableList<String> = mutableListOf()
 
@@ -30,18 +30,22 @@ data class RegionDetailsResponse(
                 regionKoreanList.add(r.nameKorean)
             }
 
-            return RegionDetailsResponse(
-                regionNameEnglish = regionDetails!!.regionNameEnglish,
-                regionNameKorean = regionDetails.regionNameKorean,
-                regionGrapeNameEnglish = regionDetails.regionGrapeNameEnglish,
-                regionGrapeNameKorean = regionDetails.regionGrapeNameKorean,
-                regionWineryNameEnglish = regionDetails.regionWineryNameEnglish,
-                regionWineryNameKorean = regionDetails.regionWineNameKorean,
-                regionWineNameEnglish = regionDetails.regionWineNameEnglish,
-                regionWineNameKorean = regionDetails.regionWineryNameKorean,
-                regionTopNameEnglishList = regionEnglishList,
-                regionTopNameKoreanList = regionKoreanList,
-            )
+            if (regionDetails != null) {
+                return RegionDetailsResponse(
+                    regionNameEnglish = regionDetails.regionNameEnglish,
+                    regionNameKorean = regionDetails.regionNameKorean,
+                    regionGrapeNameEnglish = regionDetails.regionGrapeNameEnglish,
+                    regionGrapeNameKorean = regionDetails.regionGrapeNameKorean,
+                    regionWineryNameEnglish = regionDetails.regionWineryNameEnglish,
+                    regionWineryNameKorean = regionDetails.regionWineNameKorean,
+                    regionWineNameEnglish = regionDetails.regionWineNameEnglish,
+                    regionWineNameKorean = regionDetails.regionWineryNameKorean,
+                    regionTopNameEnglishList = regionEnglishList,
+                    regionTopNameKoreanList = regionKoreanList,
+                )
+            }
+
+            return null
         }
     }
 }

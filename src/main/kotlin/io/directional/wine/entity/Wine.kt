@@ -5,6 +5,11 @@ import io.directional.wine.payload.request.UpdateWineRequest
 import jakarta.persistence.*
 
 @Entity
+@Table(name = "wine", indexes =[
+        Index(name = "idx_wine_name_english", columnList = "name_english"),
+        Index(name = "idx_wine_name_korean", columnList = "name_korean"),
+        Index(name = "idx_wine_price", columnList = "price"),
+        ])
 class Wine(
 
     @Id
@@ -14,8 +19,10 @@ class Wine(
 
     var type: String,
 
+    @Column(name = "name_korean")
     var nameKorean: String,
 
+    @Column(name = "name_english")
     var nameEnglish: String,
 
     var alcohol: Double,
@@ -32,6 +39,7 @@ class Wine(
 
     var score: Double,
 
+    @Column(name = "price")
     var price: Int,
 
     var style: String?,

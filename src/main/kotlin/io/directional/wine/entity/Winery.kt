@@ -6,6 +6,10 @@ import jakarta.persistence.*
 
 
 @Entity
+@Table(name = "winery", indexes =[
+    Index(name = "idx_winery_name_english", columnList = "name_english"),
+    Index(name = "idx_winery_name_korean", columnList = "name_korean")
+])
 class Winery(
 
     @Id
@@ -13,8 +17,10 @@ class Winery(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
+    @Column(name = "name_korean")
     var nameKorean: String,
 
+    @Column(name = "name_english")
     var nameEnglish: String,
 
     var deleted: Boolean = false,

@@ -4,6 +4,9 @@ import io.directional.wine.payload.request.CreateImporterRequest
 import jakarta.persistence.*
 
 @Entity
+@Table(name = "importer", indexes =[
+    Index(name = "idx_importer_name", columnList = "name")
+])
 class Importer(
 
     @Id
@@ -11,6 +14,8 @@ class Importer(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
+
+    @Column(name = "name")
     var name: String,
 
     var deleted: Boolean = false,

@@ -1,7 +1,5 @@
 package io.directional.wine.repository.querydsl
 
-import com.querydsl.core.types.dsl.Expressions
-import com.querydsl.core.types.dsl.StringExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.directional.wine.entity.QRegion
 import io.directional.wine.entity.QWine
@@ -52,8 +50,6 @@ class WineryRepositoryImpl(
     }
 
     override fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionResponse> {
-        val wineryNameExpression = getExpressionLike(wineryName)
-        val wineryRegionExpression = getExpressionLike(wineryRegion)
 
         return jpaQueryFactory
             .select(
@@ -69,20 +65,16 @@ class WineryRepositoryImpl(
                 qWinery.deleted.isFalse.and(
                     qRegion.deleted.isFalse
                         .and(
-                            qWinery.nameEnglish.like(wineryNameExpression)
-                                .or(qWinery.nameKorean.like(wineryNameExpression))
+                            qWinery.nameEnglish.contains(wineryName)
+                                .or(qWinery.nameKorean.contains(wineryName))
                                 .and(
-                                    qWinery.region.nameEnglish.like(wineryRegionExpression)
-                                        .or(qWinery.region.nameKorean.like(wineryRegionExpression))
+                                    qWinery.region.nameEnglish.eq(wineryRegion)
+                                        .or(qWinery.region.nameKorean.eq(wineryRegion))
                                 )
                         )
                 )
             )
             .orderBy(qWinery.nameEnglish.asc())
             .fetch()
-    }
-
-    private fun getExpressionLike(search: String): StringExpression? {
-        return Expressions.asString("$search%")
     }
 }

@@ -4,6 +4,10 @@ import io.directional.wine.payload.request.CreateRegionRequest
 import jakarta.persistence.*
 
 @Entity
+@Table(name = "region", indexes =[
+    Index(name = "idx_region_name_english", columnList = "name_english"),
+    Index(name = "idx_region_name_korean", columnList = "name_korean")
+])
 class Region(
 
     @Id
@@ -11,8 +15,10 @@ class Region(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
+    @Column(name = "name_korean")
     var nameKorean: String,
 
+    @Column(name = "name_english")
     var nameEnglish: String,
 
     var deleted: Boolean = false,

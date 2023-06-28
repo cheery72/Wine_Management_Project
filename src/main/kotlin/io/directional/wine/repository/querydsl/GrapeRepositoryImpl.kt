@@ -55,9 +55,6 @@ class GrapeRepositoryImpl(
 
     override fun findGrapeNamesWithRegions(gradeName: String, gradeRegion: String): List<GrapeNamesWithRegionsResponse> {
 
-        val gradeNameExpression = getExpressionLike(gradeName)
-        val gradeRegionExpression = getExpressionLike(gradeRegion)
-
         return jpaQueryFactory
             .select(
                 QGrapeNamesWithRegionsResponse
@@ -74,19 +71,15 @@ class GrapeRepositoryImpl(
                 qGrape.deleted.isFalse.and(
                     qRegion.deleted.isFalse
                         .and(
-                            qGrape.nameEnglish.like(gradeNameExpression).or(qGrape.nameKorean.like(gradeNameExpression))
+                            qGrape.nameEnglish.contains(gradeName).or(qGrape.nameKorean.contains(gradeName))
                         )
                         .and(
-                            qRegion.nameEnglish.like(gradeRegionExpression)
-                                .or(qRegion.nameKorean.like(gradeRegionExpression))
+                            qRegion.nameEnglish.eq(gradeRegion)
+                                .or(qRegion.nameKorean.eq(gradeRegion))
                         )
                 )
             )
             .orderBy(qRegion.nameEnglish.asc())
             .fetch()
-    }
-
-    private fun getExpressionLike(search: String): StringExpression? {
-        return Expressions.asString("$search%")
     }
 }

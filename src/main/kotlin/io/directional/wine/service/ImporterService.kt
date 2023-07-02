@@ -6,6 +6,7 @@ import io.directional.wine.payload.response.ImporterWithWineResponse
 import io.directional.wine.entity.Importer
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
+import io.directional.wine.payload.response.ImporterWithWineResponse.Companion.of
 import io.directional.wine.repository.ImporterRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -38,7 +39,7 @@ class ImporterService(
     }
 
     fun findImporterNameWithWine(importerName: String): ImporterWithWineResponse? {
-        return importerRepository.findImporterNameWithWine(importerName)
+        return importerRepository.findImporterNameWithWine(importerName)?.of()
     }
 
     fun findImporterNames(importerName: String): List<ImporterNamesResponse> {

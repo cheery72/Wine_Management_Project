@@ -30,38 +30,40 @@ class WineRepositoryImpl(
         priceMax: Int,
         wineStyle: String?,
         wineGrade: String?,
-        wineRegion: String
+        wineRegion: String,
     ): WineDetailsDto? {
         val booleanBuilder = getBooleanBuilder(wineGrade, wineStyle)
 
         return jpaQueryFactory.select(
-                QWineDetailsDto(
-                    qWine.type,
-                    qWine.nameKorean,
-                    qWine.nameEnglish,
-                    qWine.alcohol,
-                    qWine.acidity,
-                    qWine.body,
-                    qWine.sweetness,
-                    qWine.tannin,
-                    qWine.score,
-                    qWine.price,
-                    qWine.style,
-                    qWine.grade,
-                    qImporter.name,
-                    qWineAroma.aroma,
-                    qWinePairing.pairing,
-                    qGrape.nameKorean,
-                    qGrape.nameEnglish,
-                    qRegion.nameKorean,
-                    qRegion.nameEnglish,
-                    qWinery.id,
-                    qRegion.id,
-                )
-            ).from(qWine).join(qWine.aroma, qWineAroma).join(qWine.pairing, qWinePairing)
-            .join(qWine.importer, qImporter).join(qWine.winery, qWinery).join(qWine.wineGrape, qWineGrape)
-            .join(qWinery.region,qRegion)
-            .join(qWineGrape.grape, qGrape).where(
+            QWineDetailsDto(
+                qWine.type,
+                qWine.nameKorean,
+                qWine.nameEnglish,
+                qWine.alcohol,
+                qWine.acidity,
+                qWine.body,
+                qWine.sweetness,
+                qWine.tannin,
+                qWine.score,
+                qWine.price,
+                qWine.style,
+                qWine.grade,
+                qImporter.name,
+                qWineAroma.aroma,
+                qWinePairing.pairing,
+                qGrape.nameKorean,
+                qGrape.nameEnglish,
+                qRegion.nameKorean,
+                qRegion.nameEnglish,
+                qWinery.id,
+                qRegion.id,
+            )
+        ).from(qWine)
+            .join(qWine.aroma, qWineAroma)
+            .join(qWine.pairing, qWinePairing)
+            .join(qWine.winery, qWinery)
+            .join(qWine.wineGrape, qWineGrape)
+            .where(
                 qWine.deleted.isFalse.and(
                     qImporter.deleted.isFalse.and(
                         qGrape.deleted.isFalse.and(
@@ -105,26 +107,28 @@ class WineRepositoryImpl(
         priceMax: Int,
         wineStyle: String?,
         wineGrade: String?,
-        wineRegion: String
+        wineRegion: String,
     ): List<WineWithTopRegionDto> {
         val booleanBuilder = getBooleanBuilder(wineGrade, wineStyle)
 
         return jpaQueryFactory.select(
-                QWineWithTopRegionDto(
-                    qWine.type,
-                    qWine.nameKorean,
-                    qWine.nameEnglish,
-                    qRegion.id,
-                )
-            ).from(qWine).join(qWinery.region, qRegion).where(
+            QWineWithTopRegionDto(
+                qWine.type,
+                qWine.nameKorean,
+                qWine.nameEnglish,
+                qRegion.id,
+            )
+        ).from(qWine)
+            .join(qWine.winery, qWinery)
+            .where(
                 qWine.deleted.isFalse.and(
                     qRegion.deleted.isFalse.and(
                         qWine.nameEnglish.contains(wineName).or(qWine.nameKorean.contains(wineName)).and(
-                                qWine.type.eq(wineType).and(qWine.alcohol.between(alcoholMin, alcoholMax))
-                                    .and(qWine.price.between(priceMin, priceMax))
-                                    .and(qRegion.nameEnglish.eq(wineRegion).or(qRegion.nameKorean.eq(wineRegion)))
-                                    .and(booleanBuilder)
-                            )
+                            qWine.type.eq(wineType).and(qWine.alcohol.between(alcoholMin, alcoholMax))
+                                .and(qWine.price.between(priceMin, priceMax))
+                                .and(qRegion.nameEnglish.eq(wineRegion).or(qRegion.nameKorean.eq(wineRegion)))
+                                .and(booleanBuilder)
+                        )
                     )
                 )
             ).groupBy(

@@ -1,6 +1,7 @@
 package io.directional.wine.payload.response
 
 import io.directional.wine.payload.dto.WineWithTopRegionDto
+import java.util.concurrent.ConcurrentHashMap
 
 data class WineWithTopRegionResponse(
     val wineType: String,
@@ -10,13 +11,13 @@ data class WineWithTopRegionResponse(
 ) {
     companion object {
         fun fromWineWithTopRegionResponse(
-            wineWithTopRegionDtoList: List<WineWithTopRegionDto?>,
-            topRegions: HashMap<Long, List<String>>
+            wineWithTopRegionDtoList: List<WineWithTopRegionDto>,
+            topRegions: ConcurrentHashMap<Long, List<String>>,
         ): List<WineWithTopRegionResponse> {
             return wineWithTopRegionDtoList.stream()
                 .map { w ->
                     WineWithTopRegionResponse(
-                        wineType = w!!.wineType,
+                        wineType = w.wineType,
                         wineKoreanName = w.wineKoreanName,
                         wineEnglishName = w.wineEnglishName,
                         wineTopRegion = topRegions.getOrDefault(w.regionId, emptyList())

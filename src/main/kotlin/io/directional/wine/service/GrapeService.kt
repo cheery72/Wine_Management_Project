@@ -5,7 +5,9 @@ import io.directional.wine.payload.request.CreateGrapeRequest
 import io.directional.wine.entity.Grape
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
+import io.directional.wine.payload.response.GrapeDetailsWithWineNameResponse.Companion.of
 import io.directional.wine.payload.response.GrapeNamesWithRegionsResponse
+import io.directional.wine.payload.response.GrapeNamesWithRegionsResponse.Companion.of
 import io.directional.wine.repository.GrapeRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -39,11 +41,11 @@ class GrapeService(
     }
 
     fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameResponse? {
-        return grapeRepository.findGrapeDetailsWithWineName(gradeName, gradeRegion)
+        return grapeRepository.findGrapeDetailsWithWineName(gradeName, gradeRegion)?.of()
     }
 
     fun findGrapeNamesWithRegions(grapeName: String, gradeRegion: String): List<GrapeNamesWithRegionsResponse> {
-        return grapeRepository.findGrapeNamesWithRegions(grapeName, gradeRegion)
+        return grapeRepository.findGrapeNamesWithRegions(grapeName, gradeRegion).of()
     }
 
     private fun findGrape(grapeId: Long): Grape {

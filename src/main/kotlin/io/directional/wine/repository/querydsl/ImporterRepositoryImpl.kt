@@ -3,8 +3,8 @@ package io.directional.wine.repository.querydsl
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.directional.wine.entity.QImporter
 import io.directional.wine.entity.QWine
-import io.directional.wine.payload.response.ImporterWithWineResponse
-import io.directional.wine.payload.response.QImporterWithWineResponse
+import io.directional.wine.payload.dto.ImporterWithWineDto
+import io.directional.wine.payload.dto.QImporterWithWineDto
 
 class ImporterRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory,
@@ -12,11 +12,11 @@ class ImporterRepositoryImpl(
     private val qWine: QWine = QWine.wine
 ) : ImporterRepositoryCustom {
 
-    override fun findImporterNameWithWine(importerName: String): ImporterWithWineResponse? {
+    override fun findImporterNameWithWine(importerName: String): ImporterWithWineDto? {
 
         return jpaQueryFactory
             .select(
-                QImporterWithWineResponse
+                QImporterWithWineDto
                     (
                     qImporter.name,
                     qWine.nameEnglish,

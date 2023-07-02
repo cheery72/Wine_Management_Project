@@ -8,6 +8,10 @@ import io.directional.wine.entity.Region
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
+import io.directional.wine.payload.dto.WineryWithRegionDto
+import io.directional.wine.payload.dto.WineryWithRegionWithWineNameDto
+import io.directional.wine.payload.response.WineryWithRegionResponse.Companion.of
+import io.directional.wine.payload.response.WineryWithRegionWithWineNameResponse.Companion.of
 import io.directional.wine.repository.RegionRepository
 import io.directional.wine.repository.WineryRepository
 import org.springframework.stereotype.Service
@@ -45,11 +49,11 @@ class WineryService(
     }
 
     fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameResponse? {
-        return wineryRepository.findWineryWithRegion(wineryName, wineryRegion)
+        return wineryRepository.findWineryWithRegion(wineryName, wineryRegion)?.of()
     }
 
     fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionResponse> {
-        return wineryRepository.findWineryWithRegionAll(wineryName, wineryRegion)
+        return wineryRepository.findWineryWithRegionAll(wineryName, wineryRegion).of()
     }
 
     private fun findRegion(regionId: Long): Region {

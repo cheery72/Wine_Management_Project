@@ -11,6 +11,7 @@ import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
+import io.directional.wine.payload.dto.RegionParentDto
 import io.directional.wine.payload.dto.WineDetailsDto
 import io.directional.wine.payload.dto.WineWithTopRegionDto
 import io.directional.wine.repository.ImporterRepository
@@ -262,7 +263,7 @@ class WineServiceTest {
         // when
         `when`(wineRepository.findWineDetails(wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
             wineStyle, wineGrade, wineRegion)).thenReturn(wineDetailsDto)
-        `when`(regionRepository.findByRegionTopList(wineDetailsDto.regionId)).thenReturn(listOf(region))
+        `when`(regionRepository.findByRegionTopList(wineDetailsDto.regionId)).thenReturn(listOf(mock(RegionParentDto::class.java)))
 
         val wineDetailsResponse: WineDetailsResponse? = wineService.findWineDetails(
             wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,

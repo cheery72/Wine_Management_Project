@@ -1,7 +1,7 @@
 package io.directional.wine.payload.response
 
 import io.directional.wine.payload.dto.RegionDetailsDto
-import io.directional.wine.entity.Region
+import io.directional.wine.payload.dto.RegionParentDto
 
 data class RegionDetailsResponse(
 
@@ -20,7 +20,7 @@ data class RegionDetailsResponse(
     companion object {
         fun fromRegionDetailResponse(
             regionDetails: RegionDetailsDto?,
-            regionTopList: List<Region>?
+            regionTopList: List<RegionParentDto>?
         ): RegionDetailsResponse? {
             val regionEnglishList: MutableList<String> = mutableListOf()
             val regionKoreanList: MutableList<String> = mutableListOf()

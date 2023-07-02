@@ -2,10 +2,7 @@ package io.directional.wine.repository.querydsl
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.directional.wine.entity.*
-import io.directional.wine.payload.dto.QRegionDetailsDto
-import io.directional.wine.payload.dto.RegionDetailsDto
-import io.directional.wine.payload.response.QRegionNamesResponse
-import io.directional.wine.payload.response.RegionNamesResponse
+import io.directional.wine.payload.dto.*
 
 class RegionRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory,
@@ -16,29 +13,48 @@ class RegionRepositoryImpl(
     private val qWine: QWine = QWine.wine,
 
     ) : RegionRepositoryCustom {
-    override fun findByRegionTopList(regionId: Long): List<Region> {
+    override fun findByRegionTopList(regionId: Long): List<RegionParentDto> {
 
-        val subQuery = jpaQueryFactory
-            .select(qRegion)
-            .from(qRegion)
-            .where(qRegion.id.eq(regionId))
-            .fetchFirst()
+        val regions = mutableListOf<RegionParentDto>()
+        val region = findParentRegion(regionId)
 
-        val regions = mutableListOf<Region>()
-
-        if (subQuery != null) {
-            addParentRegions(subQuery, regions)
+        if (region != null) {
+            addParentRegions(region, regions)
             regions.reverse()
         }
 
         return regions
     }
 
-    private fun addParentRegions(region: Region?, regions: MutableList<Region>) {
-        if (region != null) {
-            regions.add(region)
-            addParentRegions(region.parent, regions)
+    private fun addParentRegions(region: RegionParentDto, regions: MutableList<RegionParentDto>) {
+        regions.add(region)
+
+        val parentId = region.parentId
+
+        if (parentId != null) {
+            val parentRegion = findParentRegion(parentId)
+            if (parentRegion != null) {
+                addParentRegions(parentRegion, regions)
+            }
         }
+    }
+
+    private fun findParentRegion(regionId: Long): RegionParentDto? {
+        val qParentRegion: QRegion = QRegion("parentRegion")
+
+        return jpaQueryFactory
+            .select(
+                QRegionParentDto(
+                    qRegion.id,
+                    qRegion.nameKorean,
+                    qRegion.nameEnglish,
+                    qRegion.parent.id
+                )
+            )
+            .from(qRegion)
+            .leftJoin(qRegion.parent, qParentRegion)
+            .where(qRegion.id.eq(regionId).and(qRegion.deleted.isFalse))
+            .fetchFirst()
     }
 
     override fun findRegionDetails(regionName: String, parentRegion: String): RegionDetailsDto? {
@@ -58,7 +74,6 @@ class RegionRepositoryImpl(
                 )
             ).from(qRegion)
             .join(qRegion.grapeShare, qGrapeShare)
-            .join(qGrapeShare.grape, qGrape)
             .join(qRegion.winery, qWinery)
             .join(qWinery.wine, qWine)
             .where(
@@ -73,11 +88,11 @@ class RegionRepositoryImpl(
             .fetchFirst()
     }
 
-    override fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesResponse> {
+    override fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesDto> {
 
         return jpaQueryFactory
             .select(
-                QRegionNamesResponse(
+                QRegionNamesDto(
                     qRegion.nameEnglish,
                     qRegion.nameKorean
                 )

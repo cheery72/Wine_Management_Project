@@ -4,23 +4,23 @@ import com.querydsl.jpa.impl.JPAQueryFactory
 import io.directional.wine.entity.QRegion
 import io.directional.wine.entity.QWine
 import io.directional.wine.entity.QWinery
-import io.directional.wine.payload.response.QWineryWithRegionResponse
-import io.directional.wine.payload.response.QWineryWithRegionWithWineNameResponse
-import io.directional.wine.payload.response.WineryWithRegionResponse
-import io.directional.wine.payload.response.WineryWithRegionWithWineNameResponse
+import io.directional.wine.payload.dto.QWineryWithRegionDto
+import io.directional.wine.payload.dto.QWineryWithRegionWithWineNameDto
+import io.directional.wine.payload.dto.WineryWithRegionDto
+import io.directional.wine.payload.dto.WineryWithRegionWithWineNameDto
 
 class WineryRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory,
     private val qWinery: QWinery = QWinery.winery,
     private val qRegion: QRegion = QRegion.region,
-    private val qWine: QWine = QWine.wine
+    private val qWine: QWine = QWine.wine,
 ) : WineryRepositoryCustom {
 
-    override fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameResponse? {
+    override fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameDto? {
 
         return jpaQueryFactory
             .select(
-                QWineryWithRegionWithWineNameResponse(
+                QWineryWithRegionWithWineNameDto(
                     qWinery.nameEnglish,
                     qWinery.nameKorean,
                     qRegion.nameEnglish,
@@ -29,7 +29,6 @@ class WineryRepositoryImpl(
                     qWine.nameKorean
                 )
             ).from(qWinery)
-            .join(qWinery.region, qRegion)
             .join(qWinery.wine, qWine)
             .where(
                 qWinery.deleted.isFalse.and(
@@ -49,18 +48,17 @@ class WineryRepositoryImpl(
             .fetchFirst()
     }
 
-    override fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionResponse> {
+    override fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionDto> {
 
         return jpaQueryFactory
             .select(
-                QWineryWithRegionResponse(
+                QWineryWithRegionDto(
                     qWinery.nameEnglish,
                     qWinery.nameKorean,
                     qRegion.nameEnglish,
                     qRegion.nameKorean,
                 )
             ).from(qWinery)
-            .join(qWinery.region, qRegion)
             .where(
                 qWinery.deleted.isFalse.and(
                     qRegion.deleted.isFalse

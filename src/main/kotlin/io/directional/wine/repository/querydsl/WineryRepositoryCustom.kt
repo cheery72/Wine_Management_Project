@@ -1,11 +1,11 @@
 package io.directional.wine.repository.querydsl
 
-import io.directional.wine.payload.response.WineryWithRegionResponse
-import io.directional.wine.payload.response.WineryWithRegionWithWineNameResponse
+import io.directional.wine.payload.dto.WineryWithRegionDto
+import io.directional.wine.payload.dto.WineryWithRegionWithWineNameDto
 
 interface WineryRepositoryCustom {
 
-    fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameResponse?
+    fun findWineryWithRegion(wineryName: String, wineryRegion: String): WineryWithRegionWithWineNameDto?
 
-    fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionResponse>
+    fun findWineryWithRegionAll(wineryName: String, wineryRegion: String): List<WineryWithRegionDto>
 }

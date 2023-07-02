@@ -7,6 +7,8 @@ import io.directional.wine.entity.Region
 import io.directional.wine.exception.ClientException
 import io.directional.wine.exception.ErrorCode
 import io.directional.wine.payload.dto.RegionDetailsDto
+import io.directional.wine.payload.dto.RegionParentDto
+import io.directional.wine.payload.response.RegionNamesResponse.Companion.of
 import io.directional.wine.repository.RegionRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -45,13 +47,13 @@ class RegionService(
     fun findRegionDetails(regionName: String, parentRegion: String): RegionDetailsResponse? {
         val regionDetails: RegionDetailsDto? = regionRepository.findRegionDetails(regionName, parentRegion)
 
-        val regions: List<Region>? = regionDetails?.let { regionRepository.findByRegionTopList(it.regionId) }
+        val regions: List<RegionParentDto>? = regionDetails?.let { regionRepository.findByRegionTopList(it.regionId) }
 
         return RegionDetailsResponse.fromRegionDetailResponse(regionDetails, regions)
     }
 
     fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesResponse> {
-        return regionRepository.findRegionsName(regionName, parentRegion)
+        return regionRepository.findRegionsName(regionName, parentRegion).of()
     }
 
     private fun findRegion(regionId: Long): Region {

@@ -1,7 +1,7 @@
 package io.directional.wine.payload.response
 
+import io.directional.wine.payload.dto.RegionParentDto
 import io.directional.wine.payload.dto.WineDetailsDto
-import io.directional.wine.entity.Region as Region
 
 data class WineDetailsResponse(
 
@@ -27,24 +27,19 @@ data class WineDetailsResponse(
 ) {
     companion object {
         fun fromWineDetailsResponse(
-            wineDetailsDto: WineDetailsDto, regionTopList: List<Region>?
+            wineDetailsDto: WineDetailsDto, regionTopList: List<RegionParentDto>,
         ): WineDetailsResponse {
 
             val regionKoreanNameMap = hashMapOf<String, List<String>>()
             val regionEnglishNameMap = hashMapOf<String, List<String>>()
 
-            val regionKoreanNameList = regionTopList
-                ?.subList(1, regionTopList.size)
-                ?.map { it.nameKorean }
-                ?: emptyList()
+            regionTopList
+                .subList(0, regionTopList.size)
+                .map { it.nameKorean }.also { regionEnglishNameMap[wineDetailsDto.wineRegionEnglishName] = it }
 
-            val regionEnglishNameList = regionTopList
-                ?.subList(1, regionTopList.size)
-                ?.map { it.nameEnglish }
-                ?: emptyList()
-
-            regionEnglishNameMap[wineDetailsDto.wineRegionEnglishName] = regionEnglishNameList
-            regionKoreanNameMap[wineDetailsDto.wineRegionKoreanName] = regionKoreanNameList
+            regionTopList
+                .subList(0, regionTopList.size)
+                .map { it.nameEnglish }.also { regionKoreanNameMap[wineDetailsDto.wineRegionKoreanName] = it }
 
 
             return WineDetailsResponse(

@@ -1,14 +1,11 @@
 package io.directional.wine.repository.querydsl
 
-import com.querydsl.core.types.dsl.Expressions
-import com.querydsl.core.types.dsl.StringExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
-import io.directional.wine.payload.*
-import io.directional.wine.payload.response.GrapeDetailsWithWineNameResponse
-import io.directional.wine.payload.response.GrapeNamesWithRegionsResponse
 import io.directional.wine.entity.*
-import io.directional.wine.payload.response.QGrapeDetailsWithWineNameResponse
-import io.directional.wine.payload.response.QGrapeNamesWithRegionsResponse
+import io.directional.wine.payload.dto.GrapeDetailsWithWineNameDto
+import io.directional.wine.payload.dto.GrapeNamesWithRegionsDto
+import io.directional.wine.payload.dto.QGrapeDetailsWithWineNameDto
+import io.directional.wine.payload.dto.QGrapeNamesWithRegionsDto
 
 class GrapeRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory,
@@ -16,14 +13,17 @@ class GrapeRepositoryImpl(
     private val qWine: QWine = QWine.wine,
     private val qWineGrape: QWineGrape = QWineGrape.wineGrape,
     private val qGrapeShare: QGrapeShare = QGrapeShare.grapeShare,
-    private val qRegion: QRegion = QRegion.region
+    private val qRegion: QRegion = QRegion.region,
 ) : GrapeRepositoryCustom {
 
-    override fun findGrapeDetailsWithWineName(gradeName: String, gradeRegion: String): GrapeDetailsWithWineNameResponse? {
+    override fun findGrapeDetailsWithWineName(
+        gradeName: String,
+        gradeRegion: String,
+    ): GrapeDetailsWithWineNameDto? {
 
         return jpaQueryFactory
             .select(
-                QGrapeDetailsWithWineNameResponse
+                QGrapeDetailsWithWineNameDto
                     (
                     qGrape.nameKorean,
                     qGrape.nameEnglish,
@@ -38,9 +38,7 @@ class GrapeRepositoryImpl(
                 )
             ).from(qGrape)
             .join(qGrape.grapeShare, qGrapeShare)
-            .join(qGrapeShare.region, qRegion)
             .join(qGrape.wineGrape, qWineGrape)
-            .join(qWineGrape.wine, qWine)
             .where(
                 qGrape.deleted.isFalse.and(
                     qRegion.deleted.isFalse.and(qWine.deleted.isFalse)
@@ -53,11 +51,14 @@ class GrapeRepositoryImpl(
 
     }
 
-    override fun findGrapeNamesWithRegions(gradeName: String, gradeRegion: String): List<GrapeNamesWithRegionsResponse> {
+    override fun findGrapeNamesWithRegions(
+        gradeName: String,
+        gradeRegion: String,
+    ): List<GrapeNamesWithRegionsDto> {
 
         return jpaQueryFactory
             .select(
-                QGrapeNamesWithRegionsResponse
+                QGrapeNamesWithRegionsDto
                     (
                     qGrape.nameEnglish,
                     qGrape.nameKorean,
@@ -66,7 +67,6 @@ class GrapeRepositoryImpl(
                 )
             ).from(qGrape)
             .join(qGrape.grapeShare, qGrapeShare)
-            .join(qGrapeShare.region, qRegion)
             .where(
                 qGrape.deleted.isFalse.and(
                     qRegion.deleted.isFalse

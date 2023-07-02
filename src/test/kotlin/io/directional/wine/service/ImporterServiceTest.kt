@@ -3,6 +3,7 @@ package io.directional.wine.service
 import io.directional.wine.payload.request.CreateImporterRequest
 import io.directional.wine.payload.response.ImporterWithWineResponse
 import io.directional.wine.entity.Importer
+import io.directional.wine.payload.dto.ImporterWithWineDto
 import io.directional.wine.repository.ImporterRepository
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -88,21 +89,21 @@ class ImporterServiceTest {
     fun findImporterNameWithWine_Success_Test() {
         // given
         val importerName = "importerName"
-        val importerWithWineResponse = ImporterWithWineResponse(
+        val importerWithWineDto = ImporterWithWineDto(
             importerName = "importer",
             importerWineNameEnglish = "importerEnglish",
             importerWineNameKorean = "importerKorean"
         )
 
         // when
-        Mockito.`when`(importerRepository.findImporterNameWithWine(importerName)).thenReturn(importerWithWineResponse)
+        Mockito.`when`(importerRepository.findImporterNameWithWine(importerName)).thenReturn(importerWithWineDto)
 
         val result = importerService.findImporterNameWithWine(importerName)
 
         // then
         Mockito.verify(importerRepository, Mockito.times(1)).findImporterNameWithWine(importerName)
-        assertEquals(importerWithWineResponse.importerName, result?.importerName)
-        assertEquals(importerWithWineResponse.importerWineNameEnglish, result?.importerWineNameEnglish)
-        assertEquals(importerWithWineResponse.importerWineNameKorean, result?.importerWineNameKorean)
+        assertEquals(importerWithWineDto.importerName, result?.importerName)
+        assertEquals(importerWithWineDto.importerWineNameEnglish, result?.importerWineNameEnglish)
+        assertEquals(importerWithWineDto.importerWineNameKorean, result?.importerWineNameKorean)
     }
 }

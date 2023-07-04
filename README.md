@@ -8,7 +8,7 @@
 - Gradle
 
 ## ERD
-
+![erd](https://github.com/cheery72/Wine_Management_Project/assets/69693631/6075d717-ea30-4122-b4ef-b57cbdb56785)
 
 ## 주요 기능
 ### 와인 조회

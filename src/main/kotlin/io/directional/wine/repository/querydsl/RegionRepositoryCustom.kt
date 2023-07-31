@@ -5,7 +5,7 @@ import io.directional.wine.payload.dto.RegionNamesDto
 import io.directional.wine.payload.dto.RegionParentDto
 
 interface RegionRepositoryCustom {
-    fun findByRegionTopList(regionId: Long): List<RegionParentDto>
+    fun findByRegionTopList(regionId: Long): RegionParentDto?
 
     fun findRegionDetails(regionName: String, parentRegion: String): RegionDetailsDto?
 

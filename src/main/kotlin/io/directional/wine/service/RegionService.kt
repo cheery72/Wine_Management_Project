@@ -10,6 +10,7 @@ import io.directional.wine.payload.dto.RegionDetailsDto
 import io.directional.wine.payload.dto.RegionParentDto
 import io.directional.wine.payload.response.RegionNamesResponse.Companion.of
 import io.directional.wine.repository.RegionRepository
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -47,9 +48,37 @@ class RegionService(
     fun findRegionDetails(regionName: String, parentRegion: String): RegionDetailsResponse? {
         val regionDetails: RegionDetailsDto? = regionRepository.findRegionDetails(regionName, parentRegion)
 
-        val regions: List<RegionParentDto>? = regionDetails?.let { regionRepository.findByRegionTopList(it.regionId) }
+        val regions: List<RegionParentDto>? = regionDetails?.let { findRegionList(it.regionId) }
 
         return RegionDetailsResponse.fromRegionDetailResponse(regionDetails, regions)
+    }
+    private fun findRegionList(regionId: Long): List<RegionParentDto> {
+
+        val regions = mutableListOf<RegionParentDto>()
+        val region = findParentRegion(regionId)
+
+        if (region != null) {
+            addParentRegions(region, regions)
+            regions.reverse()
+        }
+
+        return regions
+    }
+
+    private fun addParentRegions(region: RegionParentDto, regions: MutableList<RegionParentDto>) {
+        regions.add(region)
+
+        val parentId = region.parentId
+
+        if (parentId != null) {
+            val parentRegion = findParentRegion(parentId)
+            if (parentRegion != null) {
+                addParentRegions(parentRegion, regions)
+            }
+        }
+    }
+    private fun findParentRegion(parentId: Long): RegionParentDto?  {
+        return regionRepository.findByRegionTopList(parentId)
     }
 
     fun findRegionsName(regionName: String, parentRegion: String): List<RegionNamesResponse> {

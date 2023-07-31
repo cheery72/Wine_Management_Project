@@ -17,6 +17,7 @@ import io.directional.wine.repository.ImporterRepository
 import io.directional.wine.repository.RegionRepository
 import io.directional.wine.repository.WineRepository
 import io.directional.wine.repository.WineryRepository
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.concurrent.ConcurrentHashMap
@@ -82,22 +83,25 @@ class WineService(
             wineStyle, wineGrade, wineRegion
         )
 
-        val topRegions: ConcurrentHashMap<Long, List<String>> = findTopRegions(wineWithTopRegionDtoList)
+        val topRegions: ConcurrentHashMap<Long, RegionParentDto> = findTopRegions(wineWithTopRegionDtoList)
 
         return WineWithTopRegionResponse.fromWineWithTopRegionResponse(wineWithTopRegionDtoList, topRegions)
     }
 
-    private fun findTopRegions(wineWithTopRegionDtoList: List<WineWithTopRegionDto>): ConcurrentHashMap<Long, List<String>> {
-        val regionTopMap: ConcurrentHashMap<Long, List<String>> = ConcurrentHashMap()
+    private fun findTopRegions(wineWithTopRegionDtoList: List<WineWithTopRegionDto>): ConcurrentHashMap<Long, RegionParentDto> {
+        val regionTopMap: ConcurrentHashMap<Long, RegionParentDto> = ConcurrentHashMap()
 
         wineWithTopRegionDtoList.forEach { wineWithTopRegionDto ->
             if (regionIdContainsKey(regionTopMap,wineWithTopRegionDto.regionId)) {
                 val findRegionList = findRegionList(wineWithTopRegionDto.regionId)
-                val regionListSize = findRegionList.size - 1
 
-                if (regionListSize >= 0 && regionIdContainsKey(regionTopMap,findRegionList[0].regionId)) {
-                    val topRegionName = listOf(findRegionList[0].nameEnglish, findRegionList[0].nameKorean)
-                    findRegionList[regionListSize].regionId.let { regionTopMap.putIfAbsent(it, topRegionName) }
+                findRegionList.forEach { region ->
+                    if (regionIdContainsKey(regionTopMap,region.regionId)) {
+                        val topRegionName = RegionParentDto.fromRegionParentDto(
+                                                    region.regionId,region.nameKorean,
+                                                    region.nameEnglish,region.parentId)
+                        regionTopMap.putIfAbsent(region.regionId, topRegionName)
+                    }
                 }
             }
         }
@@ -105,12 +109,38 @@ class WineService(
         return regionTopMap
     }
 
-    private fun regionIdContainsKey(regionTopMap: ConcurrentHashMap<Long,List<String>>, regionId: Long?): Boolean{
+    private fun regionIdContainsKey(regionTopMap: ConcurrentHashMap<Long,RegionParentDto>, regionId: Long?): Boolean{
         return !regionTopMap.containsKey(regionId)
     }
 
     private fun findRegionList(regionId: Long): List<RegionParentDto> {
-        return regionRepository.findByRegionTopList(regionId)
+
+        val regions = mutableListOf<RegionParentDto>()
+        val region = findParentRegion(regionId)
+
+        if (region != null) {
+            addParentRegions(region, regions)
+            regions.reverse()
+        }
+
+        return regions
+    }
+
+    private fun addParentRegions(region: RegionParentDto, regions: MutableList<RegionParentDto>) {
+        regions.add(region)
+
+        val parentId = region.parentId
+
+        if (parentId != null) {
+            val parentRegion = findParentRegion(parentId)
+            if (parentRegion != null) {
+                addParentRegions(parentRegion, regions)
+            }
+        }
+    }
+
+    fun findParentRegion(parentId: Long): RegionParentDto?  {
+        return regionRepository.findByRegionTopList(parentId)
     }
 
     private fun findWine(wineId: Long): Wine {

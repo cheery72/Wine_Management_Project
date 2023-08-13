@@ -1,11 +1,6 @@
 package io.directional.wine.service
 
-import io.directional.wine.payload.request.CreateWineRequest
-import io.directional.wine.payload.request.UpdateWineRequest
-import io.directional.wine.payload.response.WineDetailsResponse
-import io.directional.wine.payload.response.WineWithTopRegionResponse
 import io.directional.wine.entity.Importer
-import io.directional.wine.entity.Region
 import io.directional.wine.entity.Wine
 import io.directional.wine.entity.Winery
 import io.directional.wine.exception.ClientException
@@ -13,11 +8,14 @@ import io.directional.wine.exception.ErrorCode
 import io.directional.wine.payload.dto.RegionParentDto
 import io.directional.wine.payload.dto.WineDetailsDto
 import io.directional.wine.payload.dto.WineWithTopRegionDto
+import io.directional.wine.payload.request.CreateWineRequest
+import io.directional.wine.payload.request.UpdateWineRequest
+import io.directional.wine.payload.response.WineDetailsResponse
+import io.directional.wine.payload.response.WineWithTopRegionResponse
 import io.directional.wine.repository.ImporterRepository
 import io.directional.wine.repository.RegionRepository
 import io.directional.wine.repository.WineRepository
 import io.directional.wine.repository.WineryRepository
-import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.concurrent.ConcurrentHashMap
@@ -25,10 +23,10 @@ import java.util.concurrent.ConcurrentHashMap
 @Service
 @Transactional(readOnly = true)
 class WineService(
-    private val wineRepository: WineRepository,
-    private val wineryRepository: WineryRepository,
-    private val importerRepository: ImporterRepository,
-    private val regionRepository: RegionRepository,
+        private val wineRepository: WineRepository,
+        private val wineryRepository: WineryRepository,
+        private val importerRepository: ImporterRepository,
+        private val regionRepository: RegionRepository,
 ) {
 
     @Transactional
@@ -57,31 +55,17 @@ class WineService(
         wine.setDeleted()
     }
 
-    fun findWineDetails(
-        wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double,
-        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String
-    )
-            : WineDetailsResponse? {
-        val wineDetailsDto: WineDetailsDto? = wineRepository.findWineDetails(
-            wineName, wineType, alcoholMin, alcoholMax, priceMin,
-            priceMax, wineStyle, wineGrade, wineRegion
-        )
+    fun findWineDetails(wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double, priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String): WineDetailsResponse? {
+        val wineDetailsDto: WineDetailsDto? = wineRepository.findWineDetails(wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax, wineStyle, wineGrade, wineRegion)
 
         val regionTopList = wineDetailsDto?.let { findRegionList(it.regionId) }
 
         return wineDetailsDto?.let { regionTopList?.let { it1 -> WineDetailsResponse.fromWineDetailsResponse(it, it1) } }
     }
 
-    fun findWineWithTopRegion(
-        wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double,
-        priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String
-    )
-            : List<WineWithTopRegionResponse> {
+    fun findWineWithTopRegion(wineName: String, wineType: String, alcoholMin: Double, alcoholMax: Double, priceMin: Int, priceMax: Int, wineStyle: String?, wineGrade: String?, wineRegion: String): List<WineWithTopRegionResponse> {
 
-        val wineWithTopRegionDtoList: List<WineWithTopRegionDto> = wineRepository.findWineWithTopRegion(
-            wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax,
-            wineStyle, wineGrade, wineRegion
-        )
+        val wineWithTopRegionDtoList: List<WineWithTopRegionDto> = wineRepository.findWineWithTopRegion(wineName, wineType, alcoholMin, alcoholMax, priceMin, priceMax, wineStyle, wineGrade, wineRegion)
 
         val topRegions: ConcurrentHashMap<Long, RegionParentDto> = findTopRegions(wineWithTopRegionDtoList)
 
@@ -91,25 +75,22 @@ class WineService(
     private fun findTopRegions(wineWithTopRegionDtoList: List<WineWithTopRegionDto>): ConcurrentHashMap<Long, RegionParentDto> {
         val regionTopMap: ConcurrentHashMap<Long, RegionParentDto> = ConcurrentHashMap()
 
-        wineWithTopRegionDtoList.forEach { wineWithTopRegionDto ->
-            if (regionIdContainsKey(regionTopMap,wineWithTopRegionDto.regionId)) {
-                val findRegionList = findRegionList(wineWithTopRegionDto.regionId)
-
-                findRegionList.forEach { region ->
-                    if (regionIdContainsKey(regionTopMap,region.regionId)) {
-                        val topRegionName = RegionParentDto.fromRegionParentDto(
-                                                    region.regionId,region.nameKorean,
-                                                    region.nameEnglish,region.parentId)
-                        regionTopMap.putIfAbsent(region.regionId, topRegionName)
-                    }
-                }
+        wineWithTopRegionDtoList
+            .filter { regionIdContainsKey(regionTopMap, it.regionId) }
+            .flatMap { findRegionList(it.regionId) }
+            .filter { regionIdContainsKey(regionTopMap, it.regionId) }
+            .forEach { region ->
+                val topRegionName = RegionParentDto.fromRegionParentDto(
+                        region.regionId, region.nameKorean,
+                        region.nameEnglish, region.parentId
+                )
+                regionTopMap.putIfAbsent(region.regionId, topRegionName)
             }
-        }
 
         return regionTopMap
     }
 
-    private fun regionIdContainsKey(regionTopMap: ConcurrentHashMap<Long,RegionParentDto>, regionId: Long?): Boolean{
+    private fun regionIdContainsKey(regionTopMap: ConcurrentHashMap<Long, RegionParentDto>, regionId: Long?): Boolean {
         return !regionTopMap.containsKey(regionId)
     }
 
@@ -139,23 +120,20 @@ class WineService(
         }
     }
 
-    fun findParentRegion(parentId: Long): RegionParentDto?  {
+    fun findParentRegion(parentId: Long): RegionParentDto? {
         return regionRepository.findByRegionTopList(parentId)
     }
 
     private fun findWine(wineId: Long): Wine {
-        return wineRepository.findByIdAndDeletedFalse(wineId)
-            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINE) }
+        return wineRepository.findByIdAndDeletedFalse(wineId).orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINE) }
     }
 
     private fun findImporter(importerId: Long): Importer {
-        return importerRepository.findByIdAndDeletedFalse(importerId)
-            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_IMPORTER) }
+        return importerRepository.findByIdAndDeletedFalse(importerId).orElseThrow { ClientException(ErrorCode.NOT_FOUND_IMPORTER) }
     }
 
     private fun findWinery(wineryId: Long): Winery {
-        return wineryRepository.findByIdAndDeletedFalse(wineryId)
-            .orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINERY) }
+        return wineryRepository.findByIdAndDeletedFalse(wineryId).orElseThrow { ClientException(ErrorCode.NOT_FOUND_WINERY) }
     }
 
 }
